@@ -31,7 +31,7 @@
  -->
 
 		<div>
-			<img src="get-big-things-done-small-1.0.jpg" alt="Get Big Things Done Infographic">
+			
 		</div>
 
 		<!-- High-level view of entire graphic -->
@@ -171,9 +171,12 @@
 		};
 
 		if (!device.mobile()) {
+			var firstDiv = document.querySelector('#impress > div:first-of-type');
+			firstDiv.insertAdjacentHTML('beforeend', '<img src="get-big-things-done-1.0.jpg" alt="Get Big Things Done Infographic">');
+
 			loadScript("impress.js", myPrettyCode);
 		} else {
-			
+
 		}
 
 	</script>
