@@ -21,7 +21,57 @@
 </head>
 <body>
 	<div class="row">
-		<div class="col s12 m6 offset-l2 l5">
+
+		<!-- Side Nav provides onsite infographic links, offsite references linking, and comments related to the infographic.  We need it to persist and overlay on top of impress.js -->
+		<div class="col m4">
+			<ul id="slide-out" class="side-nav fixed">
+
+				<li>All of the quotes at the top of this article come from an article written by science fiction author, Neal Stephenson.  <a href="http://www.worldpolicy.org/journal/fall2011/innovation-starvation" target="_blank">That article</a> was written for the World Policy Institute</li>
+
+				<li><a href="http://space.io9.com/lightning-mysterious-gamma-ray-bursts-1549723614" target="_blank">io9</a>.  Note: This is hardly a comprehensive listing of interesting scientific controversies.  I've decided to limit the number of examples to avoid overwhelming people.  The examples are presented simply to make the stated point that we should be paying more attention to ongoing challenges to textbook theory.</li>
+
+				<li><a href="http://www.nasa.gov/home/hqnews/2005/mar/HQ_05070_radiation_belt.html#.VmYK11krIsM" target="_blank">NASA</a></li>
+
+				<li><a href="http://www.bbc.com/future/story/20120926-what-causes-lightening" target="_blank">BBC Future</a></li>
+
+				<li><a href="http://www.plasma-universe.com/Galaxy_formation" target="_blank">Ian Tresman's plasma universe wiki</a>.  This site was created because the wikipedia encyclopedia refused to acknowledge this peer-reviewed research.</li>
+
+				<li>More information at <a href="http://faculty.washington.edu/ghp/" target="_blank">Gerald Pollack's University of Washington pages</a>.  Gerald Pollack is an excellent speaker.  See his many talks on YouTube.</li>
+
+				<li><a href="http://faculty.washington.edu/ghp/images/stories/pubPDF/2005-Trevors_Pollack-Origin_of_life_hydrogel.pdf" target="_blank">Hypothesis: the origin of life in a hydrogel environment, by Jack T. Trevorsa and Gerald H. Pollack</a></li>
+
+				<li>This paper can be tricky to track down.  The best option might be to fill out the form <a href="http://www.everythingselectric.com/product/anthony-peratt-z-pinch-aurora/" target="_blank">here</a>.</li>
+
+				<li>I created this explanatory graphic.  These are morphologies (shapes) that electricity takes when it is conducted over gas (more properly termed plasma) at extremely high charge densities.  If you look carefully at the last morphology, the central ring is the source of what is called synchrotron radiation.  Peratt explains that this would have been very dangerous radiation.  The 2d squatter man drawing appears to follow from the luminosity which results from viewing the 3d form edge-wise.</li>
+
+				<li>Image is from this <a href="http://plazmauniverzum.hu/arp" target="_blank">Hungarian plasma cosmology site</a>.  There is a technical analysis of Arp's claim <a href="http://www.astr.ua.edu/keel/galaxies/arp.html" target="_blank">here</a>.  For a more broad view of this subject, see the excellent YouTube documentary, Universe: The Cosmology Quest at https://www.youtube.com/watch?v=IFFl9S39CTM.</li>
+
+				<li>I wouldn't normally advise using wikipedia to look up controversial subjects, but <a href="https://en.wikipedia.org/wiki/Halton_Arp" target="_blank">this entry</a> is okay.</li>
+
+				<li>Paper at <a href="http://arxiv.org/abs/1002.1661" target="_blank">arXiv.org</a>.  Verschuur has a couple of fantastic books on these subjects.  See his book, The Invisible Universe, to learn about radio astronomy.  His book, Interstellar Matters, contains a couple of chapters which in great detail explain how to read a radio astronomy paper.  With not much more than that, Verschuur's numerous IEEE papers will become accessible to most laypeople.  His papers on critical ionization velocities are particularly noteworthy because they appear to suggest that ionization is an ongoing process in space -- directly contradicting what we teach to astrophysicists today.</li>
+
+				<li><a href="http://news.discovery.com/space/cosmic-background-radiation-big-bang-120615.htm" target="_blank">Discovery News</a></li>
+
+				<li><a href="http://archive.wired.com/science/space/news/2007/11/big_bang" target="_blank">Wired Magazine</a></li>
+
+				<li>Comes from <a href="http://www.q-mag.org/the-tangible-proof-of-earthquake-lights.html" target="_blank">Alfred de Grazia's Magazine of Quantavolution</a>.  This research was originally published in German in <a href="http://www.spiegel.de/wissenschaft/natur/erdbebenlichter-erklaerung-fuer-blitze-aus-dem-boden-a-1035800.html" target="_blank">Der Spiegel</a> on June 8, 2015.  It was translated from German by Anne-Marie de Grazia, the wife of the late Alfred de Grazia.  There are additional pictures in the German article.</li>
+
+				<li>These snapshots actually come from two separate links -- the first is from <a href="http://www.rense.com/general68/gint.htm" target="_blank">Giant Lightning From Earth To Space from Rense.com</a> and the second is from <a href="https://www.thunderbolts.info/tpod/2005/arch05/051110sprite.htm" target="_blank">Giant Lightning to Space at thunderbolts.info</a>.</li>
+
+				<li>Source: <a href="http://www.holoscience.com/wp/other-stars-other-worlds-other-life/" target="_blank">Wal Thornhill's Holoscience site</a>.  From wikipedia: "The Fermi paradox — or Fermi's paradox — is the apparent contradiction between high estimates of the probability of the existence of extraterrestrial civilizations, such as in the Drake equation, and the lack of evidence for such civilizations."  Wal's approach would neatly explain the paradox because electromagnetic communications are commonly obstructed by plasma double layers like our own ionosphere.  In the configuration proposed, the planet would be deeply embedded within the star's electromagnetic envelope -- hence we'd struggle to observe these radio signals.  The whole idea might sound like a wacky, unsupported claim, but in fact, Dwardu Cardona has published a number of excellent books which dedicate a few thousand pages filled with references to supporting these claims.  I cannot recommend enough Dwardu's books.</li>
+
+				<li>Image comes from The Jetson's cartoon</li>
+
+				<li>Awesome artwork by <a href="http://peteamachree.deviantart.com/art/future-city-1-187502843" target="_blank">PeteAmachree at Deviant Art</a></li>
+
+				<li>Awesome artwork by <a href="http://cyberkolbasa.deviantart.com/art/underground-city-357211806" target="_blank">cyberkolbasa at Deviant Art</a></li>
+
+		    </ul>
+
+		    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>			
+		</div>
+
+		<div class="col s9">
 
 		    <div id="impress">
 		    	<!-- Load img tag into this ... -->
@@ -140,6 +190,8 @@
 				<div id="futurism" class="step" data-y="5500" data-x="0" data-scale="2.5"></div>
 
 			</div> <!-- impress -->
+
+			<!-- The mobile markup uses smaller graphics, no impress.js, and instead uses Materialize cards to display small 640-pixel wide, zoomed chunks of the infographic.  Eventually, will want to configure that it is only downloading ten at a time.  Currently, setting JPG quality to 50. -->
 
 			<div id="mobile">
 				<h4 class="controversy-title-bar">Is it Possible to Increase the Rate of Innovation?</h4>
