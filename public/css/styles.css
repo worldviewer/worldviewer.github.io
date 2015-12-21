@@ -14,3 +14,11 @@
 .tablet #impress {
 	display: none;
 }
+
+#controversy-title-bar, #discourse-title-bar, #annotation-title-bar {
+	color: white;
+	background: rgba(0,0,0,0.8);
+	padding: 20px;
+	font-weight: 100;
+	margin-bottom: 0;
+}

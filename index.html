@@ -6,139 +6,172 @@
     <meta name="viewport" content="user-scalable=yes, maximum-scale=10, width=device-width" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
 
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="public/css/styles.css">
 	<link rel='shortcut icon' href='get-big-things-done-favicon.png' type='image/x-icon'/ >
 
-	<script src="device.js"></script>
+	<link rel="stylesheet" type="text/css" href="public/css/materialize.css">
+
+	<!-- For Material Icons -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="public/js/materialize.js" type="text/javascript"></script>
+	<script src="public/js/device.js" type="text/javascript"></script>
 
 </head>
 <body>
-    <div id="impress">
-    	<!-- Load img tag into this ... -->
-		<div></div>
+	<div class="row">
+		<div class="col s12 m6 offset-l2 l5">
 
-		<!-- High-level view of entire graphic -->
-        <div id="intro" class="step" data-y="0" data-x="0" data-scale="15"></div>
+		    <div id="impress">
+		    	<!-- Load img tag into this ... -->
+				<div></div>
 
-		<!-- Ineluctable certainty quote -->
-        <div id="stephenson" class="step" data-y="-4500" data-x="0" data-scale="5"></div>
+				<!-- High-level view of entire graphic -->
+		        <div id="intro" class="step" data-y="0" data-x="0" data-scale="15"></div>
 
-		<!-- Ineluctable definition -->
-		<div id="ineluctable" class="step" data-y="-6500" data-x="0" data-scale="1.5"></div>
+				<!-- Ineluctable certainty quote -->
+		        <div id="stephenson" class="step" data-y="-4500" data-x="0" data-scale="5"></div>
 
-		<!-- Ref [1] -->
-		<div id="risk" class="step" data-y="-6250" data-x="-1500" data-scale="1.5"></div>
+				<!-- Ineluctable definition -->
+				<div id="ineluctable" class="step" data-y="-6500" data-x="0" data-scale="1.5"></div>
 
-		<!-- Return to center -->
-		<div id="dizzy1" class="step" data-y="-5800" data-x="0" data-scale="2.5"></div>
+				<!-- Ref [1] -->
+				<div id="risk" class="step" data-y="-6250" data-x="-1500" data-scale="1.5"></div>
 
-		<div id="forgotten" class="step" data-y="-6640" data-x="1870" data-scale=".5"></div>
+				<!-- Return to center -->
+				<div id="dizzy1" class="step" data-y="-5800" data-x="0" data-scale="2.5"></div>
 
-		<!-- Return to center -->
-		<div id="dizzy2" class="step" data-y="-5800" data-x="0" data-scale="2.5"></div>
+				<div id="forgotten" class="step" data-y="-6640" data-x="1870" data-scale=".5"></div>
 
-		<div id="specialization" class="step" data-y="-5750" data-x="1550" data-scale=".5"></div>
+				<!-- Return to center -->
+				<div id="dizzy2" class="step" data-y="-5800" data-x="0" data-scale="2.5"></div>
 
-		<!-- Return to center -->
-		<div id="dizzy3" class="step" data-y="-5800" data-x="0" data-scale="2.5"></div>
+				<div id="specialization" class="step" data-y="-5750" data-x="1550" data-scale=".5"></div>
 
-		<div id="internet_era" class="step" data-y="-4630" data-x="630" data-scale=".5"></div>
+				<!-- Return to center -->
+				<div id="dizzy3" class="step" data-y="-5800" data-x="0" data-scale="2.5"></div>
 
-		<!-- Return to center -->
-		<div id="dizzy15" class="step" data-y="-4630" data-x="0" data-scale="2.5"></div>
+				<div id="internet_era" class="step" data-y="-4630" data-x="630" data-scale=".5"></div>
 
-		<div id="get_big_things_done" class="step" data-y="-4300" data-x="-300" data-scale="1"></div>
+				<!-- Return to center -->
+				<div id="dizzy15" class="step" data-y="-4630" data-x="0" data-scale="2.5"></div>
 
-		<!-- Return to center -->
-		<div id="dizzy4" class="step" data-y="-4300" data-x="0" data-scale="2.5"></div>
+				<div id="get_big_things_done" class="step" data-y="-4300" data-x="-300" data-scale="1"></div>
 
-		<div id="china" class="step" data-y="-4000" data-x="-1500" data-scale="1"></div>
+				<!-- Return to center -->
+				<div id="dizzy4" class="step" data-y="-4300" data-x="0" data-scale="2.5"></div>
 
-		<!-- Return to center -->
-		<div id="dizzy5" class="step" data-y="-4300" data-x="0" data-scale="2.5"></div>
+				<div id="china" class="step" data-y="-4000" data-x="-1500" data-scale="1"></div>
 
-		<!-- key Stephenson quote -->
-		<div id="get_big_things_done_fail" class="step" data-y="-3530" data-x="1600" data-scale="2"></div>
+				<!-- Return to center -->
+				<div id="dizzy5" class="step" data-y="-4300" data-x="0" data-scale="2.5"></div>
 
-		<!-- We are just as affected by the stories we don't tell -->
-		<div id="stories_not_told" class="step" data-y="-3000" data-x="0" data-scale="2.5"></div>
+				<!-- key Stephenson quote -->
+				<div id="get_big_things_done_fail" class="step" data-y="-3530" data-x="1600" data-scale="2"></div>
 
-		<!-- First controversy on lightning -->
-		<div id="lightning" class="step" data-y="-2650" data-x="-1500" data-scale=".7"></div>
+				<!-- We are just as affected by the stories we don't tell -->
+				<div id="stories_not_told" class="step" data-y="-3000" data-x="0" data-scale="2.5"></div>
 
-		<!-- Return to center -->
-		<div id="dizzy6" class="step" data-y="-2650" data-x="0" data-scale="2.5"></div>
+				<!-- First controversy on lightning -->
+				<div id="lightning" class="step" data-y="-2650" data-x="-1500" data-scale=".7"></div>
 
-		<!-- Scroll down -->
-		<div id="future" class="step" data-y="-1830" data-x="0" data-scale="2.5"></div>
+				<!-- Return to center -->
+				<div id="dizzy6" class="step" data-y="-2650" data-x="0" data-scale="2.5"></div>
 
-		<!-- galactic simulation -->
-		<div id="peratt_galaxies" class="step" data-y="-850" data-x="1800" data-scale=".7"></div>
+				<!-- Scroll down -->
+				<div id="future" class="step" data-y="-1830" data-x="0" data-scale="2.5"></div>
 
-		<!-- Return to center -->
-		<div id="dizzy7" class="step" data-y="200" data-x="0" data-scale="2.5"></div>
+				<!-- galactic simulation -->
+				<div id="peratt_galaxies" class="step" data-y="-850" data-x="1800" data-scale=".7"></div>
 
-		<!-- halton arp -->
-		<div id="halton_arp" class="step" data-y="200" data-x="1700" data-scale=".7"></div>
+				<!-- Return to center -->
+				<div id="dizzy7" class="step" data-y="200" data-x="0" data-scale="2.5"></div>
 
-		<!-- Return to center -->
-		<div id="dizzy8" class="step" data-y="1550" data-x="0" data-scale="2.5"></div>
+				<!-- halton arp -->
+				<div id="halton_arp" class="step" data-y="200" data-x="1700" data-scale=".7"></div>
 
-		<!-- gerrit verschuur -->
-		<div id="gerrit_verschuur" class="step" data-y="1550" data-x="1800" data-scale="1.2"></div>
-		<div id="gerrit_verschuur_cmb" class="step" data-y="1920" data-x="1880" data-scale=".5"></div>
+				<!-- Return to center -->
+				<div id="dizzy8" class="step" data-y="1550" data-x="0" data-scale="2.5"></div>
 
-		<!-- Return to center -->
-		<div id="dizzy9" class="step" data-y="1650" data-x="0" data-scale="2.5"></div>
+				<!-- gerrit verschuur -->
+				<div id="gerrit_verschuur" class="step" data-y="1550" data-x="1800" data-scale="1.2"></div>
+				<div id="gerrit_verschuur_cmb" class="step" data-y="1920" data-x="1880" data-scale=".5"></div>
 
-		<!-- earthquake lights -->
-		<div id="earthquake_lights" class="step" data-y="1650" data-x="0" data-scale=".7"></div>
+				<!-- Return to center -->
+				<div id="dizzy9" class="step" data-y="1650" data-x="0" data-scale="2.5"></div>
 
-		<!-- Return to center -->
-		<div id="dizzy10" class="step" data-y="2000" data-x="0" data-scale="2.5"></div>
+				<!-- earthquake lights -->
+				<div id="earthquake_lights" class="step" data-y="1650" data-x="0" data-scale=".7"></div>
 
-		<!-- Fermi Paradox -->
-		<div id="fermi_paradox" class="step" data-y="2000" data-x="-1800" data-scale=".7"></div>
+				<!-- Return to center -->
+				<div id="dizzy10" class="step" data-y="2000" data-x="0" data-scale="2.5"></div>
 
-		<!-- Return to center -->
-		<div id="dizzy11" class="step" data-y="1020" data-x="0" data-scale="2.5"></div>
+				<!-- Fermi Paradox -->
+				<div id="fermi_paradox" class="step" data-y="2000" data-x="-1800" data-scale=".7"></div>
 
-		<!-- lightning to space -->
-		<div id="lightning_to_space" class="step" data-y="1020" data-x="-1600" data-scale=".7"></div>
+				<!-- Return to center -->
+				<div id="dizzy11" class="step" data-y="1020" data-x="0" data-scale="2.5"></div>
 
-		<!-- Return to center -->
-		<div id="dizzy12" class="step" data-y="0" data-x="0" data-scale="2.5"></div>
+				<!-- lightning to space -->
+				<div id="lightning_to_space" class="step" data-y="1020" data-x="-1600" data-scale=".7"></div>
 
-		<!-- gel cell theory -->
-		<div id="gel_cell_theory" class="step" data-y="0" data-x="-1700" data-scale="1.0"></div>
-		<div id="origin_of_life" class="step" data-y="200" data-x="-1700" data-scale="0.5"></div>
+				<!-- Return to center -->
+				<div id="dizzy12" class="step" data-y="0" data-x="0" data-scale="2.5"></div>
 
-		<!-- Return to center -->
-		<div id="dizzy13" class="step" data-y="280" data-x="0" data-scale="2.5"></div>
+				<!-- gel cell theory -->
+				<div id="gel_cell_theory" class="step" data-y="0" data-x="-1700" data-scale="1.0"></div>
+				<div id="origin_of_life" class="step" data-y="200" data-x="-1700" data-scale="0.5"></div>
 
-		<!-- petroglyphs -->
-		<div id="peratt_petroglyphs" class="step" data-y="280" data-x="0" data-scale="1.25"></div>
-		<div id="petroglyphs" class="step" data-y="780" data-x="0" data-scale=".7"></div>
+				<!-- Return to center -->
+				<div id="dizzy13" class="step" data-y="280" data-x="0" data-scale="2.5"></div>
 
-		<!-- Return to center -->
-		<div id="dizzy14" class="step" data-y="2800" data-x="0" data-scale="2.5"></div>
+				<!-- petroglyphs -->
+				<div id="peratt_petroglyphs" class="step" data-y="280" data-x="0" data-scale="1.25"></div>
+				<div id="petroglyphs" class="step" data-y="780" data-x="0" data-scale=".7"></div>
 
-		<!-- First conclusion -->
-		<div id="cranks" class="step" data-y="4000" data-x="0" data-scale="2.5"></div>
+				<!-- Return to center -->
+				<div id="dizzy14" class="step" data-y="2800" data-x="0" data-scale="2.5"></div>
 
-		<!-- Second conclusion -->
-		<div id="futurism" class="step" data-y="5500" data-x="0" data-scale="2.5"></div>
+				<!-- First conclusion -->
+				<div id="cranks" class="step" data-y="4000" data-x="0" data-scale="2.5"></div>
 
-	</div>
+				<!-- Second conclusion -->
+				<div id="futurism" class="step" data-y="5500" data-x="0" data-scale="2.5"></div>
 
-	<div id="mobile">
-		<h1>Mobile Device!</h1>
-	</div>
+			</div> <!-- impress -->
+
+			<div id="mobile">
+				<h4 class="controversy-title-bar">Is it Possible to Increase the Rate of Innovation?</h4>
+
+				<div class="card">
+					<div class="content card-image">
+						<img class="activator card-images" src="public/img-mobile/get-big-things-done-1.jpg">
+					</div>
+
+					<div class="content card-content">
+						<span class="content card-title activator grey-text text-darken-4">World Policy Institute:<br>Innovation Starvation,<br>by Neil Stephenson<i class="material-icons right">more_vert</i></span>
+					</div>
+
+					<div class="card-reveal">
+						<span class="card-title grey-text text-darken-4">World Policy Institute:<br>Innovation Starvation,<br>by Neil Stephenson<i class="material-icons right">close</i></span>
+						<a href="http://www.worldpolicy.org/journal/fall2011/innovation-starvation">Read original article</a><br><br>
+
+						<b>ineluctable:</b> (adjective) incapable of being evaded; inescapable.
+					</div>
+				</div>
+			</div>
+
+		</div> <!-- Materialize col -->
+	</div> <!-- Materialize row -->
 
 	<script>
 		// Useful info on integrating Google Analytics using Google's Tag Manager to track by CSS Selector ...
 		// http://www.simoahava.com/analytics/matches-css-selector-operator-in-gtm-triggers/
 		// This would be the best way to observe the page interactions
+
+		// Explanation of how to put Impress in a container here ...
+		// https://github.com/impress/impress.js/issues/111
 
 		// See explanation at http://stackoverflow.com/questions/950087/include-a-javascript-file-in-another-javascript-file
 
@@ -162,6 +195,10 @@
 			impress().init();
 
 			// When not mobile, do this ...
+
+			$(document).ready(function() {
+				console.log('testing');
+			});
 			
 		};
 
@@ -169,9 +206,9 @@
 			// Dynamically add in the img tag, so that this huge file never downloads for mobile
 
 			var firstDiv = document.querySelector('#impress > div:first-of-type');
-			firstDiv.insertAdjacentHTML('beforeend', '<img src="get-big-things-done-1.0.jpg" alt="Get Big Things Done Infographic">');
+			firstDiv.insertAdjacentHTML('beforeend', '<img src="public/img-desktop/get-big-things-done-1.0.jpg" alt="Get Big Things Done Infographic">');
 
-			loadScript("impress.js", myPrettyCode);
+			loadScript("public/js/impress.js", myPrettyCode);
 		} else {
 			// When mobile, do this instead ...
 
