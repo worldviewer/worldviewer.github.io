@@ -3,6 +3,10 @@
 	margin-top: -7000px;
 }
 
+.desktop #mobile {
+	display: none;
+}
+
 .mobile #impress {
 	display: none;
 };

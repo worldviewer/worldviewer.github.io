@@ -9,30 +9,13 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 	<link rel='shortcut icon' href='get-big-things-done-favicon.png' type='image/x-icon'/ >
 
-<!-- 	<script>
-		document.createElement('picture');
-	</script>
-
-	<script src="picturefill.min.js" type="text/javascript"></script> -->
-
 	<script src="device.js"></script>
 
 </head>
 <body>
     <div id="impress">
-
-<!--     	<div>
-			<picture>
-				<source srcset="get-big-things-done-1.0.jpg" media="(min-width: 1000px)">
-				<source srcset="get-big-things-done-small-1.0.jpg" media="(max-width: 999px)">
-				<img srcset="get-big-things-done-small-1.0.jpg" alt="Get Big Things Done Infographic">
-			</picture>
-		</div>
- -->
-
-		<div>
-			
-		</div>
+    	<!-- Load img tag into this ... -->
+		<div></div>
 
 		<!-- High-level view of entire graphic -->
         <div id="intro" class="step" data-y="0" data-x="0" data-scale="15"></div>
@@ -145,9 +128,18 @@
 
 		<!-- Second conclusion -->
 		<div id="futurism" class="step" data-y="5500" data-x="0" data-scale="2.5"></div>
+
+	</div>
+
+	<div id="mobile">
+		<h1>Mobile Device!</h1>
 	</div>
 
 	<script>
+		// Useful info on integrating Google Analytics using Google's Tag Manager to track by CSS Selector ...
+		// http://www.simoahava.com/analytics/matches-css-selector-operator-in-gtm-triggers/
+		// This would be the best way to observe the page interactions
+
 		// See explanation at http://stackoverflow.com/questions/950087/include-a-javascript-file-in-another-javascript-file
 
 		function loadScript(url, callback) {
@@ -168,24 +160,24 @@
 
 		var myPrettyCode = function() {
 			impress().init();
+
+			// When not mobile, do this ...
+			
 		};
 
 		if (!device.mobile()) {
+			// Dynamically add in the img tag, so that this huge file never downloads for mobile
+
 			var firstDiv = document.querySelector('#impress > div:first-of-type');
 			firstDiv.insertAdjacentHTML('beforeend', '<img src="get-big-things-done-1.0.jpg" alt="Get Big Things Done Infographic">');
 
 			loadScript("impress.js", myPrettyCode);
 		} else {
+			// When mobile, do this instead ...
 
 		}
-
 	</script>
 
-<!-- 	<script src="impress.js" type="text/javascript"></script>
-	<script>
-		impress().init();
-	</script>
- -->
 </body>
 </html>
 
