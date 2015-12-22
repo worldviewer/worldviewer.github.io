@@ -42,8 +42,24 @@
 
 <!-- Side Nav provides onsite infographic links, offsite references linking, and comments related to the infographic.  We need it to persist and overlay on top of impress.js -->
 
-<div class="col m4">
+<div class="col l3">
 	<ul id="slide-out" class="side-nav fixed">
+
+		<!-- Use this upper-left corner to persist a title in white text on black background, identical to toast style, plus information on how to navigate the infographic -->
+
+		<div class="title-box tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click on the references below to fast-forward through graphic">
+			<h1>Is it Possible to Increase the Rate of Innovation?</h1>
+			<p>Chris Reeve, Made for Parlio!</p>
+
+			<div class="info-left">
+				<p>Part 1 of 5</p>
+				<p>See Part 2 on Jan 1, 2016</p>
+			</div>
+
+			<div class="pic-right">
+				<img src="public/img-desktop/chris-at-bm-small.png" alt="Author, Chris, at Burning Man">
+			</div>
+		</div>
 
 		<!-- Normally, would be a good idea to red-number everything, because not doing so makes the zoom inaccessible from the side navbar.  We need to keep the meaning of the red numbers very clear, so there should be a simple, perfect correspondence in the future -->
 
@@ -92,7 +108,7 @@
 	<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>			
 </div>
 
-<div class="col m9">
+<div class="col s12 m12 l9" id="infographic">
 
 	<div id="impress">
 
@@ -243,6 +259,8 @@
 		// executes when complete page is fully loaded, including all frames, objects and images
 		$(window).load(function() {
 			$('.preloader-wrapper').removeClass('active');
+
+			Materialize.toast('Use < and > arrow keys to navigate', 10000);
 		});
 
 		// Useful info on integrating Google Analytics using Google's Tag Manager to track by CSS Selector ...
@@ -276,6 +294,7 @@
 			// When not mobile, do this ...
 
 			$(document).ready(function() {
+				$('.tooltipped').tooltip({delay: 50});
 
 				// DECORATING LIST ITEM BORDER FOR CONTENT SLIDES
 				// (URL CHANGE --> LI CHANGE)

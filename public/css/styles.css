@@ -62,3 +62,40 @@ li {
 	width: 64px;
 	height: 64px;
 }
+
+#slide-out .title-box {
+	background-color: #323232;
+	padding: 10px 15px;
+	font-size: 1rem;
+	font-weight: 300;
+	color: #fff;
+	word-wrap: break-word;
+	width: 360px;
+}
+
+#slide-out .title-box h1 {
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: .5em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;	
+	font-size: 1.5rem;	
+}
+
+#slide-out .title-box p {
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;	
+}
+
+#slide-out .title-box .info-left {
+	display: inline-block;
+	width: 200px;
+}
+
+#slide-out .title-box .pic-right {
+	display: inline-block;
+	margin-right: 20px;
+	float: right;
+	width: 25%;
+}
