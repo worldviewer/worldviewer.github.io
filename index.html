@@ -240,6 +240,11 @@
 </div> <!-- Materialize row -->
 
 <script>
+		// executes when complete page is fully loaded, including all frames, objects and images
+		$(window).load(function() {
+			$('.preloader-wrapper').removeClass('active');
+		});
+
 		// Useful info on integrating Google Analytics using Google's Tag Manager to track by CSS Selector ...
 		// http://www.simoahava.com/analytics/matches-css-selector-operator-in-gtm-triggers/
 		// This would be the best way to observe the page interactions
@@ -271,7 +276,6 @@
 			// When not mobile, do this ...
 
 			$(document).ready(function() {
-				$('.preloader-wrapper').removeClass('active');
 
 				// DECORATING LIST ITEM BORDER FOR CONTENT SLIDES
 				// (URL CHANGE --> LI CHANGE)
@@ -303,9 +307,9 @@
 				});
 			});
 
-};
+		};
 
-if (!device.mobile()) {
+		if (!device.mobile()) {
 			$('.preloader-wrapper').addClass('active');
 
 			// Dynamically add in the img tag, so that this huge file never downloads for mobile
