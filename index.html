@@ -264,21 +264,6 @@
 					// grab active impress.js slide ID
 					var currentSlideHash = $('#impress .active').attr('id');
 
-					// DECORATING LIST ITEM BORDER FOR CENTER SLIDES
-					// (URL CHANGE --> LI CHANGE)
-					// $('#impress > .present').attr('id').split('-')[1] grabs the nth-of-type number 
-					// only when it's a center, in order to decorate the border as "between slides" 
-					// rather than "on slide"
-
-					// center/transition slides will be denoted as center-num, so we can check for them
-					// with split, and the 2nd value is the li number of the previous slide
-					var splitHash = currentSlideHash.split('-');
-					if (splitHash.length == 2) {
-						console.log("between slides, after slide number " + splitHash[1]);
-						$('.side-nav > li').removeClass('between-slides');
-						$('.side-nav li:nth-of-type('+splitHash[1]+')').toggleClass('between-slides');
-					}
-
 					// Reality-check to console
 					console.log("current slide hash: " + currentSlideHash);
 
@@ -287,12 +272,14 @@
 					$('.side-nav li[data-slide=\"' + currentSlideHash + '\"]').toggleClass('active-slide');
 				});
 
-
 				// MOVING INFOGRAPHIC FOCUS BASED UPON CLICKS TO SIDE-NAV
 				// (LI CLICK --> URL CHANGE)
 				// clicks on $('.side-nav > li') should grab data('slide'), and window.location.hash = 
 				// '#your-page-element';
 
+				$('.side-nav > li').on('click', function() {
+					window.location.hash = '#' + $(this).data('slide');
+				});
 			});
 			
 		};
