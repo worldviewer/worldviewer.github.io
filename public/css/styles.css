@@ -27,10 +27,14 @@ li {
 	counter-increment: num;
 }
 
-.side-nav > li:before {
+.desktop .side-nav > li:before {
 	background-color: red;
 	color: white;
 	content: counter(num);
 	padding: 1px 5px;
 	margin-right: 5px;
+}
+
+#slide-out > li.active-slide {
+	background-color: rgba(255,0,0, .3);
 }

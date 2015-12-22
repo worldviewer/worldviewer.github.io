@@ -36,13 +36,13 @@
 
 				<li data-slide="lightning"><a href="http://www.bbc.com/future/story/20120926-what-causes-lightening" target="_blank">BBC Future</a></li>
 
-				<li data-slide="peratt-galaxies"><a href="http://www.plasma-universe.com/Galaxy_formation" target="_blank">Ian Tresman's plasma universe wiki</a>.  This site was created because the wikipedia encyclopedia refused to acknowledge this peer-reviewed research.</li>
+				<li data-slide="peratt_galaxies"><a href="http://www.plasma-universe.com/Galaxy_formation" target="_blank">Ian Tresman's plasma universe wiki</a>.  This site was created because the wikipedia encyclopedia refused to acknowledge this peer-reviewed research.</li>
 
 				<li data-slide="halton_arp">Image is from this <a href="http://plazmauniverzum.hu/arp" target="_blank">Hungarian plasma cosmology site</a>.  There is a technical analysis of Arp's claim <a href="http://www.astr.ua.edu/keel/galaxies/arp.html" target="_blank">here</a>.  For a more broad view of this subject, see the excellent YouTube documentary, Universe: The Cosmology Quest at https://www.youtube.com/watch?v=IFFl9S39CTM.</li>
 
 				<li data-slide="halton_arp">I wouldn't normally advise using wikipedia to look up controversial subjects, but <a href="https://en.wikipedia.org/wiki/Halton_Arp" target="_blank">this entry</a> is okay.</li>
 
-				<li data-slide="gerrit_verschuur_cmb">Paper at <a href="http://arxiv.org/abs/1002.1661" target="_blank">arXiv.org</a>.  Verschuur has a couple of fantastic books on these subjects.  See his book, The Invisible Universe, to learn about radio astronomy.  His book, Interstellar Matters, contains a couple of chapters which in great detail explain how to read a radio astronomy paper.  With not much more than that, Verschuur's numerous IEEE papers will become accessible to most laypeople.  His papers on critical ionization velocities are particularly noteworthy because they appear to suggest that ionization is an ongoing process in space -- directly contradicting what we teach to astrophysicists today.</li>
+				<li data-slide="gerrit_verschuur">Paper at <a href="http://arxiv.org/abs/1002.1661" target="_blank">arXiv.org</a>.  Verschuur has a couple of fantastic books on these subjects.  See his book, The Invisible Universe, to learn about radio astronomy.  His book, Interstellar Matters, contains a couple of chapters which in great detail explain how to read a radio astronomy paper.  With not much more than that, Verschuur's numerous IEEE papers will become accessible to most laypeople.  His papers on critical ionization velocities are particularly noteworthy because they appear to suggest that ionization is an ongoing process in space -- directly contradicting what we teach to astrophysicists today.</li>
 
 				<li data-slide="gerrit_verschuur"><a href="http://news.discovery.com/space/cosmic-background-radiation-big-bang-120615.htm" target="_blank">Discovery News</a></li>
 
@@ -251,10 +251,47 @@
 			// When not mobile, do this ...
 
 			$(document).ready(function() {
-				console.log('testing');
 
-				// $('#impress > .present').attr('id').split('-')[1] only when it's a center, to get the 
-				// li nth-of-type
+				// DECORATING LIST ITEM BORDER FOR CONTENT SLIDES
+				// (URL CHANGE --> LI CHANGE)
+				// $('#impress > .present').attr('id') can be used to grab the id that is currently
+				// activated by impress.js, and with that, we can can apply border styling to
+				// the right border of $('.side-nav > li[id="id"');
+
+				$(window).on('hashchange', function(e){
+					console.log('slide transition');
+
+					// grab active impress.js slide ID
+					var currentSlideHash = $('#impress .active').attr('id');
+
+					// DECORATING LIST ITEM BORDER FOR CENTER SLIDES
+					// (URL CHANGE --> LI CHANGE)
+					// $('#impress > .present').attr('id').split('-')[1] grabs the nth-of-type number 
+					// only when it's a center, in order to decorate the border as "between slides" 
+					// rather than "on slide"
+
+					// center/transition slides will be denoted as center-num, so we can check for them
+					// with split, and the 2nd value is the li number of the previous slide
+					var splitHash = currentSlideHash.split('-');
+					if (splitHash.length == 2) {
+						console.log("between slides, after slide number " + splitHash[1]);
+						$('.side-nav > li').removeClass('between-slides');
+						$('.side-nav li:nth-of-type('+splitHash[1]+')').toggleClass('between-slides');
+					}
+
+					// Reality-check to console
+					console.log("current slide hash: " + currentSlideHash);
+
+					// toggle the active-slide class for the list item with that ID
+					$('.side-nav > li').removeClass('active-slide');
+					$('.side-nav li[data-slide=\"' + currentSlideHash + '\"]').toggleClass('active-slide');
+				});
+
+
+				// MOVING INFOGRAPHIC FOCUS BASED UPON CLICKS TO SIDE-NAV
+				// (LI CLICK --> URL CHANGE)
+				// clicks on $('.side-nav > li') should grab data('slide'), and window.location.hash = 
+				// '#your-page-element';
 
 			});
 			
