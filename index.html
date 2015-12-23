@@ -10,6 +10,7 @@
 	<link rel='shortcut icon' href='get-big-things-done-favicon.png' type='image/x-icon'/ >
 
 	<link rel="stylesheet" type="text/css" href="public/css/materialize.css">
+	<link rel="stylesheet" type="text/css" href="public/css/animate.css">
 
 	<!-- For Material Icons -->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -21,8 +22,36 @@
 </head>
 <body>
 
-	<div id="hamburger">
-		<i class="mdi-navigation-menu"></i>
+	<div id="hamburger" class="perimeter-buttons">
+		<i class="material-icons">view_list</i>
+	</div>
+
+	<div id="page-up" class="perimeter-buttons">
+		<i class="material-icons">fast_rewind</i>
+	</div>
+
+	<div id="page-down" class="perimeter-buttons">
+		<i class="material-icons">fast_forward</i>
+	</div>
+
+	<div id="mobile-view" class="perimeter-buttons">
+		<i class="material-icons">stay_current_portrait</i>
+	</div>
+
+	<div id="zoom-in" class="perimeter-buttons">
+		<i class="material-icons">zoom_in</i>
+	</div>
+
+	<div id="zoom-out" class="perimeter-buttons">
+		<i class="material-icons">zoom_out</i>
+	</div>
+
+	<div id="previous-slide" class="perimeter-buttons">
+		<i class="material-icons">skip_previous</i>
+	</div>
+
+	<div id="next-slide" class="perimeter-buttons">
+		<i class="material-icons">skip_next</i>
 	</div>
 
 	<div class="preloader-vertical-center">
@@ -52,7 +81,7 @@
 				<!-- Use this upper-left corner to persist a title in white text on black background, identical to toast style, plus information on how to navigate the infographic -->
 
 				<div class="title-box">
-					<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>	
+					<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">view_list</i></a>	
 
 					<h1>Is it Possible to Increase the Rate of Innovation?</h1>
 					<p>Chris Reeve, Made for Parlio!</p>
@@ -263,6 +292,20 @@
 		// executes when complete page is fully loaded, including all frames, objects and images
 		$(window).load(function() {
 			$('.preloader-wrapper').removeClass('active');
+
+			// $('.perimeter-buttons').delay(2000).animate({ height: 'toggle', opacity: 'toggle' }, 'slow');
+
+			$('#page-up').addClass('animated fadeInDown').css('visibility', 'visible');
+			$('#page-down').addClass('animated fadeInUp').css('visibility', 'visible');
+			$('#mobile-view').addClass('animated fadeInRight').css('visibility', 'visible');
+			$('#zoom-in').addClass('animated fadeInRight').css('visibility', 'visible');
+			$('#zoom-out').addClass('animated fadeInRight').css('visibility', 'visible');
+			$('#previous-slide').addClass('animated fadeInUp').css('visibility', 'visible')
+			$('#next-slide').addClass('animated fadeInUp').css('visibility', 'visible');
+
+			setTimeout(function() {
+				$('#slide-out').addClass('animated fadeInLeft').css('visibility', 'visible');
+			}, 1000);
 
 			Materialize.toast('Use < and > arrow keys to navigate', 10000);
 		});
