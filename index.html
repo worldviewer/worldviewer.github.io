@@ -23,35 +23,35 @@
 <body>
 
 	<div id="hamburger" class="perimeter-buttons">
-		<i class="material-icons">view_list</i>
+		<i class="material-icons tooltipped" data-position="right" data-delay="100" data-tooltip="Reveal the references">view_list</i>
 	</div>
 
 	<div id="page-up" class="perimeter-buttons">
-		<i class="material-icons">fast_forward</i>
+		<i class="material-icons tooltipped" data-position="top" data-delay="100" data-tooltip="Go to top">fast_forward</i>
 	</div>
 
 	<div id="page-down" class="perimeter-buttons">
-		<i class="material-icons">fast_rewind</i>
+		<i class="material-icons tooltipped" data-position="top" data-delay="100" data-tooltip="Go to bottom">fast_rewind</i>
 	</div>
 
 	<div id="mobile-view" class="perimeter-buttons">
-		<i class="material-icons">stay_current_portrait</i>
+		<i class="material-icons tooltipped" data-position="left" data-delay="100" data-tooltip="Switch to mobile-friendly view">stay_current_portrait</i>
 	</div>
 
 	<div id="zoom-in" class="perimeter-buttons">
-		<i class="material-icons">zoom_in</i>
+		<i class="material-icons tooltipped" data-position="left" data-delay="100" data-tooltip="Zoom in">zoom_in</i>
 	</div>
 
 	<div id="zoom-out" class="perimeter-buttons">
-		<i class="material-icons">zoom_out</i>
+		<i class="material-icons tooltipped" data-position="left" data-delay="100" data-tooltip="Zoom out">zoom_out</i>
 	</div>
 
 	<div id="previous-slide" class="perimeter-buttons">
-		<i class="material-icons">skip_previous</i>
+		<i class="material-icons tooltipped" data-position="top" data-delay="100" data-tooltip="Previous slide">skip_previous</i>
 	</div>
 
 	<div id="next-slide" class="perimeter-buttons">
-		<i class="material-icons">skip_next</i>
+		<i class="material-icons tooltipped" data-position="top" data-delay="100" data-tooltip="Next slide">skip_next</i>
 	</div>
 
 	<div class="preloader-vertical-center">
@@ -307,6 +307,10 @@
 				$('#slide-out').addClass('animated fadeInLeft').css('visibility', 'visible');
 			}, 1000);
 
+			setTimeout(function() {
+				$('.big-image').addClass('animated fadeIn').css('visibility', 'visible');
+			}, 3000);
+
 			Materialize.toast('Use < and > arrow keys to navigate', 10000);
 		});
 
@@ -409,7 +413,7 @@ if (!device.mobile()) {
 			// Dynamically add in the img tag, so that this huge file never downloads for mobile
 
 			var firstDiv = document.querySelector('#impress > div:first-of-type');
-			firstDiv.insertAdjacentHTML('beforeend', '<img src="public/img-desktop/get-big-things-done-1.1.jpg" alt="Get Big Things Done Infographic">');
+			firstDiv.insertAdjacentHTML('beforeend', '<img class="big-image" src="public/img-desktop/get-big-things-done-1.1.jpg" alt="Get Big Things Done Infographic">');
 
 			loadScript("public/js/impress.js", myPrettyCode);
 		} else {
