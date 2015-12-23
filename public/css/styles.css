@@ -133,7 +133,7 @@ li {
 
 .desktop #page-up {
 	bottom: 0;
-	left: 80%;
+	left: 20%;
 	margin-left: -22px;
 	z-index: 1000;
 	padding: 7px 8px 3px 8px;
@@ -141,7 +141,7 @@ li {
 
 .desktop #page-down {
 	bottom: 0;
-	left: 20%;
+	left: 80%;
 	margin-left: -22px;
 	z-index: 1000;
 	padding: 7px 8px 3px 8px;

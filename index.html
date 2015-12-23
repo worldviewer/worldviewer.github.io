@@ -23,35 +23,35 @@
 <body>
 
 	<div id="hamburger" class="perimeter-buttons">
-		<i class="material-icons tooltipped" data-position="right" data-delay="100" data-tooltip="Reveal the references">view_list</i>
+		<i class="material-icons tooltipped" data-position="right" data-delay="200" data-tooltip="Reveal the references">view_list</i>
 	</div>
 
 	<div id="page-up" class="perimeter-buttons">
-		<i class="material-icons tooltipped" data-position="top" data-delay="100" data-tooltip="Go to top">fast_forward</i>
+		<i class="material-icons tooltipped" data-position="top" data-delay="200" data-tooltip="Go to top">fast_rewind</i>
 	</div>
 
 	<div id="page-down" class="perimeter-buttons">
-		<i class="material-icons tooltipped" data-position="top" data-delay="100" data-tooltip="Go to bottom">fast_rewind</i>
+		<i class="material-icons tooltipped" data-position="top" data-delay="200" data-tooltip="Go to bottom">fast_forward</i>
 	</div>
 
 	<div id="mobile-view" class="perimeter-buttons">
-		<i class="material-icons tooltipped" data-position="left" data-delay="100" data-tooltip="Switch to mobile-friendly view">stay_current_portrait</i>
+		<i class="material-icons tooltipped" data-position="left" data-delay="200" data-tooltip="Switch to mobile-friendly view">stay_current_portrait</i>
 	</div>
 
 	<div id="zoom-in" class="perimeter-buttons">
-		<i class="material-icons tooltipped" data-position="left" data-delay="100" data-tooltip="Zoom in">zoom_in</i>
+		<i class="material-icons tooltipped" data-position="left" data-delay="200" data-tooltip="Zoom in">zoom_in</i>
 	</div>
 
 	<div id="zoom-out" class="perimeter-buttons">
-		<i class="material-icons tooltipped" data-position="left" data-delay="100" data-tooltip="Zoom out">zoom_out</i>
+		<i class="material-icons tooltipped" data-position="left" data-delay="200" data-tooltip="Zoom out">zoom_out</i>
 	</div>
 
 	<div id="previous-slide" class="perimeter-buttons">
-		<i class="material-icons tooltipped" data-position="top" data-delay="100" data-tooltip="Previous slide">skip_previous</i>
+		<i class="material-icons tooltipped" data-position="top" data-delay="200" data-tooltip="Previous slide">skip_previous</i>
 	</div>
 
 	<div id="next-slide" class="perimeter-buttons">
-		<i class="material-icons tooltipped" data-position="top" data-delay="100" data-tooltip="Next slide">skip_next</i>
+		<i class="material-icons tooltipped" data-position="top" data-delay="200" data-tooltip="Next slide">skip_next</i>
 	</div>
 
 	<div class="preloader-vertical-center">
@@ -291,7 +291,6 @@
 	<script>
 		// executes when complete page is fully loaded, including all frames, objects and images
 		$(window).load(function() {
-			$('.preloader-wrapper').removeClass('active');
 
 			// $('.perimeter-buttons').delay(2000).animate({ height: 'toggle', opacity: 'toggle' }, 'slow');
 
@@ -309,6 +308,7 @@
 
 			setTimeout(function() {
 				$('.big-image').addClass('animated fadeIn').css('visibility', 'visible');
+				$('.preloader-wrapper').removeClass('active');
 			}, 3000);
 
 			Materialize.toast('Use < and > arrow keys to navigate', 10000);
@@ -402,6 +402,42 @@
 				$('.side-nav > li').on('click', function() {
 					console.log('click-induced transition');
 					window.location.hash = '#' + $(this).data('slide');
+				});
+
+				$('#page-up').on('click', function() {
+					window.location.hash = '#intro';
+				});
+
+				$('#page-down').on('click', function() {
+					window.location.hash = '#futurism';
+				});
+
+				$('#mobile-view').on('click', function() {
+					
+				});
+
+				$('#zoom-in').on('click', function() {
+
+				});
+
+				$('#zoom-out').on('click', function() {
+
+				});
+
+				$('#previous-slide').on('click', function() {
+					// var e = jQuery.Event("keydown");
+					// e.which = 37;
+					// e.keyCode = 37;
+					// $(document).trigger(e);
+					impress().prev();
+				});
+
+				$('#next-slide').on('click', function() {
+					impress().next();
+				});
+
+				$(document).keydown(function(e) {
+				    console.log("key code: " + e.keyCode);
 				});
 			});
 
