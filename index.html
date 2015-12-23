@@ -22,8 +22,10 @@
 </head>
 <body>
 
-	<div id="hamburger" class="perimeter-buttons">
-		<i class="material-icons tooltipped" data-position="right" data-delay="200" data-tooltip="Reveal the references">view_list</i>
+ 	<div id="hamburger" class="perimeter-buttons">
+ 		<!-- This tooltip is annoying ... -->
+		<!-- <i class="material-icons tooltipped" data-position="right" data-delay="200" data-tooltip="Reveal the references">view_list</i> -->
+		<i class="material-icons">view_list</i>		
 	</div>
 
 	<div id="page-up" class="perimeter-buttons">
@@ -316,7 +318,11 @@
 				$('.preloader-wrapper').removeClass('active');
 			}, 3000);
 
-			Materialize.toast('Use < and > arrow keys to navigate', 10000);
+			Materialize.toast('Use < and > arrow keys to navigate', 9000);
+
+			setTimeout(function() {
+				Materialize.toast('Change views with the mobile icon, top-right', 10000);
+			}, 10000);
 		});
 
 		// Useful info on integrating Google Analytics using Google's Tag Manager to track by CSS Selector ...

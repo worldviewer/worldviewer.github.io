@@ -49,6 +49,10 @@ li {
 	}
 }*/
 
+.mobile .preloader-vertical-center {
+	display: none;
+}
+
 .desktop .preloader-wrapper {
 	z-index: 1000;
 }
@@ -121,6 +125,10 @@ li {
 
 	animation-duration: 1s;
 	animation-delay: 2s;
+}
+
+.mobile .perimeter-buttons {
+	display: none;
 }
 
 .desktop #hamburger {
