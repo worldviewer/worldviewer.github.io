@@ -27,11 +27,11 @@
 	</div>
 
 	<div id="page-up" class="perimeter-buttons">
-		<i class="material-icons">fast_rewind</i>
+		<i class="material-icons">fast_forward</i>
 	</div>
 
 	<div id="page-down" class="perimeter-buttons">
-		<i class="material-icons">fast_forward</i>
+		<i class="material-icons">fast_rewind</i>
 	</div>
 
 	<div id="mobile-view" class="perimeter-buttons">
@@ -83,7 +83,7 @@
 				<div class="title-box">
 					<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">view_list</i></a>	
 
-					<h1>Is it Possible to Increase the Rate of Innovation?</h1>
+					<h1>Is it Possible to Increase<br>the Rate of Innovation?</h1>
 					<p>Chris Reeve, Made for Parlio!</p>
 
 					<div class="info-left">
@@ -158,7 +158,7 @@
 				<div id="ineluctable" class="step" data-y="-6500" data-x="0" data-scale="1.5"></div>
 
 				<!-- Ref [1] -->
-				<div id="risk" class="step" data-y="-6250" data-x="-1500" data-scale="1.5"></div>
+				<div id="risk" class="step" data-y="-6700" data-x="-1500" data-scale="1.5"></div>
 
 				<!-- Return to center -->
 				<div id="center-4" class="step" data-y="-5800" data-x="0" data-scale="2.5"></div>
@@ -295,7 +295,7 @@
 
 			// $('.perimeter-buttons').delay(2000).animate({ height: 'toggle', opacity: 'toggle' }, 'slow');
 
-			$('#page-up').addClass('animated fadeInDown').css('visibility', 'visible');
+			$('#page-up').addClass('animated fadeInUp').css('visibility', 'visible');
 			$('#page-down').addClass('animated fadeInUp').css('visibility', 'visible');
 			$('#mobile-view').addClass('animated fadeInRight').css('visibility', 'visible');
 			$('#zoom-in').addClass('animated fadeInRight').css('visibility', 'visible');
@@ -317,7 +317,8 @@
 		// Explanation of how to put Impress in a container here ...
 		// https://github.com/impress/impress.js/issues/111
 
-		// See explanation at http://stackoverflow.com/questions/950087/include-a-javascript-file-in-another-javascript-file
+		// Explanation of how to invoke a JS file from within a JS script at ...
+		// http://stackoverflow.com/questions/950087/include-a-javascript-file-in-another-javascript-file
 
 		function loadScript(url, callback) {
 		    // Adding the script tag to the head as suggested before

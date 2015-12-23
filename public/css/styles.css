@@ -132,19 +132,17 @@ li {
 }
 
 .desktop #page-up {
-	top: 0;
-	left: 50%;
+	bottom: 0;
+	left: 80%;
 	margin-left: -22px;
-	transform: rotate(90deg);
 	z-index: 1000;
 	padding: 7px 8px 3px 8px;
 }
 
 .desktop #page-down {
 	bottom: 0;
-	left: 50%;
+	left: 20%;
 	margin-left: -22px;
-	transform: rotate(90deg);
 	z-index: 1000;
 	padding: 7px 8px 3px 8px;
 }
@@ -171,14 +169,14 @@ li {
 }
 
 .desktop #previous-slide {
-	left: 33%;
+	left: 40%;
 	bottom: 0;
 	z-index: 1000;
 	padding: 7px 8px 3px 8px;
 }
 
 .desktop #next-slide {
-	left: 66%;
+	left: 60%;
 	bottom: 0;
 	z-index: 1000;
 	padding: 7px 8px 3px 8px;
