@@ -78,7 +78,8 @@ li {
     -webkit-margin-after: .5em;
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;	
-	font-size: 1.5rem;	
+	font-size: 1.5rem;
+	width: 300px;
 }
 
 #slide-out .title-box p {
@@ -98,4 +99,22 @@ li {
 	margin-right: 20px;
 	float: right;
 	width: 25%;
+}
+
+#slide-out .button-collapse {
+	color: white;
+	float: right;
+}
+
+#hamburger {
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: #323232;
+	padding: 10px 15px;
+	font-size: 1em;
+	font-weight: 300;
+	color: #fff;
+	visibility: hidden;
+	z-index: 1000;
 }

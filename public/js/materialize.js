@@ -2012,7 +2012,8 @@ $(document).ready(function(){
 
         // If fixed sidenav, bring menu out
         if (menu_id.hasClass('fixed')) {
-            if (window.innerWidth > 992) {
+        	// CUSTOM: Was 992, now 1500 ...
+            if (window.innerWidth > 1500) {
               menu_id.css('left', 0);
             }
           }
@@ -2020,22 +2021,42 @@ $(document).ready(function(){
         // Window resize to reset on large screens fixed
         if (menu_id.hasClass('fixed')) {
           $(window).resize( function() {
-            if (window.innerWidth > 992) {
+
+          	// CUSTOM: Altered if (window.innerWidth > 992) below ...
+            if (window.innerWidth > 1500) {
+
               // Close menu if window is resized bigger than 992 and user has fixed sidenav
               if ($('#sidenav-overlay').css('opacity') !== 0 && menuOut) {
-                removeMenu(true);
+                // removeMenu(true);
               }
+              
               else {
-                menu_id.removeAttr('style');
-                menu_id.css('width', options.menuWidth);
+              	// CUSTOM!!!
+              	// Out-of-the-box, this makes my hidden window re-appear
+		        // CUSTOM: Added && menu_id.hasClass('active') below ...
+              	if (menu_id.hasClass('active')) {
+	                menu_id.removeAttr('style');
+	                menu_id.css('width', options.menuWidth);
+
+					$('#hamburger').css('visibility', 'hidden');
+	            }
               }
             }
-            else if (menuOut === false){
-              if (options.edge === 'left')
-                menu_id.css('left', -1 * (options.menuWidth + 10));
-              else
-                menu_id.css('right', -1 * (options.menuWidth + 10));
-            }
+            else {
+            	// if window is less than 1500px wide ...
+				// These two lines are CUSTOM ...
+				$('#slide-out').removeClass('active');
+				$('#hamburger').css('visibility', 'visible');
+				removeMenu();
+
+	           	if (menuOut === false){
+	              if (options.edge === 'left')
+	                menu_id.css('left', -1 * (options.menuWidth + 10));
+	              else
+	                menu_id.css('right', -1 * (options.menuWidth + 10));
+	            }
+
+	        }
 
           });
         }
@@ -2255,13 +2276,16 @@ $(document).ready(function(){
                   } });
 
               });
+
+			  // CUSTOM: opacity below was 1
               $('body').append(overlay);
-              overlay.velocity({opacity: 1}, {duration: 300, queue: false, easing: 'easeOutQuad',
+              overlay.velocity({opacity: 0}, {duration: 300, queue: false, easing: 'easeOutQuad',
                 complete: function () {
                   menuOut = true;
                   panning = false;
                 }
               });
+
             }
 
             return false;
