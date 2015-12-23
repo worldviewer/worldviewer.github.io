@@ -54,6 +54,10 @@
 		<i class="material-icons tooltipped" data-position="top" data-delay="200" data-tooltip="Next slide">skip_next</i>
 	</div>
 
+	<div id="discuss-slide" class="perimeter-buttons">
+		<i class="material-icons tooltipped" data-position="left" data-delay="200" data-tooltip="Discuss slide">comment</i>
+	</div>
+
 	<div class="preloader-vertical-center">
 		<!-- Place active class on this to activate the preloader -->
 		<div class="preloader-wrapper big">
@@ -301,6 +305,7 @@
 			$('#zoom-out').addClass('animated fadeInRight').css('visibility', 'visible');
 			$('#previous-slide').addClass('animated fadeInUp').css('visibility', 'visible')
 			$('#next-slide').addClass('animated fadeInUp').css('visibility', 'visible');
+			$('#discuss-slide').addClass('animated fadeInRight').css('visibility', 'visible');
 
 			setTimeout(function() {
 				$('#slide-out').addClass('animated fadeInLeft').css('visibility', 'visible');
@@ -421,6 +426,10 @@
 				});
 
 				$('#zoom-out').on('click', function() {
+
+				});
+
+				$('#discuss-slide').on('click', function() {
 
 				});
 

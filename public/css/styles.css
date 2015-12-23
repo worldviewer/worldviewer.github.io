@@ -134,7 +134,7 @@ li {
 .desktop #page-up {
 	bottom: 0;
 	left: 20%;
-	margin-left: -22px;
+	margin-left: -20px;
 	z-index: 1000;
 	padding: 7px 8px 3px 8px;
 }
@@ -142,7 +142,7 @@ li {
 .desktop #page-down {
 	bottom: 0;
 	left: 80%;
-	margin-left: -22px;
+	margin-left: -20px;
 	z-index: 1000;
 	padding: 7px 8px 3px 8px;
 }
@@ -171,15 +171,24 @@ li {
 .desktop #previous-slide {
 	left: 40%;
 	bottom: 0;
+	margin-left: -20px;
 	z-index: 1000;
 	padding: 7px 8px 3px 8px;
 }
 
 .desktop #next-slide {
 	left: 60%;
+	margin-left: -20px;
 	bottom: 0;
 	z-index: 1000;
 	padding: 7px 8px 3px 8px;
+}
+
+.desktop #discuss-slide {
+	right: 0;
+	bottom: 0;
+	z-index: 1000;
+	padding: 9px 8px 1px 8px;
 }
 
 .desktop #slide-out, .desktop .big-image {
