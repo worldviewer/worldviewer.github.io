@@ -1998,8 +1998,9 @@ $(document).ready(function(){
         }
 
         // Add Touch Area
+        // CUSTOM
         var dragTarget = $('<div class="drag-target"></div>');
-        $('body').append(dragTarget);
+        // $('body').append(dragTarget);
 
         if (options.edge == 'left') {
           menu_id.css('left', -1 * (options.menuWidth + 10));
@@ -2262,7 +2263,9 @@ $(document).ready(function(){
               // Disable Scrolling
               $('body').css('overflow', 'hidden');
               // Push current drag target on top of DOM tree
-              $('body').append(dragTarget);
+
+			  // CUSTOM
+              // $('body').append(dragTarget);
               
               if (options.edge === 'left') {
                 dragTarget.css({width: '50%', right: 0, left: ''});

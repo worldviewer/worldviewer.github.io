@@ -440,19 +440,69 @@
 				});
 
 				$('#previous-slide').on('click', function() {
+					// This approach does not work because it does not preventDefault(),
+					// and the key is already being captured by impress.js, which causes
+					// a conflict ...
+
 					// var e = jQuery.Event("keydown");
 					// e.which = 37;
 					// e.keyCode = 37;
 					// $(document).trigger(e);
+
+					// Instead, we can in this case just use impress ...
 					impress().prev();
+
+					// And see below for an example of how to capture keypresses in other
+					// cases ...
 				});
 
 				$('#next-slide').on('click', function() {
 					impress().next();
 				});
 
+				// Define shortcuts here
 				$(document).keydown(function(e) {
+					if (event.keyCode === 9) {
+		                e.preventDefault();
+		            }
+
 				    console.log("key code: " + e.keyCode);
+
+				    // Use tab key as a shortcut for toggling the side-nav
+				    if (e.keyCode === 9) {
+				    	if ($('#slide-out').hasClass('active')) {
+							$('.button-collapse').trigger('click');
+						} else {
+							$('#hamburger').trigger('click');
+						}
+				    }
+				});
+
+				// Click-and-drag to scroll ...
+				var curXPos = 0, curYPos = 0, curDown = false;
+
+				// Only scroll on the #impress div
+				// Seems to work on window, actually ...
+				// var impress = document.getElementById('impress');
+
+				// Consider improving with this ...
+				// http://ariya.ofilabs.com/2013/08/javascript-kinetic-scrolling-part-1.html
+				window.addEventListener('mousedown', function(e) {
+					curDown = true;
+					curYPos = e.pageY;
+					curXPos = e.pageX;
+				});
+
+				window.addEventListener('mouseup', function(e) {
+					curDown = false;
+				});
+
+				window.addEventListener('mousemove', function(e) {
+					if(curDown === true) {
+						window.scrollTo(document.body.scrollLeft + 
+							(curXPos - e.pageX), document.body.scrollTop + 
+							(curYPos - e.pageY));
+					}
 				});
 			});
 
