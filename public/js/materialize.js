@@ -932,6 +932,8 @@ if ($) {
           .click(function(){
             if (doneAnimating === true)
             returnToOriginal();
+
+        	console.log('click closing sidenav 4');
           });
           // Animate Overlay
           $('body').append(overlay);
@@ -2029,7 +2031,7 @@ $(document).ready(function(){
               if ($('#sidenav-overlay').css('opacity') !== 0 && menuOut) {
                 // removeMenu(true);
               }
-              
+
               else {
               	// CUSTOM!!!
               	// Out-of-the-box, this makes my hidden window re-appear
@@ -2123,7 +2125,8 @@ $(document).ready(function(){
         var menuOut = false;
 
         dragTarget.on('click', function(){
-          removeMenu();
+          // CUSTOM
+          // removeMenu();
         });
 
         dragTarget.hammer({
@@ -2143,9 +2146,13 @@ $(document).ready(function(){
             // If overlay does not exist, create one and if it is clicked, close menu
             if ($('#sidenav-overlay').length === 0) {
               var overlay = $('<div id="sidenav-overlay"></div>');
+
               overlay.css('opacity', 0).click( function(){
-                removeMenu();
+              	// CUSTOM!!!
+                // removeMenu();
+                console.log('click closing sidenav 5');
               });
+
               $('body').append(overlay);
             }
 
@@ -2246,8 +2253,11 @@ $(document).ready(function(){
               menuOut = false;
               panning = false;
               removeMenu();
+
+              console.log('click removed menu 1');
             }
             else {
+              console.log('click removed menu 2');
 
               // Disable Scrolling
               $('body').css('overflow', 'hidden');
@@ -2267,6 +2277,8 @@ $(document).ready(function(){
               var overlay = $('<div id="sidenav-overlay"></div>');
               overlay.css('opacity', 0)
               .click(function(){
+	            console.log('click removed menu 3');
+
                 menuOut = false;
                 panning = false;
                 removeMenu();
@@ -2278,13 +2290,13 @@ $(document).ready(function(){
               });
 
 			  // CUSTOM: opacity below was 1
-              $('body').append(overlay);
-              overlay.velocity({opacity: 0}, {duration: 300, queue: false, easing: 'easeOutQuad',
-                complete: function () {
+              // $('body').append(overlay);
+              // overlay.velocity({opacity: 0}, {duration: 300, queue: false, easing: 'easeOutQuad',
+              //   complete: function () {
                   menuOut = true;
                   panning = false;
-                }
-              });
+              //   }
+              // });
 
             }
 
