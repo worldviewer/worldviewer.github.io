@@ -79,24 +79,11 @@ li {
 
 .desktop #slide-out .title-box h1 {
     -webkit-margin-before: 0em;
-    -webkit-margin-after: .5em;
+    -webkit-margin-after: 0em;
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;	
 
-    -moz-margin-before: 0em;
-    -moz-margin-after: .5em;
-    -moz-margin-start: 0px;
-    -moz-margin-end: 0px;	
-
-    -ms-margin-before: 0em;
-    -ms-margin-after: .5em;
-    -ms-margin-start: 0px;
-    -ms-margin-end: 0px;	
-
-    -o-margin-before: 0em;
-    -o-margin-after: .5em;
-    -o-margin-start: 0px;
-    -o-margin-end: 0px;	
+	margin: 5px 0;
 
 	font-size: 1.5rem;
 	width: 300px;
@@ -108,20 +95,7 @@ li {
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;	
 
-    -moz-margin-before: 0em;
-    -moz-margin-after: 0em;
-    -moz-margin-start: 0px;
-    -moz-margin-end: 0px;	
-
-    -ms-margin-before: 0em;
-    -ms-margin-after: 0em;
-    -ms-margin-start: 0px;
-    -ms-margin-end: 0px;	
-
-    -o-margin-before: 0em;
-    -o-margin-after: 0em;
-    -o-margin-start: 0px;
-    -o-margin-end: 0px;	
+	margin: 0;
 }
 
 .desktop #slide-out .title-box .info-left {
