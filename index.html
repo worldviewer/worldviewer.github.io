@@ -465,10 +465,16 @@
 				// Need to implement zoom-in and zoom-out for other browsers still ...
 				$('#zoom-in').on('click', function() {
 					$('#impress').css('-webkit-transform', 'scale(' + getScale()*1.25 + ')');
+					$('#impress').css('-moz-transform', 'scale(' + getScale()*1.25 + ')');
+					$('#impress').css('-ms-transform', 'scale(' + getScale()*1.25 + ')');
+					$('#impress').css('-o-transform', 'scale(' + getScale()*1.25 + ')');
 				});
 
 				$('#zoom-out').on('click', function() {
 					$('#impress').css('-webkit-transform', 'scale(' + getScale()/1.25 + ')');
+					$('#impress').css('-moz-transform', 'scale(' + getScale()*1.25 + ')');
+					$('#impress').css('-ms-transform', 'scale(' + getScale()*1.25 + ')');
+					$('#impress').css('-o-transform', 'scale(' + getScale()*1.25 + ')');
 				});
 
 				$('#discuss-slide').on('click', function() {
