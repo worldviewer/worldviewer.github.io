@@ -464,19 +464,14 @@
 					
 				});
 
-				// Need to implement zoom-in and zoom-out for other browsers still ...
+				// jQuery automatically adds in necessary vendor prefixes when using
+				// .css().  See https://css-tricks.com/how-to-deal-with-vendor-prefixes/.
 				$('#zoom-in').on('click', function() {
-					$('#impress').css('-webkit-transform', 'scale(' + getScale()*1.25 + ')');
-					$('#impress').css('-moz-transform', 'scale(' + getScale()*1.25 + ')');
-					$('#impress').css('-ms-transform', 'scale(' + getScale()*1.25 + ')');
-					$('#impress').css('-o-transform', 'scale(' + getScale()*1.25 + ')');
+					$('#impress').css('transform', 'scale(' + getScale()*1.25 + ')');
 				});
 
 				$('#zoom-out').on('click', function() {
-					$('#impress').css('-webkit-transform', 'scale(' + getScale()/1.25 + ')');
-					$('#impress').css('-moz-transform', 'scale(' + getScale()*1.25 + ')');
-					$('#impress').css('-ms-transform', 'scale(' + getScale()*1.25 + ')');
-					$('#impress').css('-o-transform', 'scale(' + getScale()*1.25 + ')');
+					$('#impress').css('transform', 'scale(' + getScale()/1.25 + ')');
 				});
 
 				$('#discuss-slide').on('click', function() {
