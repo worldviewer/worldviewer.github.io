@@ -479,6 +479,10 @@
                 windowScale = computeWindowScale(config);
             }
             
+            // CUSTOM
+            // var scalingFactor = parseInt(document.getElementById('impress').getAttribute('data-set-scale-factor'));
+
+            // var targetScale = target.scale * windowScale * scalingFactor;
             var targetScale = target.scale * windowScale;
             
             // trigger leave of currently active element (if it's not the same step again)

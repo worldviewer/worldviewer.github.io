@@ -149,7 +149,7 @@
 
 		<div class="col s12 m12 l9" id="infographic">
 
-			<div id="impress">
+			<div id="impress" data-scale-factor="1">
 
 				<!-- Load img tag into this ... -->
 				<div></div>
@@ -356,54 +356,6 @@
 		    head.appendChild(script);
 		}
 
-		function triggerZoom(keyCode) {
-			var count = 0;
-			var current, start, end, previous, diff;
-
-			// Subtract key: Use for zooming out
-		    if (keyCode === 189) {
-		    	current = Date.now();
-				console.log("current: " + current);
-				console.log("previous: " + previous);
-				diff = parseInt(current) - parseInt(previous);
-				console.log("diff: " + diff);
-
-				// First keypress in a series
-				if (count === 0) {
-					start = current;
-					count++;
-					console.log('count: ' + count);
-
-				// This keypress occurred within half a second of the last
-				} else {
-					if (parseInt(current) - parseInt(previous) < 500) {
-						count++;
-						console.log('count: ' + count);
-
-						// Wait half a second and check to see if any more of these same
-						// keypresses have occurred.  If not, then currentCount will equal
-						// the count.  It is only then that we want to calculate and invoke
-						// the zoom function
-						setTimeout(function(currentCount) {
-							console.log('count: ' + count + ", currentCount: " + currentCount);
-							if (currentCount === count) {
-								count = 0;
-								// $('#zoom-out').trigger('click');
-							}
-						}, 500, count);
-					}
-
-					previous = current;								
-				}
-
-			// Add key: Use for zooming in						
-		    } else if (e.keyCode === 187) {
-		    	time = new Date();
-				seconds = time.getSeconds();
-				$('#zoom-in').trigger('click');
-		    }
-		}
-
 		// This function returns the current scale of the element marked with
 		// the #impress ID.  Comes from site here ...
 		// https://css-tricks.com/get-value-of-css-rotation-through-javascript/
@@ -436,12 +388,20 @@
 			return(Math.sqrt(a*a + b*b));
 		}
 
+		function setScaleFactor(factor) {
+			$('#impress').attr('data-scale-factor', factor);
+			console.log("set scale factor: " + factor);
+		}
+
 		var myPrettyCode = function() {
 			impress().init();
 
 			// When not mobile, do this ...
 
 			$(document).ready(function() {
+				// Initialize the presentation scale to 1
+				$('#impress').attr('data-set-scale-factor', 1);
+
 				$('.tooltipped').tooltip({delay: 50});
 
 				$('.button-collapse').sideNav({
@@ -548,17 +508,26 @@
 				});
 
 				var count = 0;
-				var current, start, end, previous, diff;
+				var current, start, end, previous, diff, factor;
 
 				// Define shortcuts here
+				// REFACTOR THIS
 				$(document).keydown(function(e) {
 					// When plus or minus is hit, count the number of times
 
-					if ((e.keyCode === 9) || (e.keyCode === 189) || (e.keyCode === 187)) {
+					if ((e.keyCode === 9) || (e.keyCode === 189) || 
+						(e.keyCode === 187) || (e.keyCode === 13)) {
 		                e.preventDefault();
 		            }
 
 				    console.log("key code: " + e.keyCode);
+
+					// Use ENTER key to set the scale for all slides
+					// if (e.keyCode === 13) {
+					// 	factor = $('#impress').attr('data-scale-factor');
+					// 	$('#impress').attr('data-set-scale-factor', factor);
+					// 	console.log('Set scale to active');
+					// }
 
 				    // TAB key: Use tab key as a shortcut for toggling the side-nav
 				    if (e.keyCode === 9) {
@@ -587,7 +556,9 @@
 								setTimeout(function(currentCount) {
 									console.log('count: ' + count + ", currentCount: " + currentCount);
 									if (currentCount === count) {
-										$('#impress').css('transform', 'scale(' + getScale()/(Math.pow(Math.log(count+2), 3)) + ')').css('transition-duration', '0.25s').css('transition-delay', '0');
+										factor = Math.pow(Math.log(count+2), 3);
+										$('#impress').css('transform', 'scale(' + getScale()/factor + ')').css('transition-duration', '0.25s').css('transition-delay', '0');
+										// setScaleFactor(-factor);
 										count = 0;
 									}
 								}, 500, count);
@@ -607,7 +578,9 @@
 									setTimeout(function(currentCount) {
 										console.log('count: ' + count + ", currentCount: " + currentCount);
 										if (currentCount === count) {
-											$('#impress').css('transform', 'scale(' + getScale()/(Math.pow(Math.log(count+2), 3)) + ')').css('transition-duration', '0.25s').css('transition-delay', '0');
+											factor = Math.pow(Math.log(count+2), 3);
+											$('#impress').css('transform', 'scale(' + getScale()/factor + ')').css('transition-duration', '0.25s').css('transition-delay', '0');
+											// setScaleFactor(-factor);
 											count = 0;
 										}
 									}, 500, count);
@@ -633,7 +606,9 @@
 								setTimeout(function(currentCount) {
 									console.log('count: ' + count + ", currentCount: " + currentCount);
 									if (currentCount === count) {
-										$('#impress').css('transform', 'scale(' + getScale()*Math.pow(Math.log(count+2), 3) + ')').css('transition-duration', '0.25s').css('transition-delay', '0');
+										factor = Math.pow(Math.log(count+2), 3);
+										$('#impress').css('transform', 'scale(' + getScale()*factor + ')').css('transition-duration', '0.25s').css('transition-delay', '0');
+										// setScaleFactor(factor);
 										count = 0;
 									}
 								}, 500, count);
@@ -653,7 +628,9 @@
 									setTimeout(function(currentCount) {
 										console.log('count: ' + count + ", currentCount: " + currentCount);
 										if (currentCount === count) {
-											$('#impress').css('transform', 'scale(' + getScale()*Math.pow(Math.log(count+2), 3) + ')').css('transition-duration', '0.25s').css('transition-delay', '0');
+											factor = Math.pow(Math.log(count+2), 3);
+											$('#impress').css('transform', 'scale(' + getScale()*factor + ')').css('transition-duration', '0.25s').css('transition-delay', '0');
+											// setScaleFactor(factor);
 											count = 0;
 										}
 									}, 500, count);
