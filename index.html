@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Institute for Venture Science, Part 1</title>
+	<title>Is it Possible to Increase the Rate of Innovation?</title>
 	<meta name="viewport" content="user-scalable=yes, maximum-scale=10, width=device-width" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 
@@ -19,6 +19,13 @@
 	<script src="public/js/materialize.js" type="text/javascript"></script>
 	<script src="public/js/device.js" type="text/javascript"></script>
 	<script src="public/js/jquery.kinetic.js" type="text/javascript" charset="utf-8"></script>
+
+	<!-- Meta tags for sharing to social networks -->
+	<meta property="og:title" content="Is it Possible to Increase the Rate of Innovation?"/>
+	<meta property="og:url" content="http://worldviewer.github.io"/>
+	<meta property="og:description" content="Today\'s belief in ineluctable certainty is the true innovation-killer of our age"/>
+	<meta property="og:image" content="public/img-mobile/get-big-things-done-1.jpg"/>
+	<meta property="og:type" content="infographic"/>
 </head>
 <body>
 
@@ -298,36 +305,40 @@
 		// executes when complete page is fully loaded, including all frames, objects and images
 		$(window).load(function() {
 
-			// $('.perimeter-buttons').delay(2000).animate({ height: 'toggle', opacity: 'toggle' }, 'slow');
+			if (!device.mobile()) {
+				$('#page-up').addClass('animated fadeInUp').css('visibility', 'visible');
+				$('#page-down').addClass('animated fadeInUp').css('visibility', 'visible');
+				$('#mobile-view').addClass('animated fadeInRight').css('visibility', 'visible');
+				$('#zoom-in').addClass('animated fadeInRight').css('visibility', 'visible');
+				$('#zoom-out').addClass('animated fadeInRight').css('visibility', 'visible');
+				$('#previous-slide').addClass('animated fadeInUp').css('visibility', 'visible')
+				$('#next-slide').addClass('animated fadeInUp').css('visibility', 'visible');
+				$('#discuss-slide').addClass('animated fadeInRight').css('visibility', 'visible');
 
-			$('#page-up').addClass('animated fadeInUp').css('visibility', 'visible');
-			$('#page-down').addClass('animated fadeInUp').css('visibility', 'visible');
-			$('#mobile-view').addClass('animated fadeInRight').css('visibility', 'visible');
-			$('#zoom-in').addClass('animated fadeInRight').css('visibility', 'visible');
-			$('#zoom-out').addClass('animated fadeInRight').css('visibility', 'visible');
-			$('#previous-slide').addClass('animated fadeInUp').css('visibility', 'visible')
-			$('#next-slide').addClass('animated fadeInUp').css('visibility', 'visible');
-			$('#discuss-slide').addClass('animated fadeInRight').css('visibility', 'visible');
+				setTimeout(function() {
+					$('#slide-out').addClass('animated fadeInLeft').css('visibility', 'visible');
+				}, 1000);
 
-			setTimeout(function() {
-				$('#slide-out').addClass('animated fadeInLeft').css('visibility', 'visible');
-			}, 1000);
+				setTimeout(function() {
+					$('.big-image').addClass('animated fadeIn').css('visibility', 'visible');
+					$('.preloader-wrapper').removeClass('active');
+				}, 3000);
 
-			setTimeout(function() {
-				$('.big-image').addClass('animated fadeIn').css('visibility', 'visible');
-				$('.preloader-wrapper').removeClass('active');
-			}, 3000);
+				Materialize.toast('Use < and > arrow keys to navigate', 9000);
 
-			Materialize.toast('Use < and > arrow keys to navigate', 9000);
+				setTimeout(function() {
+					Materialize.toast('Change views with the mobile icon, top-right', 10000);
+				}, 10000);
 
-			setTimeout(function() {
-				Materialize.toast('Change views with the mobile icon, top-right', 10000);
-			}, 10000);
+				// Add in drag scroll once all animations have completed.  For some reason,
+				// I'm not able to get the deceleration to work for this, even when I modify
+				// the slowdown value in the original code ...
+				$(window).kinetic();
 
-			// Add in drag scroll once all animations have completed.  For some reason,
-			// I'm not able to get the deceleration to work for this, even when I modify
-			// the slowdown value in the original code ...
-			$(window).kinetic();
+			// When mobile, do this instead ...
+			} else {
+				console.log("mobile window.load()");
+			}
 		});
 
 		// Useful info on integrating Google Analytics using Google's Tag Manager to track by CSS Selector ...
@@ -399,6 +410,8 @@
 			// When not mobile, do this ...
 
 			$(document).ready(function() {
+				console.log("desktop document.ready()");
+
 				// Initialize the presentation scale to 1
 				$('#impress').attr('data-set-scale-factor', 1);
 
@@ -675,10 +688,10 @@
 				// $('#impress).find('#lightning .active .present').
 			});
 
-};
+		};
 
-if (!device.mobile()) {
-	$('.preloader-wrapper').addClass('active');
+		if (!device.mobile()) {
+			$('.preloader-wrapper').addClass('active');
 
 			// Dynamically add in the img tag, so that this huge file never downloads for mobile
 
@@ -688,7 +701,7 @@ if (!device.mobile()) {
 			loadScript("public/js/impress.js", myPrettyCode);
 		} else {
 			// When mobile, do this instead ...
-
+			console.log("should only run on mobile");
 		}
 	</script>
 
