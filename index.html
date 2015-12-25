@@ -587,7 +587,7 @@
 								setTimeout(function(currentCount) {
 									console.log('count: ' + count + ", currentCount: " + currentCount);
 									if (currentCount === count) {
-										$('#impress').css('transform', 'scale(' + getScale()/(Math.log(count+2)) + ')').css('transition-delay', 0);
+										$('#impress').css('transform', 'scale(' + getScale()/(Math.pow(Math.log(count+2), 2)) + ')').css('transition-duration', '0.25s');
 										count = 0;
 									}
 								}, 500, count);
@@ -607,7 +607,7 @@
 									setTimeout(function(currentCount) {
 										console.log('count: ' + count + ", currentCount: " + currentCount);
 										if (currentCount === count) {
-											$('#impress').css('transform', 'scale(' + getScale()/(Math.log(count+2)) + ')').css('transition-delay', 0);
+											$('#impress').css('transform', 'scale(' + getScale()/(Math.pow(Math.log(count+2), 2)) + ')').css('transition-duration', '0.25s');
 											count = 0;
 										}
 									}, 500, count);
@@ -633,7 +633,7 @@
 								setTimeout(function(currentCount) {
 									console.log('count: ' + count + ", currentCount: " + currentCount);
 									if (currentCount === count) {
-										$('#impress').css('transform', 'scale(' + getScale()*Math.log(count+2) + ')').css('transition-delay', 0);
+										$('#impress').css('transform', 'scale(' + getScale()*Math.pow(Math.log(count+2), 2) + ')').css('transition-duration', '0.25s');
 										count = 0;
 									}
 								}, 500, count);
@@ -653,7 +653,7 @@
 									setTimeout(function(currentCount) {
 										console.log('count: ' + count + ", currentCount: " + currentCount);
 										if (currentCount === count) {
-											$('#impress').css('transform', 'scale(' + getScale()*Math.log(count+2) + ')').css('transition-delay', 0);
+											$('#impress').css('transform', 'scale(' + getScale()*Math.pow(Math.log(count+2), 2) + ')').css('transition-duration', '0.25s');
 											count = 0;
 										}
 									}, 500, count);
