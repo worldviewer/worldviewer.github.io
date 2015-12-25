@@ -15,6 +15,10 @@
 	display: none;
 }
 
+.desktop #impress {
+	animation-delay: 0;
+}
+
 .mobile #mobile .controversy-title-bar {
 	color: white;
 	background: rgba(0,0,0,0.8);

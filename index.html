@@ -356,6 +356,54 @@
 		    head.appendChild(script);
 		}
 
+		function triggerZoom(keyCode) {
+			var count = 0;
+			var current, start, end, previous, diff;
+
+			// Subtract key: Use for zooming out
+		    if (keyCode === 189) {
+		    	current = Date.now();
+				console.log("current: " + current);
+				console.log("previous: " + previous);
+				diff = parseInt(current) - parseInt(previous);
+				console.log("diff: " + diff);
+
+				// First keypress in a series
+				if (count === 0) {
+					start = current;
+					count++;
+					console.log('count: ' + count);
+
+				// This keypress occurred within half a second of the last
+				} else {
+					if (parseInt(current) - parseInt(previous) < 500) {
+						count++;
+						console.log('count: ' + count);
+
+						// Wait half a second and check to see if any more of these same
+						// keypresses have occurred.  If not, then currentCount will equal
+						// the count.  It is only then that we want to calculate and invoke
+						// the zoom function
+						setTimeout(function(currentCount) {
+							console.log('count: ' + count + ", currentCount: " + currentCount);
+							if (currentCount === count) {
+								count = 0;
+								// $('#zoom-out').trigger('click');
+							}
+						}, 500, count);
+					}
+
+					previous = current;								
+				}
+
+			// Add key: Use for zooming in						
+		    } else if (e.keyCode === 187) {
+		    	time = new Date();
+				seconds = time.getSeconds();
+				$('#zoom-in').trigger('click');
+		    }
+		}
+
 		// This function returns the current scale of the element marked with
 		// the #impress ID.  Comes from site here ...
 		// https://css-tricks.com/get-value-of-css-rotation-through-javascript/
@@ -499,22 +547,122 @@
 					impress().next();
 				});
 
+				var count = 0;
+				var current, start, end, previous, diff;
+
 				// Define shortcuts here
 				$(document).keydown(function(e) {
-					if (e.keyCode === 9) {
+					// When plus or minus is hit, count the number of times
+
+					if ((e.keyCode === 9) || (e.keyCode === 189) || (e.keyCode === 187)) {
 		                e.preventDefault();
 		            }
 
 				    console.log("key code: " + e.keyCode);
 
-				    // Use tab key as a shortcut for toggling the side-nav
+				    // TAB key: Use tab key as a shortcut for toggling the side-nav
 				    if (e.keyCode === 9) {
 				    	if ($('#slide-out').hasClass('active')) {
 							$('.button-collapse').trigger('click');
 						} else {
 							$('#hamburger').trigger('click');
 						}
-				    }
+
+				    } else if ((e.keyCode === 189) || (e.keyCode === 187)) {
+
+						// Subtract key: Use for zooming out
+					    if (e.keyCode === 189) {
+					    	current = Date.now();
+							console.log("current: " + current);
+							console.log("previous: " + previous);
+							diff = parseInt(current) - parseInt(previous);
+							console.log("diff: " + diff);
+
+							// First keypress in a series
+							if (count === 0) {
+								start = current;
+								count++;
+								console.log('count: ' + count);
+
+								setTimeout(function(currentCount) {
+									console.log('count: ' + count + ", currentCount: " + currentCount);
+									if (currentCount === count) {
+										$('#impress').css('transform', 'scale(' + getScale()/(Math.log(count+2)) + ')').css('transition-delay', 0);
+										count = 0;
+									}
+								}, 500, count);
+
+								previous = current;
+
+							// This keypress occurred within half a second of the last
+							} else {
+								if (parseInt(current) - parseInt(previous) < 250) {
+									count++;
+									console.log('count: ' + count);
+
+									// Wait half a second and check to see if any more of these same
+									// keypresses have occurred.  If not, then currentCount will equal
+									// the count.  It is only then that we want to calculate and invoke
+									// the zoom function
+									setTimeout(function(currentCount) {
+										console.log('count: ' + count + ", currentCount: " + currentCount);
+										if (currentCount === count) {
+											$('#impress').css('transform', 'scale(' + getScale()/(Math.log(count+2)) + ')').css('transition-delay', 0);
+											count = 0;
+										}
+									}, 500, count);
+								}
+
+								previous = current;								
+							}
+
+						// Add key: Use for zooming in						
+					    } else if (e.keyCode === 187) {
+					    	current = Date.now();
+							console.log("current: " + current);
+							console.log("previous: " + previous);
+							diff = parseInt(current) - parseInt(previous);
+							console.log("diff: " + diff);
+
+							// First keypress in a series
+							if (count === 0) {
+								start = current;
+								count++;
+								console.log('count: ' + count);
+
+								setTimeout(function(currentCount) {
+									console.log('count: ' + count + ", currentCount: " + currentCount);
+									if (currentCount === count) {
+										$('#impress').css('transform', 'scale(' + getScale()*Math.log(count+2) + ')').css('transition-delay', 0);
+										count = 0;
+									}
+								}, 500, count);
+
+								previous = current;	
+
+							// This keypress occurred within half a second of the last
+							} else {
+								if (parseInt(current) - parseInt(previous) < 250) {
+									count++;
+									console.log('count: ' + count);
+
+									// Wait half a second and check to see if any more of these same
+									// keypresses have occurred.  If not, then currentCount will equal
+									// the count.  It is only then that we want to calculate and invoke
+									// the zoom function
+									setTimeout(function(currentCount) {
+										console.log('count: ' + count + ", currentCount: " + currentCount);
+										if (currentCount === count) {
+											$('#impress').css('transform', 'scale(' + getScale()*Math.log(count+2) + ')').css('transition-delay', 0);
+											count = 0;
+										}
+									}, 500, count);
+								}
+
+								previous = current;								
+							}
+					    }
+					}
 				});
 
 				// Click-and-drag to scroll ...
@@ -546,6 +694,8 @@
 				// 			(curYPos - e.pageY));
 				// 	}
 				// });
+
+				// $('#impress).find('#lightning .active .present').
 			});
 
 };
