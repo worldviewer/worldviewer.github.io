@@ -400,7 +400,7 @@
 				$('html').removeClass('desktop').removeClass('tablet').addClass('mobile');
 			}
 
-			if (!device.mobile() && !device.tablet()) {
+			if (!device.mobile() && !device.tablet() && (Cookies.get('display') !== 'mobile')) {
 				$('#page-up').addClass('animated fadeInUp').css('visibility', 'visible');
 				$('#page-down').addClass('animated fadeInUp').css('visibility', 'visible');
 				$('#mobile-view').addClass('animated fadeInRight').css('visibility', 'visible');
@@ -798,7 +798,7 @@
 			$('html').removeClass('desktop').removeClass('tablet').addClass('mobile');
 		}
 
-		if (!device.mobile() && !device.tablet()) {
+		if (!device.mobile() && !device.tablet() && (Cookies.get('display') !== 'mobile')) {
 			$('.preloader-wrapper').addClass('active');
 
 			// Dynamically add in the img tag, so that this huge file never downloads for mobile
