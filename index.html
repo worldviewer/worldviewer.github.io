@@ -18,7 +18,7 @@
 	<!-- For Material Icons -->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-	<script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="public/js/jquery-2.1.4.min.js" type="text/javascript"></script>
 	<script src="public/js/materialize.js" type="text/javascript"></script>
 	<script src="public/js/device.js" type="text/javascript"></script>
 	<script src="public/js/jquery.kinetic.js" type="text/javascript" charset="utf-8"></script>
@@ -393,7 +393,7 @@
 		// executes when complete page is fully loaded, including all frames, objects and images
 		$(window).load(function() {
 
-			if (!device.mobile()) {
+			if (!device.mobile() && !device.tablet()) {
 				$('#page-up').addClass('animated fadeInUp').css('visibility', 'visible');
 				$('#page-down').addClass('animated fadeInUp').css('visibility', 'visible');
 				$('#mobile-view').addClass('animated fadeInRight').css('visibility', 'visible');
@@ -513,6 +513,18 @@
 
 			$(document).ready(function() {
 				console.log("desktop or tablet document.ready()");
+
+				// Materialize.css does not currently work well with iPad touches, so for now,
+				// I'm going to bump tablet users to the simpler mobile interface ...
+				// 
+				// var ua = navigator.userAgent,
+				// event = (device.ipad()) ? "touchstart" : "click";
+				// $("theElement").bind(event, function(e) {
+				// }
+				//
+				// Explanations of the problem here ...
+				// http://www.danwellman.co.uk/fixing-jquery-click-events-for-the-ipad/
+				// https://github.com/Dogfalo/materialize/issues/2319
 
 				// Initialize the presentation scale to 1
 				$('#impress').attr('data-set-scale-factor', 1);
@@ -759,7 +771,7 @@
 			});
 		};
 
-		if (!device.mobile()) {
+		if (!device.mobile() && !device.tablet()) {
 			$('.preloader-wrapper').addClass('active');
 
 			// Dynamically add in the img tag, so that this huge file never downloads for mobile
