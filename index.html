@@ -396,8 +396,11 @@
 		$(window).load(function() {
 
 			console.log("cookie: " + Cookies.get('display'));
+			if (Cookies.get('display') === 'mobile') {
+				$('html').removeClass('desktop').removeClass('tablet').addClass('mobile');
+			}
 
-			if (!device.mobile() && !device.tablet() && (Cookies.get('display') !== 'mobile')) {
+			if (!device.mobile() && !device.tablet()) {
 				$('#page-up').addClass('animated fadeInUp').css('visibility', 'visible');
 				$('#page-down').addClass('animated fadeInUp').css('visibility', 'visible');
 				$('#mobile-view').addClass('animated fadeInRight').css('visibility', 'visible');
@@ -791,7 +794,11 @@
 			});
 		};
 
-		if (!device.mobile() && !device.tablet() && (Cookies.get('display') !== 'mobile')) {
+		if (Cookies.get('display') === 'mobile') {
+			$('html').removeClass('desktop').removeClass('tablet').addClass('mobile');
+		}
+
+		if (!device.mobile() && !device.tablet()) {
 			$('.preloader-wrapper').addClass('active');
 
 			// Dynamically add in the img tag, so that this huge file never downloads for mobile
