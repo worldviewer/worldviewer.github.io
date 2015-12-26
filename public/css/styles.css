@@ -72,35 +72,7 @@ li {
 }
 
 .mobile .title-box {
-	background-color: #323232;
-	padding: 10px 15px 20px 15px;
-	font-size: 1rem;
-	font-weight: 300;
-	color: #fff;
-	word-wrap: break-word;
-}
-
-.mobile .title-box .info-left {
-	display: inline-block;
-	width: 200px;
-}
-
-.mobile .title-box .pic-right {
-	display: inline-block;
-	margin-right: 35px;
-	margin-top: -50px;
-	float: right;
-	width: 25%;
-}
-
-
-.mobile .title-box p {
-    -webkit-margin-before: 0em;
-    -webkit-margin-after: 0em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;	
-
-	margin: 0 0 0 5px;
+	display: none;
 }
 
 .mobile .card {
@@ -269,6 +241,7 @@ li {
 
 .mobile #mobile .top {
 	height: 240px;
+	width: 100%;
 	/*padding-top: 40px;*/
 	position: relative;
 }
@@ -315,4 +288,54 @@ li {
 
 .mobile #mobile.detach-hash .page-hash {
 	transition: margin 0.4s;
+}
+
+.mobile #slide-out {
+	display: none;
+}
+
+.mobile .mobile-title-box .info-left {
+	display: inline-block;
+	width: 60%;
+}
+
+.mobile .mobile-title-box .pic-right {
+	display: inline-block;
+	float: right;
+}
+
+.mobile .mobile-title-box .pic-right > img {
+	width: 64px;
+}
+
+.mobile .mobile-title-box {
+	background-color: #323232;
+	padding: 10px 15px 20px 15px;
+	font-size: 1rem;
+	font-weight: 300;
+	color: #fff;
+	word-wrap: break-word;
+	width: 100%;
+	z-index: 10;
+}
+
+.mobile .mobile-title-box h1 {
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;	
+
+	margin: 5px 0;
+
+	font-size: 1.5rem;
+	width: 300px;
+}
+
+.mobile .mobile-title-box p {
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;	
+
+	margin: 0;
 }

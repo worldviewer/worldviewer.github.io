@@ -292,17 +292,15 @@
 						
 						<h4 class="controversy-title-bar">Is it Possible to Increase the Rate of Innovation?</h4>
 
-						<div class="title-box">
+						<div class="mobile-title-box">
 							<div class="pic-right">
 								<img src="public/img-desktop/chris-at-bm-small.png" alt="Author, Chris, at Burning Man">
 							</div>
 
 							<p>Chris Reeve, Made for Parlio!</p>
+							<p>Part 1 of 4</p>
+							<p>Click to copy this URL</p>
 
-							<div class="info-left">
-								<p>Part 1 of 4</p>
-								<p>Click to copy this URL</p>
-							</div>
 						</div>
 
 					</div>
@@ -389,12 +387,11 @@
 				console.log("mobile window.load()");
 
 				var wrap = $("#mobile");
-				console.log(wrap);
 				wrap.on("scroll", function(e) {
-					console.log("scrollTop: " + this.scrollTop);
+					// console.log("scrollTop: " + this.scrollTop);
 
 					if (this.scrollTop > 193) {
-						console.log('scroll top!');
+						// console.log('scroll top!');
 						wrap.addClass("fix-hash");
 						wrap.removeClass("detach-hash");
 					} else {
