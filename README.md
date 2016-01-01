@@ -1,7 +1,7 @@
 # Four-Part Infographic Pitch for the Institute for Venture Science
 
 <p align="center">
-  <img src="https://github.com/worldviewer/worldviewer.github.io/infographic-desktop.jpg" />
+  <img src="https://github.com/worldviewer/worldviewer.github.io/blob/master/infographic-desktop.jpg" />
 </p>
 
 ## Intent
