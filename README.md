@@ -1,5 +1,7 @@
 # Four-Part Infographic Pitch for the Institute for Venture Science
 
+To view the current state of the site, go <a href="http://worldviewer.github.io/">here</a>.
+
 <p align="center">
   <img src="https://github.com/worldviewer/worldviewer.github.io/blob/master/infographic-desktop.jpg" />
 </p>
@@ -14,6 +16,8 @@
 - Also, Importantly, a New Diagram Which Demonstrates How the IVS Works
 - Adopts an Enhanced Look & Feel from the IVS Site
 - Designed to Avoid Any Server-Side Code
+- Will Use Google Analytics to Study User Interaction with Graphics
+- Once I Have Data, I Will Insert Modals to Clarify Problems
 
 ## Technologies
 
