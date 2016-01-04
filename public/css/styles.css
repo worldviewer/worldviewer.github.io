@@ -265,7 +265,7 @@ li {
 .mobile #mobile {
 	overflow: auto;
 	position: relative;
-	height: 600px;
+	height: 1280px;
 }
 
 .mobile #mobile .menu-icon {
@@ -338,4 +338,8 @@ li {
     -webkit-margin-end: 0px;	
 
 	margin: 0;
+}
+
+#river {
+	display: none;
 }

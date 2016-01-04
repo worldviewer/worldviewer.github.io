@@ -20,10 +20,10 @@
 
 	<script src="public/js/jquery-2.1.4.min.js" type="text/javascript"></script>
 	<script src="public/js/js.cookie.js" type="text/javascript"></script>
-	<!-- <script src="public/js/jquery.cookie.js" type="text/javascript"></script> -->
 	<script src="public/js/materialize.js" type="text/javascript"></script>
 	<script src="public/js/device.js" type="text/javascript"></script>
 	<script src="public/js/jquery.kinetic.js" type="text/javascript" charset="utf-8"></script>
+	<script src="public/js/jquery.scrollTo.js" type="text/javascript"></script>
 
 	<!-- Meta tags for sharing to social networks -->
 	<meta property="og:title" content="Is it Possible to Increase the Rate of Innovation?"/>
@@ -282,7 +282,8 @@
 
 			<!-- The mobile markup uses smaller graphics, no impress.js, and instead uses Materialize cards to display small 640-pixel wide, zoomed chunks of the infographic.  Eventually, will want to configure that it is only downloading ten at a time.  Currently, setting JPG quality to 50. -->
 
-			<div id="mobile" class="collapsed">
+			<!-- <div id="mobile" class="collapsed"> -->
+			<div id="mobile">
 				
 				<header class="top-header">
 					<span class="menu-icon">☰</span>
@@ -311,8 +312,10 @@
 					</div>
 				</div>
 
-				<!-- Slideshow Title Page (does not compress) -->
-				<div class="card">
+				<div id="intro"></div>
+				<div id="stephenson"></div>
+
+				<div class="card" id="ineluctable">
 					<div class="content card-image">
 						<img class="activator card-images" src="public/img-mobile/get-big-things-done-1.jpg">
 					</div>
@@ -322,8 +325,7 @@
 					</div>
 				</div>
 
-				<!-- Stephenson quote -->
-				<div class="card">
+				<div class="card" id="risk">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-2.jpg">
 					</div>
@@ -339,29 +341,25 @@
 					</div>
 				</div>				
 
-				<!-- Stephenson quote -->
-				<div class="card just-image">
+				<div class="card just-image" id="forgotten">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-3.jpg">
 					</div>
 				</div>				
 
-				<!-- Stephenson quote -->
-				<div class="card just-image">
+				<div class="card just-image" id="specialization">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-4.jpg">
 					</div>
 				</div>
 
-				<!-- Stephenson quote -->
-				<div class="card just-image">
+				<div class="card just-image" id="internet_era">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-5.jpg">
 					</div>
 				</div>
 
-				<!-- Stephenson quote -->
-				<div class="card just-image">
+				<div class="card just-image" id="get_big_things_done">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-6.jpg">
 					</div>
@@ -384,19 +382,19 @@
 					</div>
 				</div>
 
-				<div class="card just-image">
+				<div class="card just-image" id="china">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-8.jpg">
 					</div>
 				</div>
 
-				<div class="card just-image">
+				<div class="card just-image" id="get_big_things_done_fail">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-9.jpg">
 					</div>
 				</div>
 
-				<div class="card just-image">
+				<div class="card just-image" id="stories_not_told">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-10.jpg">
 					</div>
@@ -408,7 +406,7 @@
 					</div>
 				</div>
 
-				<div class="card just-quote">
+				<div class="card just-quote" id="lightning">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-12.jpg">
 					</div>
@@ -462,7 +460,7 @@
 					</div>
 				</div>
 
-				<div class="card just-quote">
+				<div class="card just-quote" id="peratt_galaxies">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-16a.jpg">
 					</div>
@@ -484,7 +482,7 @@
 					</div>
 				</div>
 
-				<div class="card just-quote">
+				<div class="card just-quote" id="halton_arp">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-17a.jpg">
 					</div>
@@ -522,7 +520,7 @@
 					</div>
 				</div>
 
-				<div class="card just-quote">
+				<div class="card just-quote" id="gerrit_verschuur">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-19a.jpg">
 					</div>
@@ -544,7 +542,7 @@
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card" id="gerrit_verschuur_cmb">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-20.jpg">
 					</div>
@@ -562,7 +560,7 @@
 					</div>
 				</div>
 
-				<div class="card just-quote">
+				<div class="card just-quote" id="earthquake_lights">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-21a.jpg">
 					</div>
@@ -584,7 +582,7 @@
 					</div>
 				</div>
 
-				<div class="card just-quote">
+				<div class="card just-quote" id="fermi_paradox">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-22.jpg">
 					</div>
@@ -606,7 +604,7 @@
 					</div>
 				</div>
 
-				<div class="card just-quote">
+				<div class="card just-quote" id="lightning_to_space">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-24a.jpg">
 					</div>
@@ -628,7 +626,9 @@
 					</div>
 				</div>
 
-				<div class="card just-quote">
+				<div id="origin_of_life"></div>
+
+				<div class="card just-quote" id="gel_cell_theory">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-25a.jpg">
 					</div>
@@ -652,7 +652,7 @@
 					</div>
 				</div>
 
-				<div class="card just-quote">
+				<div class="card just-quote" id="peratt_petroglyphs">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-26.jpg">
 					</div>
@@ -674,7 +674,7 @@
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card" id="petroglyph_plasmas">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-28.jpg">
 					</div>
@@ -692,7 +692,7 @@
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card" id="underground_city">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-29.jpg">
 					</div>
@@ -710,7 +710,9 @@
 					</div>
 				</div>
 
-				<div class="card just-image">
+				<div id="futurism"></div>
+
+				<div class="card just-image" id="cranks">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-30.jpg">
 					</div>
@@ -761,21 +763,84 @@
 
 			// When mobile, do this instead ...
 			} else {
+				function scrollBetween(scrollObject, min, max) {
+					var maximum = max || scrollObject[0].scrollHeight;
+					var x = scrollObject.scrollTop;
+					return x >= min && x <= maximum;
+				}
+
 				console.log("mobile window.load()");
 
 				var wrap = $("#mobile");
 				wrap.on("scroll", function(e) {
-					// console.log("scrollTop: " + this.scrollTop);
+					console.log("scrollTop: " + this.scrollTop);
 
-					if (this.scrollTop > 109) {
-						// console.log('scroll top!');
-						wrap.addClass("fix-hash");
-						wrap.removeClass("detach-hash");
-					} else {
+					if (scrollBetween(this, 0, 109)) {
 						wrap.removeClass("fix-hash");
 						wrap.addClass("detach-hash");
+					} else {
+						wrap.addClass("fix-hash");
+						wrap.removeClass("detach-hash");
+					}
+
+					if (scrollBetween(this, 109, 473)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#ineluctable</b></a>');
+					} else if (scrollBetween(this, 474, 930)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#risk</b></a>');
+					} else if (scrollBetween(this, 931, 1370)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#forgotten</b></a>');
+					} else if (scrollBetween(this, 1371, 1810)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#specialization</b></a>');
+					} else if (scrollBetween(this, 1811, 2203)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#internet_era</b></a>');
+					} else if (scrollBetween(this, 2204, 2881)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#get_big_things_done</b></a>');
+					} else if (scrollBetween(this, 2882, 3226)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#china</b></a>');
+					} else if (scrollBetween(this, 3227, 4131)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#get_big_things_done_fail</b></a>');
+					} else if (scrollBetween(this, 4132, 4427)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#stories_not_told</b></a>');
+					} else if (scrollBetween(this, 4428, 5458)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#lightning</b></a>');
+					} else if (scrollBetween(this, 5459, 6342)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#peratt_galaxies</b></a>');
+					} else if (scrollBetween(this, 6343, 7914)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#halton_arp</b></a>');
+					} else if (scrollBetween(this, 7915, 9429)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#gerrit_verschuur</b></a>');
+					} else if (scrollBetween(this, 9430, 9760)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#gerrit_verschuur_cmb</b></a>');
+					} else if (scrollBetween(this, 9761, 10916)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#earthquake_lights</b></a>');
+					} else if (scrollBetween(this, 10917, 12092)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#fermi_paradox</b></a>');
+					} else if (scrollBetween(this, 12093, 12856)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#lightning_to_space</b></a>');
+					} else if (scrollBetween(this, 12857, 13958)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#gel_cell_theory</b></a>');
+					} else if (scrollBetween(this, 13959, 15328)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#peratt_petroglyphs</b></a>');
+					} else if (scrollBetween(this, 15329, 16766)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#petroglyph_plasmas</b></a>');
+					} else if (scrollBetween(this, 16767, 17203)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#underground_city</b></a>');
+					} else if (scrollBetween(this, 17204, 17204)) {
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#cranks</b></a>');
 					}
 				});
+
+				var hash = window.location.hash;
+
+				// Remove the forward-slash that is sometimes added into the URL
+				hash = hash.replace(/\//, '');
+				console.log("window.location.hash: " + hash);
+				$("#mobile").scrollTo(hash, 800, {onAfter: fixScroll});
+
+				// This corrects the scroll, to take into account the sticky header
+				function fixScroll() {
+					$("#mobile").scrollTo('-=72', 100);
+				}
 			}
 		});
 
@@ -1141,13 +1206,13 @@
 			console.log("should only run on mobile");
 
 			$(document).ready(function() {
-					$('.content .card-images:not(:first)').slideToggle();
+				// $('.content .card-images:not(:first)').slideToggle();
 
-					$('.menu-icon').on('click', function() {
-						console.log('collapse mobile cards');
-						$('#mobile').toggleClass('collapsed');
-						$('.content .card-images:not(:first)').slideToggle();
-					});
+				$('.menu-icon').on('click', function() {
+					console.log('collapse mobile cards');
+					$('#mobile').toggleClass('collapsed');
+					$('.content .card-images:not(:first)').slideToggle();
+				});
 			});
 		}
 	</script>
