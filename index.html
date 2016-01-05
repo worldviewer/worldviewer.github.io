@@ -23,7 +23,9 @@
 	<script src="public/js/materialize.js" type="text/javascript"></script>
 	<script src="public/js/device.js" type="text/javascript"></script>
 	<script src="public/js/jquery.kinetic.js" type="text/javascript" charset="utf-8"></script>
-	<script src="public/js/jquery.scrollTo.js" type="text/javascript"></script>
+	<!-- <script src="public/js/jquery.scrollTo.js" type="text/javascript"></script> -->
+	<script src="public/js/ScrollMagic.min.js" type="text/javascript"></script>
+	<script src="public/js/ScrollToPlugin.min.js" type="text/javascript"></script>
 
 	<!-- Meta tags for sharing to social networks -->
 	<meta property="og:title" content="Is it Possible to Increase the Rate of Innovation?"/>
@@ -773,7 +775,7 @@
 
 				var wrap = $("#mobile");
 				wrap.on("scroll", function(e) {
-					console.log("scrollTop: " + this.scrollTop);
+					// console.log("scrollTop: " + this.scrollTop + ", window.pageYOffset: " + window.pageYOffset);
 
 					if (scrollBetween(this, 0, 109)) {
 						wrap.removeClass("fix-hash");
@@ -782,65 +784,152 @@
 						wrap.addClass("fix-hash");
 						wrap.removeClass("detach-hash");
 					}
-
-					if (scrollBetween(this, 109, 473)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#ineluctable</b></a>');
-					} else if (scrollBetween(this, 474, 930)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#risk</b></a>');
-					} else if (scrollBetween(this, 931, 1370)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#forgotten</b></a>');
-					} else if (scrollBetween(this, 1371, 1810)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#specialization</b></a>');
-					} else if (scrollBetween(this, 1811, 2203)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#internet_era</b></a>');
-					} else if (scrollBetween(this, 2204, 2881)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#get_big_things_done</b></a>');
-					} else if (scrollBetween(this, 2882, 3226)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#china</b></a>');
-					} else if (scrollBetween(this, 3227, 4131)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#get_big_things_done_fail</b></a>');
-					} else if (scrollBetween(this, 4132, 4427)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#stories_not_told</b></a>');
-					} else if (scrollBetween(this, 4428, 5458)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#lightning</b></a>');
-					} else if (scrollBetween(this, 5459, 6342)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#peratt_galaxies</b></a>');
-					} else if (scrollBetween(this, 6343, 7914)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#halton_arp</b></a>');
-					} else if (scrollBetween(this, 7915, 9429)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#gerrit_verschuur</b></a>');
-					} else if (scrollBetween(this, 9430, 9760)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#gerrit_verschuur_cmb</b></a>');
-					} else if (scrollBetween(this, 9761, 10916)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#earthquake_lights</b></a>');
-					} else if (scrollBetween(this, 10917, 12092)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#fermi_paradox</b></a>');
-					} else if (scrollBetween(this, 12093, 12856)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#lightning_to_space</b></a>');
-					} else if (scrollBetween(this, 12857, 13958)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#gel_cell_theory</b></a>');
-					} else if (scrollBetween(this, 13959, 15328)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#peratt_petroglyphs</b></a>');
-					} else if (scrollBetween(this, 15329, 16766)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#petroglyph_plasmas</b></a>');
-					} else if (scrollBetween(this, 16767, 17203)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#underground_city</b></a>');
-					} else if (scrollBetween(this, 17204, 17204)) {
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#cranks</b></a>');
-					}
 				});
 
-				var hash = window.location.hash;
+				// initialize the ScrollMagic controller
+				var controller = new ScrollMagic.Controller();
+				var hash = '';
+
+				var scrollTrigger = debounce(function (e, newHash) {
+					if (newHash !== hash) {
+						console.log("hash: " + newHash);
+						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#' + newHash + '</b></a>');
+						window.location.hash = newHash;
+						hash = newHash;
+					}
+				}, 500);
+
+				// Returns a function, that, as long as it continues to be invoked, 
+				// will not be triggered. The function will be called after it stops 
+				// being called for N milliseconds. If `immediate` is passed, trigger the 
+				// function on the leading edge, instead of the trailing.
+				function debounce(func, wait, immediate) {
+					var timeout;
+					return function() {
+						var context = this, args = arguments;
+						var later = function() {
+							timeout = null;
+							if (!immediate) func.apply(context, args);
+						};
+						var callNow = immediate && !timeout;
+						clearTimeout(timeout);
+						timeout = setTimeout(later, wait);
+						if (callNow) func.apply(context, args);
+					};
+				};					
+
+				// build Array of scenes
+				var scenes = [];
+				scenes[0] = new ScrollMagic.Scene({triggerElement: "#mobile #ineluctable", offset: -72, duration: 364, triggerHook: "onLeave"})
+					.addTo(controller)
+					// .on("update", function (e) {
+					// 	$("#scrollDirection").text(e.target.controller().info("scrollDirection"));
+					// })
+					.on("enter", function (e) {
+						if (e.state == "DURING") {
+							newHash = 'ineluctable';
+							scrollTrigger(e, newHash);
+						}
+						// $("#state").text(e.type == "enter" ? "inside" : "outside");
+					});
+					// .on("start end", function (e) {
+					// 	$("#lastHit").text(e.type == "start" ? "top" : "bottom");
+					// })
+					// .on("progress", function (e) {
+					// 	$("#progress").text(e.progress.toFixed(3));
+					// });
+
+				scenes[1] = new ScrollMagic.Scene({triggerElement: "#mobile #risk", duration: 456, offset: -72, triggerHook: "onLeave"})
+					.addTo(controller)
+					.on("enter", function (e) {
+						if (e.state == "DURING") {
+							newHash = 'risk';
+							scrollTrigger(e, newHash);
+						}
+					});
+
+				scenes[2] = new ScrollMagic.Scene({triggerElement: "#mobile #forgotten", duration: 456, offset: -72, triggerHook: "onLeave"})
+					.addTo(controller)
+					.on("enter", function (e) {
+						if (e.state == "DURING") {
+							newHash = 'forgotten';
+							scrollTrigger(e, newHash);
+						}
+					});
+
+				//  bind scroll to anchor links
+				$(document).on("click", "a[href^='#']", function (e) {
+					var id = $(this).attr("href");
+					if ($(id).length > 0) {
+						e.preventDefault();
+
+						// trigger scroll
+						controller.scrollTo(id);
+
+						// if supported by the browser we can even update the URL.
+						if (window.history && window.history.pushState) {
+							history.pushState("", document.title, id);
+						}
+					}
+				});	
+
+				// if (scrollBetween(this, 109, 473)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#ineluctable</b></a>');
+				// } else if (scrollBetween(this, 474, 930)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#risk</b></a>');
+				// } else if (scrollBetween(this, 931, 1370)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#forgotten</b></a>');
+				// } else if (scrollBetween(this, 1371, 1810)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#specialization</b></a>');
+				// } else if (scrollBetween(this, 1811, 2203)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#internet_era</b></a>');
+				// } else if (scrollBetween(this, 2204, 2881)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#get_big_things_done</b></a>');
+				// } else if (scrollBetween(this, 2882, 3226)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#china</b></a>');
+				// } else if (scrollBetween(this, 3227, 4131)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#get_big_things_done_fail</b></a>');
+				// } else if (scrollBetween(this, 4132, 4427)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#stories_not_told</b></a>');
+				// } else if (scrollBetween(this, 4428, 5458)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#lightning</b></a>');
+				// } else if (scrollBetween(this, 5459, 6342)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#peratt_galaxies</b></a>');
+				// } else if (scrollBetween(this, 6343, 7914)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#halton_arp</b></a>');
+				// } else if (scrollBetween(this, 7915, 9429)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#gerrit_verschuur</b></a>');
+				// } else if (scrollBetween(this, 9430, 9760)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#gerrit_verschuur_cmb</b></a>');
+				// } else if (scrollBetween(this, 9761, 10916)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#earthquake_lights</b></a>');
+				// } else if (scrollBetween(this, 10917, 12092)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#fermi_paradox</b></a>');
+				// } else if (scrollBetween(this, 12093, 12856)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#lightning_to_space</b></a>');
+				// } else if (scrollBetween(this, 12857, 13958)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#gel_cell_theory</b></a>');
+				// } else if (scrollBetween(this, 13959, 15328)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#peratt_petroglyphs</b></a>');
+				// } else if (scrollBetween(this, 15329, 16766)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#petroglyph_plasmas</b></a>');
+				// } else if (scrollBetween(this, 16767, 17203)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#underground_city</b></a>');
+				// } else if (scrollBetween(this, 17204, 17204)) {
+				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#cranks</b></a>');
+				// }
+
+				var URLhash = window.location.hash;
 
 				// Remove the forward-slash that is sometimes added into the URL
-				hash = hash.replace(/\//, '');
-				console.log("window.location.hash: " + hash);
-				$("#mobile").scrollTo(hash, 800, {onAfter: fixScroll});
+				URLhash = URLhash.replace(/\//, '');
+				console.log("window.location.hash: " + URLhash);
+				// $("#mobile").scrollTo(hash, 800, {onAfter: fixScroll});
 
 				// This corrects the scroll, to take into account the sticky header
-				function fixScroll() {
-					$("#mobile").scrollTo('-=72', 100);
-				}
+				// function fixScroll() {
+				// 	$("#mobile").scrollTo('-=72', 100);
+				// }
 			}
 		});
 
