@@ -23,9 +23,10 @@
 	<script src="public/js/materialize.js" type="text/javascript"></script>
 	<script src="public/js/device.js" type="text/javascript"></script>
 	<script src="public/js/jquery.kinetic.js" type="text/javascript" charset="utf-8"></script>
-	<!-- <script src="public/js/jquery.scrollTo.js" type="text/javascript"></script> -->
-	<script src="public/js/ScrollMagic.min.js" type="text/javascript"></script>
+	<script src="public/js/jquery.scrollTo.js" type="text/javascript"></script>
+	<!-- <script src="public/js/TweenMax.min.js" type="text/javascript"></script> -->
 	<script src="public/js/ScrollToPlugin.min.js" type="text/javascript"></script>
+	<script src="public/js/ScrollMagic.min.js" type="text/javascript"></script>
 
 	<!-- Meta tags for sharing to social networks -->
 	<meta property="og:title" content="Is it Possible to Increase the Rate of Innovation?"/>
@@ -774,8 +775,10 @@
 				console.log("mobile window.load()");
 
 				var wrap = $("#mobile");
+
+				// Implement the sticky navbar with ScrollMagic
 				wrap.on("scroll", function(e) {
-					console.log("scrollTop: " + this.scrollTop);
+					// console.log("scrollTop: " + this.scrollTop);
 
 					if (scrollBetween(this, 0, 109)) {
 						wrap.removeClass("fix-hash");
@@ -832,7 +835,7 @@
 					// Calculate card heights as height plus some margin
 					duration = $(this).height() + 22;
 
-					console.log("i: " + i + ", duration: " + duration + ", id: " + $(this).attr('id'));
+					// console.log("i: " + i + ", duration: " + duration + ", id: " + $(this).attr('id'));
 
 					// Does it have an id attribute?
 					if($(this).attr('id')) {
@@ -846,7 +849,8 @@
 					}
 				});
 
-				console.log(slides);
+				// console.log("pre-scenes");
+				// console.log(slides);
 
 				// Select just the cards with id's
 				cards = $('.card[id]');
@@ -856,11 +860,14 @@
 
 					// Grab the id for each that has one
 					var id = slide['hash'];
+					var height = slide['height'];
+
+					// console.log("duration: " + height + ", id: " + id);
 
 					slide['scene'] = new ScrollMagic.Scene(
 						   {triggerElement: "#mobile #" + id, 
 							offset: -72,
-							duration: slide['duration'],
+							duration: height,
 							triggerHook: "onLeave"})
 							.addTo(controller)
 							.on("enter", function (e) {
@@ -870,9 +877,23 @@
 							})
 				});
 
-				console.log(slides);
+				// console.log('last slide: ' + slides[slides.length-1]['hash']);
 
-				//  bind scroll to anchor links
+				// Make the last slide accessible; this will affect the accessibility of the next-to-last
+				// as a consequence
+				slides[slides.length-1]['scene'] = new ScrollMagic.Scene(
+					   {triggerElement: "#mobile #" + slides[slides.length-1]['hash'], triggerHook: "onEnter"})
+						.addTo(controller)
+						.on("enter", function (e) {
+							scrollTrigger(e, slides[slides.length-1]['hash']);
+							console.log('end!');
+						});
+
+				// console.log("post-scenes");
+				// console.log(slides);
+
+				// bind scroll to anchor links
+				// check history situation with this code
 				$(document).on("click", "a[href^='#']", function (e) {
 					var id = $(this).attr("href");
 					if ($(id).length > 0) {
@@ -888,58 +909,24 @@
 					}
 				});	
 
-				// if (scrollBetween(this, 109, 473)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#ineluctable</b></a>');
-				// } else if (scrollBetween(this, 474, 930)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#risk</b></a>');
-				// } else if (scrollBetween(this, 931, 1370)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#forgotten</b></a>');
-				// } else if (scrollBetween(this, 1371, 1810)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#specialization</b></a>');
-				// } else if (scrollBetween(this, 1811, 2203)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#internet_era</b></a>');
-				// } else if (scrollBetween(this, 2204, 2881)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#get_big_things_done</b></a>');
-				// } else if (scrollBetween(this, 2882, 3226)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#china</b></a>');
-				// } else if (scrollBetween(this, 3227, 4131)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#get_big_things_done_fail</b></a>');
-				// } else if (scrollBetween(this, 4132, 4427)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#stories_not_told</b></a>');
-				// } else if (scrollBetween(this, 4428, 5458)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#lightning</b></a>');
-				// } else if (scrollBetween(this, 5459, 6342)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#peratt_galaxies</b></a>');
-				// } else if (scrollBetween(this, 6343, 7914)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#halton_arp</b></a>');
-				// } else if (scrollBetween(this, 7915, 9429)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#gerrit_verschuur</b></a>');
-				// } else if (scrollBetween(this, 9430, 9760)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#gerrit_verschuur_cmb</b></a>');
-				// } else if (scrollBetween(this, 9761, 10916)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#earthquake_lights</b></a>');
-				// } else if (scrollBetween(this, 10917, 12092)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#fermi_paradox</b></a>');
-				// } else if (scrollBetween(this, 12093, 12856)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#lightning_to_space</b></a>');
-				// } else if (scrollBetween(this, 12857, 13958)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#gel_cell_theory</b></a>');
-				// } else if (scrollBetween(this, 13959, 15328)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#peratt_petroglyphs</b></a>');
-				// } else if (scrollBetween(this, 15329, 16766)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#petroglyph_plasmas</b></a>');
-				// } else if (scrollBetween(this, 16767, 17203)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#underground_city</b></a>');
-				// } else if (scrollBetween(this, 17204, 17204)) {
-				// 	$('.page-hash').find('p').html('Click to copy this URL - <a><b>#cranks</b></a>');
-				// }
-
+				// Grab anchor to scroll to from URL hash
 				var URLhash = window.location.hash;
 
 				// Remove the forward-slash that is sometimes added into the URL
 				URLhash = URLhash.replace(/\//, '');
 				console.log("window.location.hash: " + URLhash);
-				// $("#mobile").scrollTo(hash, 800, {onAfter: fixScroll});
+
+				// Calculate pixel position of anchor
+				var scrollYPos = $("#mobile " + URLhash).offset().top - 72;
+				console.log("scrollYPos: " + scrollYPos);
+
+				// None of these three approaches worked ...
+				// controller.scrollTo(URLhash);
+				// controller.scrollTo(scrollYPos);
+				// TweenLite.to(window, 2, {scrollTo:{y:scrollYPos, x:0}, ease:Power4.easeOut})
+
+				// But this did ...
+				$("#mobile").scrollTo(scrollYPos, 800);
 
 				// This corrects the scroll, to take into account the sticky header
 				// function fixScroll() {
