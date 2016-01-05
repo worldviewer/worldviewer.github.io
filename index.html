@@ -775,7 +775,7 @@
 
 				var wrap = $("#mobile");
 				wrap.on("scroll", function(e) {
-					// console.log("scrollTop: " + this.scrollTop + ", window.pageYOffset: " + window.pageYOffset);
+					console.log("scrollTop: " + this.scrollTop);
 
 					if (scrollBetween(this, 0, 109)) {
 						wrap.removeClass("fix-hash");
@@ -790,6 +790,9 @@
 				var controller = new ScrollMagic.Controller();
 				var hash = '';
 
+				// We have to be very careful with running this function.
+				// We must make sure that it only runs one single time, and only
+				// if a change has been made.
 				var scrollTrigger = debounce(function (e, newHash) {
 					if (newHash !== hash) {
 						console.log("hash: " + newHash);
@@ -799,6 +802,7 @@
 					}
 				}, 500);
 
+				// This comes from Underscore.js ...
 				// Returns a function, that, as long as it continues to be invoked, 
 				// will not be triggered. The function will be called after it stops 
 				// being called for N milliseconds. If `immediate` is passed, trigger the 
@@ -818,44 +822,55 @@
 					};
 				};					
 
-				// build Array of scenes
-				var scenes = [];
-				scenes[0] = new ScrollMagic.Scene({triggerElement: "#mobile #ineluctable", offset: -72, duration: 364, triggerHook: "onLeave"})
-					.addTo(controller)
-					// .on("update", function (e) {
-					// 	$("#scrollDirection").text(e.target.controller().info("scrollDirection"));
-					// })
-					.on("enter", function (e) {
-						if (e.state == "DURING") {
-							newHash = 'ineluctable';
-							scrollTrigger(e, newHash);
-						}
-						// $("#state").text(e.type == "enter" ? "inside" : "outside");
-					});
-					// .on("start end", function (e) {
-					// 	$("#lastHit").text(e.type == "start" ? "top" : "bottom");
-					// })
-					// .on("progress", function (e) {
-					// 	$("#progress").text(e.progress.toFixed(3));
-					// });
+				var slides = [];
+				var duration;
 
-				scenes[1] = new ScrollMagic.Scene({triggerElement: "#mobile #risk", duration: 456, offset: -72, triggerHook: "onLeave"})
-					.addTo(controller)
-					.on("enter", function (e) {
-						if (e.state == "DURING") {
-							newHash = 'risk';
-							scrollTrigger(e, newHash);
-						}
-					});
+				// Select all cards
+				// On the first pass, we want all undefined cards to add their heights into
+				// the defined cards which precede them
+				$('.card').each(function(i) {
+					// Calculate card heights as height plus some margin
+					duration = $(this).height() + 22;
 
-				scenes[2] = new ScrollMagic.Scene({triggerElement: "#mobile #forgotten", duration: 456, offset: -72, triggerHook: "onLeave"})
-					.addTo(controller)
-					.on("enter", function (e) {
-						if (e.state == "DURING") {
-							newHash = 'forgotten';
-							scrollTrigger(e, newHash);
-						}
-					});
+					console.log("i: " + i + ", duration: " + duration + ", id: " + $(this).attr('id'));
+
+					// Does it have an id attribute?
+					if($(this).attr('id')) {
+						slides.push( {'height': duration, 'hash': $(this).attr('id')} );
+
+					// If not, then add its height to the last pushed array element
+					} else if (slides.length == 0) {
+						// Do nothing, because there are no slides yet
+					} else {
+						slides[slides.length-1]['height'] += duration;
+					}
+				});
+
+				console.log(slides);
+
+				// Select just the cards with id's
+				cards = $('.card[id]');
+
+				// On the second pass, we want to 
+				slides.forEach(function(slide) {
+
+					// Grab the id for each that has one
+					var id = slide['hash'];
+
+					slide['scene'] = new ScrollMagic.Scene(
+						   {triggerElement: "#mobile #" + id, 
+							offset: -72,
+							duration: slide['duration'],
+							triggerHook: "onLeave"})
+							.addTo(controller)
+							.on("enter", function (e) {
+								if (e.state == "DURING") {
+									scrollTrigger(e, id);
+								}
+							})
+				});
+
+				console.log(slides);
 
 				//  bind scroll to anchor links
 				$(document).on("click", "a[href^='#']", function (e) {
