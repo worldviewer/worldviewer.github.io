@@ -24,7 +24,6 @@
 	<script src="public/js/device.js" type="text/javascript"></script>
 	<script src="public/js/jquery.kinetic.js" type="text/javascript" charset="utf-8"></script>
 	<script src="public/js/jquery.scrollTo.js" type="text/javascript"></script>
-	<!-- <script src="public/js/TweenMax.min.js" type="text/javascript"></script> -->
 	<script src="public/js/ScrollToPlugin.min.js" type="text/javascript"></script>
 	<script src="public/js/ScrollMagic.min.js" type="text/javascript"></script>
 
@@ -286,7 +285,7 @@
 			<!-- The mobile markup uses smaller graphics, no impress.js, and instead uses Materialize cards to display small 640-pixel wide, zoomed chunks of the infographic.  Eventually, will want to configure that it is only downloading ten at a time.  Currently, setting JPG quality to 50. -->
 
 			<!-- <div id="mobile" class="collapsed"> -->
-			<div id="mobile">
+			<div id="mobile" class="expanded">
 				
 				<header class="top-header">
 					<span class="menu-icon">☰</span>
@@ -334,6 +333,7 @@
 					</div>
 
 					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Innovation Can't Happen Without Failure</span>
 						<p class="content card-text">
 						<i class="material-icons right">more_vert</i>
 						<span class="red-num">1</span> All of the quotes in these first slides come from an article written by science fiction author, Neal Stephenson.  <a href="http://www.worldpolicy.org/journal/fall2011/innovation-starvation" target="_blank">That article</a> was written for the World Policy Institute.<br><br>Please note that the list of the graphic's list of scientific controversies is not intended to be comprehensive.  I've decided to limit the number of examples to avoid overwhelming people.</p>
@@ -348,35 +348,53 @@
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-3.jpg">
 					</div>
+
+					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Forgotten How to Do It</span>
+					</div>					
 				</div>				
 
 				<div class="card just-image" id="specialization">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-4.jpg">
 					</div>
+
+					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Specialization</span>
+					</div>					
 				</div>
 
 				<div class="card just-image" id="internet_era">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-5.jpg">
 					</div>
+
+					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Risk as a Quaint Artifact</span>
+					</div>				
 				</div>
 
 				<div class="card just-image" id="get_big_things_done">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-6.jpg">
 					</div>
+
+					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Failure to Get Big Things Done</span>
+					</div>					
 				</div>
 
-				<!-- Jetson's -->
+				<!-- Jetsons -->
 				<div class="card">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-7.jpg">
 					</div>
 
 					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Jetsons</span>
+
 						<p class="content card-text">
-							<i class="material-icons right">more_vert</i><span class="red-num">18</span> The Jetson's future that never happened.
+							<i class="material-icons right">more_vert</i><span class="red-num">18</span> The Jetsons future that never happened.
 						</p>
 					</div>
 
@@ -389,29 +407,49 @@
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-8.jpg">
 					</div>
+
+					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">China Not Innovation</span>
+					</div>					
 				</div>
 
 				<div class="card just-image" id="get_big_things_done_fail">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-9.jpg">
 					</div>
+
+					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Today's Belief in Ineluctable Certainty</span>
+					</div>						
 				</div>
 
 				<div class="card just-image" id="stories_not_told">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-10.jpg">
 					</div>
+
+					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">The Stories We Don't Tell in Science</span>
+					</div>		
 				</div>
 
 				<div class="card just-image">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-11.jpg">
 					</div>
+
+					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Our Newfound Access to Information</span>
+					</div>
 				</div>
 
 				<div class="card just-quote" id="lightning">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-12.jpg">
+					</div>
+
+					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Lightning Textbook Theory in Trouble</span>
 					</div>
 				</div>
 
@@ -421,6 +459,8 @@
 					</div>
 
 					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Mysterious Gamma Rays</span>
+
 						<p class="content card-text">
 							<i class="material-icons right">more_vert</i><span class="red-num">2</span> <a href="http://space.io9.com/lightning-mysterious-gamma-ray-bursts-1549723614" target="_blank">io9</a>
 						</p>
@@ -437,6 +477,8 @@
 					</div>
 
 					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Van Allen Radiation Belts</span>
+
 						<p class="content card-text">
 							<i class="material-icons right">more_vert</i><span class="red-num">3</span> <a href="http://www.nasa.gov/home/hqnews/2005/mar/HQ_05070_radiation_belt.html#.VmYK11krIsM" target="_blank">NASA</a>
 						</p>
@@ -453,6 +495,8 @@
 					</div>
 
 					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Unknown Cause</span>
+
 						<p class="content card-text">
 							<i class="material-icons right">more_vert</i><span class="red-num">4</span> <a href="http://www.bbc.com/future/story/20120926-what-causes-lightening" target="_blank">BBC Future</a>
 						</p>
@@ -467,6 +511,11 @@
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-16a.jpg">
 					</div>
+
+
+					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">No Need for Dark Matter</span>
+					</div>					
 				</div>
 
 				<div class="card">
@@ -475,6 +524,8 @@
 					</div>
 
 					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Flat Galactic Rotation Curves</span>
+
 						<p class="content card-text">
 							<i class="material-icons right">more_vert</i><span class="red-num">5</span> <a href="http://www.plasma-universe.com/Galaxy_formation" target="_blank">Ian Tresman's plasma universe wiki</a>.  This site was created because the wikipedia encyclopedia refused to acknowledge this peer-reviewed research.
 						</p>
@@ -489,6 +540,10 @@
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-17a.jpg">
 					</div>
+
+					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Big Bang Disproven</span>
+					</div>					
 				</div>
 
 				<div class="card">
@@ -497,6 +552,8 @@
 					</div>
 
 					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Redshift Problem</span>
+
 						<p class="content card-text">
 							<i class="material-icons right">more_vert</i><span class="red-num">6</span> Image is from this <a href="http://plazmauniverzum.hu/arp" target="_blank">Hungarian plasma cosmology site</a>.  There is a technical analysis of Arp's claim <a href="http://www.astr.ua.edu/keel/galaxies/arp.html" target="_blank">here</a>.  For a more broad view of this subject, see the excellent YouTube documentary, <a href="https://www.youtube.com/watch?v=IFFl9S39CTM" target="_blank">Universe: The Cosmology Quest</a>.
 						</p>
@@ -513,6 +570,8 @@
 					</div>
 
 					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Troubling Quasars</span>
+
 						<p class="content card-text">
 							<i class="material-icons right">more_vert</i><span class="red-num">7</span> I wouldn't normally advise using wikipedia to look up controversial subjects, but <a href="https://en.wikipedia.org/wiki/Halton_Arp" target="_blank">this entry</a> is okay.
 						</p>
@@ -527,6 +586,10 @@
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-19a.jpg">
 					</div>
+
+					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Local CMB</span>
+					</div>					
 				</div>
 
 				<div class="card">
@@ -535,6 +598,8 @@
 					</div>
 
 					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">HI-WMAP Associations</span>
+
 						<p class="content card-text">
 							<i class="material-icons right">more_vert</i><span class="red-num">8</span> Paper at <a href="http://arxiv.org/abs/1002.1661" target="_blank">arXiv.org</a>.  Verschuur has a couple of fantastic books on these subjects.  See his book, <i>The Invisible Universe</i>, where he emphasizes how astronomers initially considered radio waves from space either a hoax or a mistake.  His book, <i>Interstellar Matters</i>, contains a couple of chapters which in great detail explain how to read a radio astronomy paper.  With not much more than that, Verschuur's numerous IEEE papers will become accessible to most laypeople.  His papers on interstellar HI hydrogen and critical ionization velocities (CIV's) are particularly noteworthy because they appear to suggest that ionization is an ongoing process in space -- directly contradicting what is taught to astrophysicists today.  Verschuur frequently questions the use of the term "cloud" to describe the interstellar matter structures, due to its unusually filamentary nature.  Although his publications do not directly raise the question of electricity in space (due to ongoing resistance to the idea amongst peer reviewers), it is clear to many that he is entertaining the notion.
 						</p>
@@ -551,6 +616,8 @@
 					</div>
 
 					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">"If I'm right, this is a paradigm shift."</span>
+
 						<p class="content card-text">
 							<i class="material-icons right">more_vert</i><span class="red-num">9</span> <a href="http://news.discovery.com/space/cosmic-background-radiation-big-bang-120615.htm" target="_blank">Discovery News</a><br><br>
 
@@ -567,6 +634,10 @@
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-21a.jpg">
 					</div>
+
+					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Earthquake Lights</span>
+					</div>					
 				</div>
 
 				<div class="card">
@@ -575,6 +646,7 @@
 					</div>
 
 					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Fear of Being Considered a Crank</span>
 						<p class="content card-text">
 							<i class="material-icons right">more_vert</i><span class="red-num">11</span> Comes from <a href="http://www.q-mag.org/the-tangible-proof-of-earthquake-lights.html" target="_blank">Alfred de Grazia's Magazine of Quantavolution</a>.  This research was originally published in German in <a href="http://www.spiegel.de/wissenschaft/natur/erdbebenlichter-erklaerung-fuer-blitze-aus-dem-boden-a-1035800.html" target="_blank">Der Spiegel</a> on June 8, 2015.  It was translated from German by Anne-Marie de Grazia, the wife of the late Alfred de Grazia.  There are additional pictures in the German article.
 						</p>
@@ -589,6 +661,10 @@
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-22.jpg">
 					</div>
+
+					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Fermi Paradox Solution</span>
+					</div>
 				</div>
 
 				<div class="card">
@@ -597,6 +673,8 @@
 					</div>
 
 					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Planet in a Star</span>
+
 						<p class="content card-text">
 							<i class="material-icons right">more_vert</i><span class="red-num">12</span> Source: <a href="http://www.holoscience.com/wp/other-stars-other-worlds-other-life/" target="_blank">Wal Thornhill's Holoscience site</a>.  From wikipedia: "The Fermi paradox — or Fermi's paradox — is the apparent contradiction between high estimates of the probability of the existence of extraterrestrial civilizations, such as in the Drake equation, and the lack of evidence for such civilizations."  Wal's approach would neatly explain the paradox because electromagnetic communications are commonly obstructed by plasma double layers like our own ionosphere.  In the configuration proposed, the planet would be deeply embedded within the star's electromagnetic envelope -- hence we'd struggle to observe these radio signals.  The whole idea might sound like a wacky, unsupported claim, but in fact, Dwardu Cardona has published a number of excellent books which dedicate a few thousand pages filled with references to supporting these claims.  I cannot recommend enough Dwardu's books.
 						</p>
@@ -611,6 +689,10 @@
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-24a.jpg">
 					</div>
+
+					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Lightning to Space</span>
+					</div>					
 				</div>
 
 				<div class="card">
@@ -619,6 +701,8 @@
 					</div>
 
 					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Is Space Really Neutral?</span>
+
 						<p class="content card-text">
 							<i class="material-icons right">more_vert</i><span class="red-num">13</span> These snapshots actually come from two separate links -- the first is from <a href="http://www.rense.com/general68/gint.htm" target="_blank">Giant Lightning From Earth To Space from Rense.com</a> and the second is from <a href="https://www.thunderbolts.info/tpod/2005/arch05/051110sprite.htm" target="_blank">Giant Lightning to Space at thunderbolts.info</a>.
 						</p>
@@ -635,6 +719,10 @@
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-25a.jpg">
 					</div>
+
+					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Origin of Life</span>
+					</div>					
 				</div>
 
 				<div class="card">
@@ -643,6 +731,8 @@
 					</div>
 
 					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Cytoplasm as a Gel</span>
+
 						<p class="content card-text">
 							<i class="material-icons right">more_vert</i><span class="red-num">14</span> More information at <a href="http://faculty.washington.edu/ghp/" target="_blank">Gerald Pollack's University of Washington pages</a>.  Gerald Pollack is an excellent speaker.  See his many talks on YouTube.<br><br>
 
@@ -659,6 +749,10 @@
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-26.jpg">
 					</div>
+
+					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Did the Sky Change?</span>
+					</div>					
 				</div>
 
 				<div class="card">
@@ -667,6 +761,8 @@
 					</div>
 
 					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Peratt Paper</span>
+
 						<p class="content card-text">
 							<i class="material-icons right">more_vert</i><span class="red-num">16</span> This paper can be tricky to track down.  The best option might be to fill out the form <a href="http://www.everythingselectric.com/product/anthony-peratt-z-pinch-aurora/" target="_blank">here</a>.
 						</p>
@@ -683,6 +779,8 @@
 					</div>
 
 					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Plasma Morphologies</span>
+
 						<p class="content card-text">
 							<i class="material-icons right">more_vert</i><span class="red-num">16</span> This paper can be tricky to track down.  The best option might be to fill out the form <a href="http://www.everythingselectric.com/product/anthony-peratt-z-pinch-aurora/" target="_blank">here</a>.<br><br>
 
@@ -701,6 +799,8 @@
 					</div>
 
 					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Background Art</span>
+
 						<p class="content card-text">
 							<i class="material-icons right">more_vert</i><span class="red-num">19</span> Awesome futuristic cityscape artwork by <a href="http://peteamachree.deviantart.com/art/future-city-1-187502843" target="_blank">PeteAmachree at Deviant Art</a><br><br>
 
@@ -719,6 +819,10 @@
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-30.jpg">
 					</div>
+
+					<div class="activator content card-content">
+						<span class="content card-title grey-text text-darken-4">Cranks</span>
+					</div>					
 				</div>
 
 			</div>
@@ -1302,6 +1406,7 @@
 				$('.menu-icon').on('click', function() {
 					console.log('collapse mobile cards');
 					$('#mobile').toggleClass('collapsed');
+					$('#mobile').toggleClass('expanded');
 					$('.content .card-images:not(:first)').slideToggle();
 				});
 			});

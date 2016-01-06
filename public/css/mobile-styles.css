@@ -170,6 +170,11 @@
 	margin-bottom: 0;
 }
 
+.mobile .collapsed .card.just-image, .mobile .collapsed .card.just-quote .card-title {
+	margin-top: 7px;
+	margin-bottom: 14px;
+}
+
 .mobile .card.just-quote {
 	box-shadow: none;
 }
@@ -186,4 +191,19 @@
 
 .mobile p.card-text {
 /*	width: 90%;*/
+}
+
+/* Do not show card titles when cards are expanded */
+.mobile .expanded .card-title {
+	display: none;
+}
+
+/* Allow titles to appear for cards that only have images when expanded */
+.mobile .expanded .just-image .card-content {
+	display: none;
+}
+
+/* Only show titles when collapsed */
+.mobile .collapsed .card-title + p {
+	display: none;
 }
