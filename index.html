@@ -893,108 +893,181 @@
 					}
 				});
 
-				// initialize the ScrollMagic controller
-				var controller = new ScrollMagic.Controller();
-				var hash = '';
+				// Cut up slides based upon vertical scroll distances
+				var newSlides = function (collapsed) {
+					// initialize the ScrollMagic controller
+					var controller = new ScrollMagic.Controller();
 
-				// We have to be very careful with running this function.
-				// We must make sure that it only runs one single time, and only
-				// if a change has been made.
-				var scrollTrigger = debounce(function (e, newHash) {
-					if (newHash !== hash) {
-						console.log("hash: " + newHash);
-						$('.page-hash').find('p').html('Click to copy this URL - <a><b>#' + newHash + '</b></a>');
-						window.location.hash = newHash;
-						hash = newHash;
-					}
-				}, 500);
+					console.log('collapsed inside of slides fn: ' + collapsed);
 
-				// This comes from Underscore.js ...
-				// Returns a function, that, as long as it continues to be invoked, 
-				// will not be triggered. The function will be called after it stops 
-				// being called for N milliseconds. If `immediate` is passed, trigger the 
-				// function on the leading edge, instead of the trailing.
-				function debounce(func, wait, immediate) {
-					var timeout;
-					return function() {
-						var context = this, args = arguments;
-						var later = function() {
-							timeout = null;
-							if (!immediate) func.apply(context, args);
+					var hash = '';
+
+					// We have to be very careful with running this function.
+					// We must make sure that it only runs one single time, and only
+					// if a change has been made.
+					var scrollTrigger = debounce(function (e, newHash) {
+						if (newHash !== hash) {
+							console.log("hash: " + newHash);
+							$('.page-hash').find('p').html('Click to copy this URL - <a><b>#' + newHash + '</b></a>');
+							window.location.hash = newHash;
+							hash = newHash;
+						}
+					}, 500);
+
+					// This comes from Underscore.js ...
+					// Returns a function, that, as long as it continues to be invoked, 
+					// will not be triggered. The function will be called after it stops 
+					// being called for N milliseconds. If `immediate` is passed, trigger the 
+					// function on the leading edge, instead of the trailing.
+					function debounce(func, wait, immediate) {
+						var timeout;
+						return function() {
+							var context = this, args = arguments;
+							var later = function() {
+								timeout = null;
+								if (!immediate) func.apply(context, args);
+							};
+							var callNow = immediate && !timeout;
+							clearTimeout(timeout);
+							timeout = setTimeout(later, wait);
+							if (callNow) func.apply(context, args);
 						};
-						var callNow = immediate && !timeout;
-						clearTimeout(timeout);
-						timeout = setTimeout(later, wait);
-						if (callNow) func.apply(context, args);
-					};
-				};					
+					};					
 
-				var slides = [];
-				var duration;
+					var slides = [];
+					var duration;
 
-				// Select all cards
-				// On the first pass, we want all undefined cards to add their heights into
-				// the defined cards which precede them
-				$('.card').each(function(i) {
-					// Calculate card heights as height plus some margin
-					duration = $(this).height() + 22;
+					// We calculate the card heights differently based upon whether or not the cards are
+					// in a collapsed state.  If they are expanded, then we want to aggregate the heights
+					// of undefined cards into the nearest defined card ...
+					if (!collapsed) {
+						// Select all cards
+						// On the first pass, we want all undefined cards to add their heights into
+						// the defined cards which precede them
+						$('.card').each(function(i) {
+							// Calculate card heights as height plus some margin
+							duration = $(this).height() + 22;
 
-					// console.log("i: " + i + ", duration: " + duration + ", id: " + $(this).attr('id'));
+							console.log("i: " + i + ", duration: " + duration + ", id: " + $(this).attr('id'));
 
-					// Does it have an id attribute?
-					if($(this).attr('id')) {
-						slides.push( {'height': duration, 'hash': $(this).attr('id')} );
+							// Does it have an id attribute?
+							if($(this).attr('id')) {
+								slides.push( {'height': duration, 'hash': $(this).attr('id')} );
 
-					// If not, then add its height to the last pushed array element
-					} else if (slides.length == 0) {
-						// Do nothing, because there are no slides yet
-					} else {
-						slides[slides.length-1]['height'] += duration;
-					}
-				});
-
-				// console.log("pre-scenes");
-				// console.log(slides);
-
-				// Select just the cards with id's
-				cards = $('.card[id]');
-
-				// On the second pass, we want to 
-				slides.forEach(function(slide) {
-
-					// Grab the id for each that has one
-					var id = slide['hash'];
-					var height = slide['height'];
-
-					// console.log("duration: " + height + ", id: " + id);
-
-					slide['scene'] = new ScrollMagic.Scene(
-						   {triggerElement: "#mobile #" + id, 
-							offset: -72,
-							duration: height,
-							triggerHook: "onLeave"})
-							.addTo(controller)
-							.on("enter", function (e) {
-								if (e.state == "DURING") {
-									scrollTrigger(e, id);
-								}
-							})
-				});
-
-				// console.log('last slide: ' + slides[slides.length-1]['hash']);
-
-				// Make the last slide accessible; this will affect the accessibility of the next-to-last
-				// as a consequence
-				slides[slides.length-1]['scene'] = new ScrollMagic.Scene(
-					   {triggerElement: "#mobile #" + slides[slides.length-1]['hash'], triggerHook: "onEnter"})
-						.addTo(controller)
-						.on("enter", function (e) {
-							scrollTrigger(e, slides[slides.length-1]['hash']);
-							console.log('end!');
+							// If not, then add its height to the last pushed array element
+							} else if (slides.length == 0) {
+								// Do nothing, because there are no slides yet
+							} else {
+								slides[slides.length-1]['height'] += duration;
+							}
 						});
 
-				// console.log("post-scenes");
-				// console.log(slides);
+					// If the cards are in a collapsed state, then we simply want to count each one that has a 
+					// title ...
+					// } else {
+					// 	$('.card').each(function(i) {
+					// 		// Calculate card heights as height plus some margin
+					// 		duration = $(this).height() + 22;
+
+					// 		console.log("i: " + i + ", duration: " + duration + ", id: " + $(this).attr('id'));
+
+					// 		// Does it have a title?
+					// 		if($(this).find('.card-title')) {
+					// 			slides.push( {'height': duration, 'hash': $(this).attr('id') || ''} );
+					// 		}
+					// 	});
+					}
+
+					// console.log("pre-scenes");
+					// console.log(slides);
+
+					// Select just the cards with id's
+					cards = $('.card[id]');
+
+					// On the second pass, we want to create the scenes
+					slides.forEach(function(slide) {
+
+						// Grab the id for each that has one
+						var id = slide['hash'];
+						var height = slide['height'];
+
+						// console.log("duration: " + height + ", id: " + id);
+
+						slide['scene'] = new ScrollMagic.Scene(
+							   {triggerElement: "#mobile #" + id, 
+								offset: -72,
+								duration: height,
+								triggerHook: "onLeave"})
+								.addTo(controller)
+								.on("enter", function (e) {
+									if (e.state == "DURING") {
+										scrollTrigger(e, id);
+									}
+								})
+					});
+
+					// console.log('last slide: ' + slides[slides.length-1]['hash']);
+
+					// Make the last slide accessible; this will affect the accessibility of the next-to-last
+					// as a consequence
+					slides[slides.length-1]['scene'] = new ScrollMagic.Scene(
+						   {triggerElement: "#mobile #" + slides[slides.length-1]['hash'], triggerHook: "onEnter"})
+							.addTo(controller)
+							.on("enter", function (e) {
+								scrollTrigger(e, slides[slides.length-1]['hash']);
+								console.log('end!');
+							});
+
+					// console.log("post-scenes");
+					console.log(slides);
+
+					return {'controller': controller, 'slides': slides};
+				}
+
+				var scrollObject = newSlides(false);
+
+				// $('.content .card-images:not(:first)').slideToggle();
+
+				// This click handler toggles between collapsed and expanded states for slides
+				$('.menu-icon').on('click', function() {
+					console.log('toggle collapse state for mobile cards');
+
+					var slideToggle = function() {
+						$('#mobile').toggleClass('collapsed');
+						$('#mobile').toggleClass('expanded');						
+
+						$('.content .card-images:not(:first)').slideToggle();
+					}
+
+					// var recalculateSlides = function() {
+					// 	// Check for state
+					// 	var collapsed = !$('#mobile').hasClass('expanded');
+					// 	console.log('collapsed: ' + collapsed);
+
+					// 	scrollObject = newSlides(collapsed);
+					// }
+
+					slideToggle();
+
+					// When in Table of Contents mode, do not display cards with scroll
+					if ($('#mobile').hasClass('collapsed')) {
+						$('.page-hash').find('p').html('Click card to jump to it');
+						scrollObject.slides.forEach(function(slide) {
+							slide['scene'].destroy();
+						})
+					} else {
+						scrollObject = newSlides(false);
+					}
+
+					// Make sure that the recalculation does not occur until the collapse state
+					// is fully toggled
+					// var callbacks = $.Callbacks();
+					// callbacks.add(slideToggle);
+					// callbacks.add(recalculateSlides);
+					// callbacks.fire();
+
+					// console.log(slides);
+				});
 
 				// bind scroll to anchor links
 				// check history situation with this code
@@ -1401,14 +1474,7 @@
 			console.log("should only run on mobile");
 
 			$(document).ready(function() {
-				// $('.content .card-images:not(:first)').slideToggle();
 
-				$('.menu-icon').on('click', function() {
-					console.log('collapse mobile cards');
-					$('#mobile').toggleClass('collapsed');
-					$('#mobile').toggleClass('expanded');
-					$('.content .card-images:not(:first)').slideToggle();
-				});
 			});
 		}
 	</script>
