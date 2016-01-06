@@ -284,7 +284,6 @@
 
 			<!-- The mobile markup uses smaller graphics, no impress.js, and instead uses Materialize cards to display small 640-pixel wide, zoomed chunks of the infographic.  Eventually, will want to configure that it is only downloading ten at a time.  Currently, setting JPG quality to 50. -->
 
-			<!-- <div id="mobile" class="collapsed"> -->
 			<div id="mobile" class="expanded">
 				
 				<header class="top-header">
@@ -385,7 +384,7 @@
 				</div>
 
 				<!-- Jetsons -->
-				<div class="card">
+				<div class="card" data-id="get_big_things_done">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-7.jpg">
 					</div>
@@ -433,7 +432,7 @@
 					</div>		
 				</div>
 
-				<div class="card just-image">
+				<div class="card just-image" data-id="stories_not_told">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-11.jpg">
 					</div>
@@ -453,7 +452,7 @@
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card" data-id="lightning">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-13.jpg">
 					</div>
@@ -471,7 +470,7 @@
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card" data-id="lightning">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-14.jpg">
 					</div>
@@ -489,7 +488,7 @@
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card" data-id="lightning">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-15.jpg">
 					</div>
@@ -518,7 +517,7 @@
 					</div>					
 				</div>
 
-				<div class="card">
+				<div class="card" data-id="peratt_galaxies">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-16b.jpg">
 					</div>
@@ -546,7 +545,7 @@
 					</div>					
 				</div>
 
-				<div class="card">
+				<div class="card" data-id="halton_arp">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-17b.jpg">
 					</div>
@@ -564,7 +563,7 @@
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card" data-id="halton_arp">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-18.jpg">
 					</div>
@@ -592,7 +591,7 @@
 					</div>					
 				</div>
 
-				<div class="card">
+				<div class="card" data-id="gerrit_verschuur">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-19b.jpg">
 					</div>
@@ -640,7 +639,7 @@
 					</div>					
 				</div>
 
-				<div class="card">
+				<div class="card" data-id="earthquake_lights">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-21b.jpg">
 					</div>
@@ -667,7 +666,7 @@
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card" data-id="fermi_paradox">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-23.jpg">
 					</div>
@@ -695,7 +694,7 @@
 					</div>					
 				</div>
 
-				<div class="card">
+				<div class="card" data-id="lightning_to_space">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-24b.jpg">
 					</div>
@@ -725,7 +724,7 @@
 					</div>					
 				</div>
 
-				<div class="card">
+				<div class="card" data-id="gel_cell_theory">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-25b.jpg">
 					</div>
@@ -755,7 +754,7 @@
 					</div>					
 				</div>
 
-				<div class="card">
+				<div class="card" data-id="peratt_petroglyphs">
 					<div class="content card-image">
 						<img class="card-images" src="public/img-mobile/get-big-things-done-27.jpg">
 					</div>
@@ -870,17 +869,23 @@
 
 			// When mobile, do this instead ...
 			} else {
+				console.log("mobile window.load()");
+
+				// Set the height of #mobile to the window height.  This is necessary in order
+				// to ensure a consistent scrollTop value
+				$('#mobile').css('height', window.innerHeight);
+				$(window).resize(function() {
+					$('#mobile').css('height', window.innerHeight);
+				});
+
 				function scrollBetween(scrollObject, min, max) {
 					var maximum = max || scrollObject[0].scrollHeight;
 					var x = scrollObject.scrollTop;
 					return x >= min && x <= maximum;
 				}
 
-				console.log("mobile window.load()");
-
+				// This implements the sticky navbar
 				var wrap = $("#mobile");
-
-				// Implement the sticky navbar with ScrollMagic
 				wrap.on("scroll", function(e) {
 					// console.log("scrollTop: " + this.scrollTop);
 
@@ -894,11 +899,9 @@
 				});
 
 				// Cut up slides based upon vertical scroll distances
-				var newSlides = function (collapsed) {
+				var newSlides = function () {
 					// initialize the ScrollMagic controller
 					var controller = new ScrollMagic.Controller();
-
-					console.log('collapsed inside of slides fn: ' + collapsed);
 
 					var hash = '';
 
@@ -937,46 +940,26 @@
 					var slides = [];
 					var duration;
 
-					// We calculate the card heights differently based upon whether or not the cards are
-					// in a collapsed state.  If they are expanded, then we want to aggregate the heights
-					// of undefined cards into the nearest defined card ...
-					if (!collapsed) {
-						// Select all cards
-						// On the first pass, we want all undefined cards to add their heights into
-						// the defined cards which precede them
-						$('.card').each(function(i) {
-							// Calculate card heights as height plus some margin
-							duration = $(this).height() + 22;
+					// Select all cards
+					// On the first pass, we want all undefined cards to add their heights into
+					// the defined cards which precede them
+					$('.card').each(function(i) {
+						// Calculate card heights as height plus some margin
+						duration = $(this).height() + 22;
 
-							console.log("i: " + i + ", duration: " + duration + ", id: " + $(this).attr('id'));
+						// console.log("i: " + i + ", height: " + duration + ", id: " + $(this).attr('id'));
 
-							// Does it have an id attribute?
-							if($(this).attr('id')) {
-								slides.push( {'height': duration, 'hash': $(this).attr('id')} );
+						// Does it have an id attribute?
+						if($(this).attr('id')) {
+							slides.push( {'height': duration, 'hash': $(this).attr('id')} );
 
-							// If not, then add its height to the last pushed array element
-							} else if (slides.length == 0) {
-								// Do nothing, because there are no slides yet
-							} else {
-								slides[slides.length-1]['height'] += duration;
-							}
-						});
-
-					// If the cards are in a collapsed state, then we simply want to count each one that has a 
-					// title ...
-					// } else {
-					// 	$('.card').each(function(i) {
-					// 		// Calculate card heights as height plus some margin
-					// 		duration = $(this).height() + 22;
-
-					// 		console.log("i: " + i + ", duration: " + duration + ", id: " + $(this).attr('id'));
-
-					// 		// Does it have a title?
-					// 		if($(this).find('.card-title')) {
-					// 			slides.push( {'height': duration, 'hash': $(this).attr('id') || ''} );
-					// 		}
-					// 	});
-					}
+						// If not, then add its height to the last pushed array element
+						} else if (slides.length == 0) {
+							// Do nothing, because there are no slides yet
+						} else {
+							slides[slides.length-1]['height'] += duration;
+						}
+					});
 
 					// console.log("pre-scenes");
 					// console.log(slides);
@@ -984,12 +967,17 @@
 					// Select just the cards with id's
 					cards = $('.card[id]');
 
-					// On the second pass, we want to create the scenes
+					// On the second pass, we want to create the scenes and record the vertical positions
 					slides.forEach(function(slide) {
 
 						// Grab the id for each that has one
 						var id = slide['hash'];
 						var height = slide['height'];
+
+						var scrollYPos = $("#mobile #" + id).offset().top - 72;
+						slide['ypos'] = scrollYPos;
+
+						console.log("id: " + id + ", ypos: " + scrollYPos + ", height: " + height);
 
 						// console.log("duration: " + height + ", id: " + id);
 
@@ -1024,7 +1012,14 @@
 					return {'controller': controller, 'slides': slides};
 				}
 
-				var scrollObject = newSlides(false);
+				var scrollObject = newSlides();
+
+				function slideToggle () {
+					$('#mobile').toggleClass('collapsed');
+					$('#mobile').toggleClass('expanded');						
+
+					$('.content .card-images:not(:first)').slideToggle();
+				}
 
 				// $('.content .card-images:not(:first)').slideToggle();
 
@@ -1032,32 +1027,16 @@
 				$('.menu-icon').on('click', function() {
 					console.log('toggle collapse state for mobile cards');
 
-					var slideToggle = function() {
-						$('#mobile').toggleClass('collapsed');
-						$('#mobile').toggleClass('expanded');						
+					// When in Table of Contents mode, do not display cards with scroll
+					if ($('#mobile').hasClass('expanded')) {
+						$('.page-hash').find('p').html('Click card to jump to it');
+						scrollObject.controller.enabled(false);
 
-						$('.content .card-images:not(:first)').slideToggle();
+					} else {
+						scrollObject.controller.enabled(true);
 					}
-
-					// var recalculateSlides = function() {
-					// 	// Check for state
-					// 	var collapsed = !$('#mobile').hasClass('expanded');
-					// 	console.log('collapsed: ' + collapsed);
-
-					// 	scrollObject = newSlides(collapsed);
-					// }
 
 					slideToggle();
-
-					// When in Table of Contents mode, do not display cards with scroll
-					if ($('#mobile').hasClass('collapsed')) {
-						$('.page-hash').find('p').html('Click card to jump to it');
-						scrollObject.slides.forEach(function(slide) {
-							slide['scene'].destroy();
-						})
-					} else {
-						scrollObject = newSlides(false);
-					}
 
 					// Make sure that the recalculation does not occur until the collapse state
 					// is fully toggled
@@ -1069,22 +1048,50 @@
 					// console.log(slides);
 				});
 
+				$('.card').on('click', function(e) {
+					if ($('#mobile').hasClass('collapsed')) {
+						e.stopPropagation();
+
+						slideToggle();
+						scrollObject.controller.enabled(true);
+
+						var hash = $(this).attr('id') || $(this).data('id');
+						console.log('hash: ' + hash);
+						window.location.hash = hash;
+
+						// Wait for screen to re-draw before scrolling
+						setTimeout(function() {
+							var scrollYPos = 0;
+							for (var i=0; i<scrollObject.slides.length; i++) {
+								if (scrollObject.slides[i]['hash'] === hash) {
+									scrollYPos = scrollObject.slides[i]['ypos'];
+								}
+							}
+
+							// var scrollYPos = $("#mobile #" + hash).offset().top - 72;
+							console.log("scrollYPos: " + scrollYPos);
+
+							$("#mobile").scrollTo(scrollYPos, 800);
+						}, 900);
+					}
+				})
+
 				// bind scroll to anchor links
 				// check history situation with this code
-				$(document).on("click", "a[href^='#']", function (e) {
-					var id = $(this).attr("href");
-					if ($(id).length > 0) {
-						e.preventDefault();
+				// $(document).on("click", "a[href^='#']", function (e) {
+				// 	var id = $(this).attr("href");
+				// 	if ($(id).length > 0) {
+				// 		e.preventDefault();
 
-						// trigger scroll
-						controller.scrollTo(id);
+				// 		// trigger scroll
+				// 		controller.scrollTo(id);
 
-						// if supported by the browser we can even update the URL.
-						if (window.history && window.history.pushState) {
-							history.pushState("", document.title, id);
-						}
-					}
-				});	
+				// 		// if supported by the browser we can even update the URL.
+				// 		if (window.history && window.history.pushState) {
+				// 			history.pushState("", document.title, id);
+				// 		}
+				// 	}
+				// });	
 
 				// Grab anchor to scroll to from URL hash
 				var URLhash = window.location.hash;

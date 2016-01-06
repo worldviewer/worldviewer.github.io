@@ -73,12 +73,6 @@
 	height: 600px;
 }
 
-@media screen and (min-height: 600px) {
-	.mobile #mobile {
-		height: 1024px;
-	}
-}
-
 .mobile #mobile .menu-icon {
 	z-index: 101;
     position: absolute;
