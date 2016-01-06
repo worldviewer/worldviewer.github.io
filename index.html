@@ -1112,10 +1112,9 @@
 				// But this did ...
 				$("#mobile").scrollTo(scrollYPos, 800);
 
-				// This corrects the scroll, to take into account the sticky header
-				// function fixScroll() {
-				// 	$("#mobile").scrollTo('-=72', 100);
-				// }
+				setTimeout(function() {
+					Materialize.toast('Click top-right icon for table of contents', 10000);
+				}, 3000);
 			}
 		});
 
