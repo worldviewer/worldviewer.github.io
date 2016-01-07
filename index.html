@@ -34,6 +34,178 @@
 	<meta property="og:description" content="Today\'s belief in ineluctable certainty is the true innovation-killer of our age"/>
 	<meta property="og:image" content="public/img-mobile/get-big-things-done-1.jpg"/>
 	<meta property="og:type" content="infographic"/>
+
+	<!-- Schema metadata for Google rich snippets.  I'm using it hear to show the crawler how 
+	to access the individual slides.  Instructions here: 
+	https://developers.google.com/structured-data/breadcrumbs?rd=1 -->
+	<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "BreadcrumbList",
+			"itemListElement": [{
+				"@type": "ListItem",
+				"position": 1,
+				"item": {
+					"@id": "http://worldviewer.github.io",
+					"name": "Infographic"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#ineluctable",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#risk",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#forgotten",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#specialization",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#internet_era",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#get_big_things_done",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#china",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#get_big_things_done_fail",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#stories_not_told",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#lightning",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#peratt_galaxies",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#halton_arp",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#gerrit_verschuur",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#gerrit_verschuur_cmb",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#earthquake_lights",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#fermi_paradox",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#lightning_to_space",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#gel_cell_theory",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#origin_of_life",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#peratt_petroglyphs",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#petroglyph_plasmas",
+					"name": "Slide"
+				}
+			},{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+					"@id": "http://worldviewer.github.io#cranks",
+					"name": "Slide"
+				}
+			}]
+		}
+	</script>
 </head>
 <body>
 
@@ -318,7 +490,7 @@
 				<div id="intro"></div>
 				<div id="stephenson"></div>
 
-				<div class="card" id="ineluctable">
+				<div class="card" id="ineluctable" data-meta-description="<b>ineluctable:</b> <i>(adjective)</i> incapable of being evaded; inescapable.</p>">
 					<div class="content card-image">
 						<img class="activator card-images" src="public/img-mobile/get-big-things-done-1.jpg">
 					</div>
@@ -1145,6 +1317,26 @@
 						}
 				    });
 				}
+
+				// Copy should set og:title, og:url, og:description, og:image
+				$('.top-header, .page-hash').on('click', function() {
+					var metaTitle = document.querySelector('meta[property$="title"]');
+					var metaURL = document.querySelector('meta[property$="url"]');
+					var metaDescription = document.querySelector('meta[property$="description"]');
+					var metaImage = document.querySelector('meta[property$="image"]');
+
+					console.log(metaTitle);
+					console.log(metaURL);
+					console.log(metaDescription);
+					console.log(metaImage);
+
+					metaURL.content += currentSlide;
+
+					var $slide = $('#mobile ' + currentSlide);
+					metaDescription.content = $slide.data('meta-description');
+
+					metaImage.content = $slide.find('img').attr('src');
+				});
 
 				// $('.content .card-images:not(:first)').slideToggle();
 
