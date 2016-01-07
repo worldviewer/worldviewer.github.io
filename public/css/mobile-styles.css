@@ -160,8 +160,8 @@
 }
 
 .mobile .collapsed .card.just-image, .mobile .collapsed .card.just-quote {
-	margin-top: 0;
-	margin-bottom: 0;
+	margin-top: 7px;
+	margin-bottom: 14px;
 }
 
 .mobile .collapsed .card.just-image, .mobile .collapsed .card.just-quote .card-title {
@@ -202,6 +202,14 @@
 	display: none;
 }
 
+/* WARNING: This animation duration MUST be larger than the setTimeout
+delays used to remove the classes, or the wrong slides will be shown!
+*/
 .mobile .page-hash p {
   -webkit-animation-duration: .7s;
+}
+
+/* This colors the table of contents card red */
+.mobile .collapsed .current-card {
+	background-color: rgba(255,0,0, .3);
 }

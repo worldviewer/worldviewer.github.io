@@ -886,6 +886,10 @@
 					if($('#mobile').hasClass('expanded')) {
 						console.log("id in scrollTrigger: " + newHash);
 
+						// Set the active slide, just in case user switches to table of contents;
+						// We then want it to be painted red
+						currentSlide = '#' + newHash;
+
 						// First, slide old page-hash out for half-second, debounced on the
 						// leading edge (with 3rd debounce parameter, 'true')
 						pageHash.addClass('animated bounceOutLeft');
@@ -1034,11 +1038,9 @@
 								.on("enter", function (e) {
 									if (e.state == "DURING") {
 										console.log('id at event: ' + id);
-										var currentId = id;
+								        scrollTrigger(e, id);
 
-							    		console.log('id after no scroll: ' + currentId);
-								        scrollTrigger(e, currentId);
-
+										// This created a mysterious closure problem ...
 										// $('#mobile').scroll(function() {
 										//     clearTimeout($.data(this, 'scrollTimer'));
 										//     $.data(this, 'scrollTimer', setTimeout(function() {
@@ -1071,10 +1073,22 @@
 				var scrollObject = newSlides();
 
 				function slideToggle () {
-					$('#mobile').toggleClass('collapsed');
-					$('#mobile').toggleClass('expanded');						
+					$('#mobile').find(currentSlide).toggleClass('current-card');
+					console.log("currentSlide: " + currentSlide);
 
-					$('.content .card-images:not(:first)').slideToggle();
+					$('#mobile').toggleClass('collapsed');
+					$('#mobile').toggleClass('expanded');
+
+					$('.content .card-images:not(:first)').slideToggle().promise().done(function(e) {
+						// This awesome snippet of code was inspired by this page ...
+						// http://stackoverflow.com/questions/27632300/jquery-offset-returns-negative-value
+						// I'm not sure why 30 makes this centered, btw ...
+						var scrollYPos = $('#mobile').scrollTop() + 
+							$('#mobile ' + currentSlide).offset().top - window.innerHeight/2 + 30;
+
+						console.log("scrollYPos: " + scrollYPos);
+						$("#mobile").scrollTo(scrollYPos, 800);
+				    });
 				}
 
 				// $('.content .card-images:not(:first)').slideToggle();
@@ -1159,6 +1173,10 @@
 				// Remove the forward-slash that is sometimes added into the URL
 				URLhash = URLhash.replace(/\//, '');
 				console.log("window.location.hash: " + URLhash);
+
+				// Keep track of the current slide, so that we can paint it red in the
+				// table of contents
+				currentSlide = URLhash;
 
 				// Calculate pixel position of anchor
 				var scrollYPos = $("#mobile " + URLhash).offset().top - 72;
