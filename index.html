@@ -47,7 +47,9 @@
 
 	<!-- This image should be square -->
 	<meta property="og:image" content="public/img-mobile/get-big-things-done-1.jpg"/>
-	<meta property="og:type" content="article"/>
+	<meta property="og:type" content="website"/>
+
+	<meta property="fb:admins" content="chris.reeve.5851"/>
 
 	<!-- Schema metadata for Google rich snippets.  I'm using it hear to show the crawler how 
 	to access the individual slides.  Instructions here: 
@@ -241,9 +243,14 @@
 
 	The following snippet of code will give the basic version of the SDK where the options are 
 	set to their most common defaults. You should insert it directly after the opening <body> tag 
-	on each page you want to load it. -->
+	on each page you want to load it. 
 
- 	<script>
+	Like Button:
+	<div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
+	-->
+
+	<!-- This is the first snippet they gave me ...
+  	<script>
 		window.fbAsyncInit = function() {
 			FB.init({
 				appId      : '414453428751445',
@@ -259,7 +266,30 @@
 			js.src="https://connect.facebook.net/en_US/all.js";
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
-	</script>
+	</script> -->
+
+	<!-- This is the snippet they gave me to activate the FB share button -->
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=414453428751445";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+
+	<!-- Compact Share Button:
+	<div class="fb-share-button" data-href="http://worldviewer.github.io" data-layout="button"></div>
+
+	Alternatively, trigger a Share Dialog using the FB.ui function with the share method parameter to share a link...
+
+	FB.ui({
+		method: 'share',
+		href: 'https://developers.facebook.com/docs/',
+	}, function(response){}); 
+
+	More info at https://developers.facebook.com/docs/javascript/reference/FB.ui or
+	https://developers.facebook.com/quickstarts/414453428751445/?platform=web -->
 
  	<div id="hamburger" class="perimeter-buttons">
  		<!-- This tooltip is annoying ... -->
@@ -526,7 +556,7 @@
 						<!-- NOTE: Facebook like button will need to be styled or moved; it's moving the entire title box down.
 						Would like to place on both title box and sticky navbar -->
 						<div class="mobile-title-box">
-							<h1 class="controversy-title-bar">Is it Possible to Increase the Rate of Innovation?</h4><div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
+							<h1 class="controversy-title-bar">Is it Possible to Increase the Rate of Innovation?</h4>
 
 							<div class="pic-right">
 								<img src="public/img-desktop/chris-at-bm-small.png" alt="Author, Chris, at Burning Man">
