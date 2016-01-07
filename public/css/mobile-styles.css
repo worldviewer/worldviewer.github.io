@@ -82,7 +82,7 @@
     color: white;
 }
 
-.mobile #mobile .menu-icon:hover {
+.mobile #mobile .menu-icon:active {
 	background: none;
 }
 
