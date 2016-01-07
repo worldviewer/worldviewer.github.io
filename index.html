@@ -878,6 +878,75 @@
 					$('#mobile').css('height', window.innerHeight);
 				});
 
+				// Get a handle on the jQuery object
+				var pageHash = $('.page-hash').find('p');
+
+				// The new URL is only posted after scrolling has stopped for a full second
+				var scrollTrigger = function (e, newHash) {
+					console.log("hash: " + newHash);
+
+					// First, slide old page-hash out for half-second, debounced on the
+					// leading edge (with 3rd debounce parameter, 'true')
+					pageHash.addClass('animated bounceOutLeft');
+
+					setTimeout(function() {
+						pageHash.removeClass('animated bounceOutLeft');
+						pageHash.html('<a><b>#' + newHash + '</b></a>').addClass('animated bounceInLeft');
+
+						setTimeout(function() {
+							pageHash.removeClass('animated bounceInLeft');
+						}, 500);
+					}, 500)
+
+					window.location.hash = newHash;
+				};
+
+				// This function posts to the page-hash display during scroll a reminder
+				// to click to copy
+				var scrollMessage = debounce(function() {
+					// First, slide old page-hash out for half-second, debounced on the
+					// leading edge (with 3rd debounce parameter, 'true')
+
+					if (!startState) {
+						pageHash.addClass('animated bounceOutLeft');
+
+						setTimeout(function() {
+							pageHash.removeClass('animated bounceOutLeft');
+
+							// Slide the new message in
+							pageHash.html('Click to copy this URL').addClass('animated bounceInLeft');
+
+							setTimeout(function() {
+								pageHash.removeClass('animated bounceInLeft');
+							}, 1500)
+
+						}, 500)
+					} else {
+						pageHash.html('Click to copy this URL');
+						startState = false;
+					}
+				}, 2000, true);
+
+				// This comes from Underscore.js ...
+				// Returns a function, that, as long as it continues to be invoked, 
+				// will not be triggered. The function will be called after it stops 
+				// being called for N milliseconds. If `immediate` is passed, trigger the 
+				// function on the leading edge, instead of the trailing.
+				function debounce(func, wait, immediate) {
+					var timeout;
+					return function() {
+						var context = this, args = arguments;
+						var later = function() {
+							timeout = null;
+							if (!immediate) func.apply(context, args);
+						};
+						var callNow = immediate && !timeout;
+						clearTimeout(timeout);
+						timeout = setTimeout(later, wait);
+						if (callNow) func.apply(context, args);
+					};
+				};					
+
 				function scrollBetween(scrollObject, min, max) {
 					var maximum = max || scrollObject[0].scrollHeight;
 					var x = scrollObject.scrollTop;
@@ -886,8 +955,11 @@
 
 				// This implements the sticky navbar
 				var wrap = $("#mobile");
+
 				wrap.on("scroll", function(e) {
 					// console.log("scrollTop: " + this.scrollTop);
+
+					scrollMessage();
 
 					if (scrollBetween(this, 0, 109)) {
 						wrap.removeClass("fix-hash");
@@ -898,44 +970,14 @@
 					}
 				});
 
+
+
 				// Cut up slides based upon vertical scroll distances
 				var newSlides = function () {
 					// initialize the ScrollMagic controller
 					var controller = new ScrollMagic.Controller();
 
 					var hash = '';
-
-					// We have to be very careful with running this function.
-					// We must make sure that it only runs one single time, and only
-					// if a change has been made.
-					var scrollTrigger = debounce(function (e, newHash) {
-						if (newHash !== hash) {
-							console.log("hash: " + newHash);
-							$('.page-hash').find('p').html('Click to copy this URL - <a><b>#' + newHash + '</b></a>');
-							window.location.hash = newHash;
-							hash = newHash;
-						}
-					}, 500);
-
-					// This comes from Underscore.js ...
-					// Returns a function, that, as long as it continues to be invoked, 
-					// will not be triggered. The function will be called after it stops 
-					// being called for N milliseconds. If `immediate` is passed, trigger the 
-					// function on the leading edge, instead of the trailing.
-					function debounce(func, wait, immediate) {
-						var timeout;
-						return function() {
-							var context = this, args = arguments;
-							var later = function() {
-								timeout = null;
-								if (!immediate) func.apply(context, args);
-							};
-							var callNow = immediate && !timeout;
-							clearTimeout(timeout);
-							timeout = setTimeout(later, wait);
-							if (callNow) func.apply(context, args);
-						};
-					};					
 
 					var slides = [];
 					var duration;
@@ -989,7 +1031,15 @@
 								.addTo(controller)
 								.on("enter", function (e) {
 									if (e.state == "DURING") {
-										scrollTrigger(e, id);
+
+										$('#mobile').scroll(function() {
+										    clearTimeout($.data(this, 'scrollTimer'));
+										    $.data(this, 'scrollTimer', setTimeout(function() {
+										        scrollTrigger(e, id);
+										        console.log("Haven't scrolled in 1000ms!");
+										    }, 2000));
+										});
+
 									}
 								})
 					});
@@ -1095,6 +1145,10 @@
 
 				// Grab anchor to scroll to from URL hash
 				var URLhash = window.location.hash;
+
+				// If a URL hash exists, then we want to store state information to avoid
+				// scrolling the 'click to copy' message off the screen during scroll
+				var startState = URLhash ? true : false;
 
 				// Remove the forward-slash that is sometimes added into the URL
 				URLhash = URLhash.replace(/\//, '');

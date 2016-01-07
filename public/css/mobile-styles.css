@@ -201,3 +201,7 @@
 .mobile .collapsed .card-title + p {
 	display: none;
 }
+
+.mobile .page-hash p {
+  -webkit-animation-duration: .5s;
+}
