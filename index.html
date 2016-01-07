@@ -26,7 +26,7 @@
 	<script src="public/js/jquery.scrollTo.js" type="text/javascript"></script>
 	<script src="public/js/ScrollToPlugin.min.js" type="text/javascript"></script>
 	<script src="public/js/ScrollMagic.min.js" type="text/javascript"></script>
-	<script src="public/js/iScroll.js" type="text/javascript"></script>
+	<!-- <script src="public/js/iScroll.js" type="text/javascript"></script> -->
 
 	<!-- Meta tags for sharing to social networks -->
 	<meta property="og:title" content="Is it Possible to Increase the Rate of Innovation?"/>
@@ -285,7 +285,7 @@
 
 			<!-- The mobile markup uses smaller graphics, no impress.js, and instead uses Materialize cards to display small 640-pixel wide, zoomed chunks of the infographic.  Eventually, will want to configure that it is only downloading ten at a time.  Currently, setting JPG quality to 50. -->
 
-			<div id="iscroll">
+			<!-- <div id="iscroll"> -->
 			<div id="mobile" class="expanded">
 				
 				<header class="top-header">
@@ -826,7 +826,7 @@
 					</div>					
 				</div>
 
-			</div>
+			<!-- </div> -->
 
 			</div>
 		</div> <!-- Materialize col -->
@@ -882,11 +882,11 @@
 					$('#mobile').css('height', window.innerHeight);
 				});
 
-				var myScroll;
-				setTimeout(function() {
-					myScroll = new IScroll('#iscroll',
-						{deceleration: 0.000001});
-				}, 200);
+				// var myScroll;
+				// setTimeout(function() {
+				// 	myScroll = new IScroll('#iscroll',
+				// 		{deceleration: 0.000001});
+				// }, 200);
 
 				// Get a handle on the jQuery object
 				var pageHash = $('.page-hash').find('p');
