@@ -82,6 +82,10 @@
     color: white;
 }
 
+.mobile #mobile .menu-icon:hover {
+	background: none;
+}
+
 .mobile #mobile.fix-hash .menu-icon {
 	padding-right: 10px;
 	transition: padding 0.4s;
