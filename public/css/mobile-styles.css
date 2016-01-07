@@ -113,6 +113,10 @@ http://phonegap-tips.com/articles/essential-phonegap-css-webkit-tap-highlight-co
 	float: right;
 }
 
+.mobile #iscroll {
+	position: absolute;
+}
+
 .mobile .mobile-title-box .pic-right > img {
 	width: 64px;
 }
