@@ -882,7 +882,9 @@
 					$('#mobile').css('height', window.innerHeight);
 				});
 
-				var myScroll = new IScroll('#iscroll');
+				setTimeout(function() {
+					var myScroll = new IScroll('#iscroll');
+				}, 200);
 
 				// Get a handle on the jQuery object
 				var pageHash = $('.page-hash').find('p');
