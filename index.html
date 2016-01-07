@@ -880,10 +880,12 @@
 
 				// Get a handle on the jQuery object
 				var pageHash = $('.page-hash').find('p');
+				var hash = '';
 
 				// The new URL is only posted after scrolling has stopped for a full second
-				var scrollTrigger = debounce(function (e, newHash) {
+				var scrollTrigger = debounce(function (newHash) {
 					if($('#mobile').hasClass('expanded')) {
+						hash = newHash;
 						console.log("id in scrollTrigger: " + newHash);
 
 						// Set the active slide, just in case user switches to table of contents;
@@ -894,17 +896,30 @@
 						// leading edge (with 3rd debounce parameter, 'true')
 						pageHash.addClass('animated bounceOutLeft');
 
-						setTimeout(function() {
-							pageHash.removeClass('animated bounceOutLeft');
-							pageHash.html('<a><b>#' + newHash + '</b></a>').addClass('animated bounceInLeft');
+						// This code snippet surprisingly works, and it comes from
+						// http://www.gmarwaha.com/blog/2009/06/09/jquery-waiting-for-multiple-animations-to-complete/
+						var wait1 = setInterval(function() {
+							if( !$(".page-hash").is(":animated") ) {
+								clearInterval(wait1);
 
-							setTimeout(function() {
-								pageHash.removeClass('animated bounceInLeft');
-								window.location.hash = newHash;
-							}, 500);
-						}, 500)
+								pageHash.removeClass('animated bounceOutLeft');
+
+								// Slide the new message in
+								pageHash.html('<a><b>#' + newHash + '</b></a>').addClass('animated bounceInLeft');
+
+								var wait2 = setInterval(function() {
+									if( !$(".page-hash").is(":animated") ) {
+										clearInterval(wait2);
+
+										pageHash.removeClass('animated bounceInLeft');
+										window.location.hash = newHash;
+									}
+								}, 200);
+							}
+						}, 200);
+
 					}
-				}, 1000);
+				}, 500);
 
 				// This function posts to the page-hash display during scroll a reminder
 				// to click to copy
@@ -916,22 +931,35 @@
 					if (!startState && expanded) {
 						pageHash.addClass('animated bounceOutLeft');
 
-						setTimeout(function() {
-							pageHash.removeClass('animated bounceOutLeft');
+						var wait1 = setInterval(function() {
+							if( !$(".page-hash").is(":animated") ) {
+								clearInterval(wait1);
 
-							// Slide the new message in
-							pageHash.html('Click to copy this URL').addClass('animated bounceInLeft');
+								pageHash.removeClass('animated bounceOutLeft');
 
-							setTimeout(function() {
-								pageHash.removeClass('animated bounceInLeft');
-							}, 1500)
+								// Slide the new message in
+								pageHash.html('Click to copy this URL').addClass('animated bounceInLeft');
+								var wait2 = setInterval(function() {
+									if( !$(".page-hash").is(":animated") ) {
+										clearInterval(wait2);
 
-						}, 500)
+										pageHash.removeClass('animated bounceInLeft');
+
+										// One last check
+										if (pageHash.html() === 'Click to copy this URL') {
+											// FUCK
+										}
+									}
+								}, 200);
+
+							}
+						}, 200);
+
 					} else if (expanded) {
 						pageHash.html('Click to copy this URL');
 						startState = false;
 					}
-				}, 2000, true);
+				}, 500, true);
 
 				// This comes from Underscore.js ...
 				// Returns a function, that, as long as it continues to be invoked, 
@@ -976,14 +1004,10 @@
 					}
 				});
 
-
-
 				// Cut up slides based upon vertical scroll distances
 				var newSlides = function () {
 					// initialize the ScrollMagic controller
 					var controller = new ScrollMagic.Controller();
-
-					var hash = '';
 
 					var slides = [];
 					var duration;
@@ -1038,9 +1062,9 @@
 								.on("enter", function (e) {
 									if (e.state == "DURING") {
 										console.log('id at event: ' + id);
-								        scrollTrigger(e, id);
+								        scrollTrigger(id);
 
-										// This created a mysterious closure problem ...
+										// This created a mysterious closure problem
 										// $('#mobile').scroll(function() {
 										//     clearTimeout($.data(this, 'scrollTimer'));
 										//     $.data(this, 'scrollTimer', setTimeout(function() {
@@ -1060,7 +1084,7 @@
 						   {triggerElement: "#mobile #" + slides[slides.length-1]['hash'], triggerHook: "onEnter"})
 							.addTo(controller)
 							.on("enter", function (e) {
-								scrollTrigger(e, slides[slides.length-1]['hash']);
+								scrollTrigger(slides[slides.length-1]['hash']);
 								console.log('end!');
 							});
 
