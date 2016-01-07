@@ -1048,11 +1048,13 @@
 
 						// console.log("duration: " + height + ", id: " + id);
 
+						// The 0.5 triggerHook sets the page-hash to whatever is in the middle of
+						// the screen.  I think this is more intuitive than the "onLeave" option (1)
 						slide['scene'] = new ScrollMagic.Scene(
 							   {triggerElement: "#mobile #" + id, 
 								offset: -72,
 								duration: height,
-								triggerHook: "onLeave"})
+								triggerHook: 0.5})
 								.addTo(controller)
 								.on("progress", function (e) {
 									if (e.state == "DURING") {

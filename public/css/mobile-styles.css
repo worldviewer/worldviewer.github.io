@@ -73,6 +73,8 @@
 	height: 600px;
 }
 
+/* Fantastic tip comes from 
+http://phonegap-tips.com/articles/essential-phonegap-css-webkit-tap-highlight-color.html */
 .mobile #mobile .menu-icon {
 	z-index: 101;
     position: absolute;
