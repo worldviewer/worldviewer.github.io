@@ -882,24 +882,25 @@
 				var pageHash = $('.page-hash').find('p');
 
 				// The new URL is only posted after scrolling has stopped for a full second
-				var scrollTrigger = function (e, newHash) {
-					console.log("hash: " + newHash);
+				var scrollTrigger = debounce(function (e, newHash) {
+					if($('#mobile').hasClass('expanded')) {
+						console.log("id in scrollTrigger: " + newHash);
 
-					// First, slide old page-hash out for half-second, debounced on the
-					// leading edge (with 3rd debounce parameter, 'true')
-					pageHash.addClass('animated bounceOutLeft');
-
-					setTimeout(function() {
-						pageHash.removeClass('animated bounceOutLeft');
-						pageHash.html('<a><b>#' + newHash + '</b></a>').addClass('animated bounceInLeft');
+						// First, slide old page-hash out for half-second, debounced on the
+						// leading edge (with 3rd debounce parameter, 'true')
+						pageHash.addClass('animated bounceOutLeft');
 
 						setTimeout(function() {
-							pageHash.removeClass('animated bounceInLeft');
-						}, 500);
-					}, 500)
+							pageHash.removeClass('animated bounceOutLeft');
+							pageHash.html('<a><b>#' + newHash + '</b></a>').addClass('animated bounceInLeft');
 
-					window.location.hash = newHash;
-				};
+							setTimeout(function() {
+								pageHash.removeClass('animated bounceInLeft');
+								window.location.hash = newHash;
+							}, 500);
+						}, 500)
+					}
+				}, 1000);
 
 				// This function posts to the page-hash display during scroll a reminder
 				// to click to copy
@@ -907,7 +908,8 @@
 					// First, slide old page-hash out for half-second, debounced on the
 					// leading edge (with 3rd debounce parameter, 'true')
 
-					if (!startState) {
+					var expanded = $('#mobile').hasClass('expanded');
+					if (!startState && expanded) {
 						pageHash.addClass('animated bounceOutLeft');
 
 						setTimeout(function() {
@@ -921,7 +923,7 @@
 							}, 1500)
 
 						}, 500)
-					} else {
+					} else if (expanded) {
 						pageHash.html('Click to copy this URL');
 						startState = false;
 					}
@@ -1031,15 +1033,19 @@
 								.addTo(controller)
 								.on("enter", function (e) {
 									if (e.state == "DURING") {
+										console.log('id at event: ' + id);
+										var currentId = id;
 
-										$('#mobile').scroll(function() {
-										    clearTimeout($.data(this, 'scrollTimer'));
-										    $.data(this, 'scrollTimer', setTimeout(function() {
-										        scrollTrigger(e, id);
-										        console.log("Haven't scrolled in 1000ms!");
-										    }, 2000));
-										});
+							    		console.log('id after no scroll: ' + currentId);
+								        scrollTrigger(e, currentId);
 
+										// $('#mobile').scroll(function() {
+										//     clearTimeout($.data(this, 'scrollTimer'));
+										//     $.data(this, 'scrollTimer', setTimeout(function() {
+										    	
+										// 	    }
+										//     }, 2000));
+										// });
 									}
 								})
 					});
