@@ -919,7 +919,7 @@
 						}, 200);
 
 					}
-				}, 500);
+				}, 1000);
 
 				// This function posts to the page-hash display during scroll a reminder
 				// to click to copy
@@ -944,11 +944,6 @@
 										clearInterval(wait2);
 
 										pageHash.removeClass('animated bounceInLeft');
-
-										// One last check
-										if (pageHash.html() === 'Click to copy this URL') {
-											// FUCK
-										}
 									}
 								}, 200);
 
@@ -959,7 +954,7 @@
 						pageHash.html('Click to copy this URL');
 						startState = false;
 					}
-				}, 500, true);
+				}, 1000, true);
 
 				// This comes from Underscore.js ...
 				// Returns a function, that, as long as it continues to be invoked, 
@@ -1059,7 +1054,7 @@
 								duration: height,
 								triggerHook: "onLeave"})
 								.addTo(controller)
-								.on("enter", function (e) {
+								.on("progress", function (e) {
 									if (e.state == "DURING") {
 										console.log('id at event: ' + id);
 								        scrollTrigger(id);
@@ -1096,6 +1091,30 @@
 
 				var scrollObject = newSlides();
 
+				function scrollToHash(hash) {
+					var scrollYPos = 0;
+
+					// Make sure incoming hash is in the correct format
+					hash = hash.replace(/\//, '');
+					hash = hash.replace(/^#/, '');
+
+					// Check that the hash exists
+					var exists = false;
+					for (var i=0; i<scrollObject.slides.length; i++) {
+						if (hash === scrollObject.slides[i]['hash']) {
+							exists = true;
+						}
+					}
+
+					if (exists) {
+						scrollYPos = $('#mobile').scrollTop() + 
+							$('#mobile #' + hash).offset().top - window.innerHeight/2 + 30;
+					} 
+
+					console.log("hash: " + hash + ", scrollYPos: " + scrollYPos);
+					$("#mobile").scrollTo(scrollYPos, 800);
+				}
+
 				function slideToggle () {
 					$('#mobile').find(currentSlide).toggleClass('current-card');
 					console.log("currentSlide: " + currentSlide);
@@ -1107,11 +1126,11 @@
 						// This awesome snippet of code was inspired by this page ...
 						// http://stackoverflow.com/questions/27632300/jquery-offset-returns-negative-value
 						// I'm not sure why 30 makes this centered, btw ...
-						var scrollYPos = $('#mobile').scrollTop() + 
-							$('#mobile ' + currentSlide).offset().top - window.innerHeight/2 + 30;
 
-						console.log("scrollYPos: " + scrollYPos);
-						$("#mobile").scrollTo(scrollYPos, 800);
+						// This is where I scroll for collapsed state
+						if ($('#mobile').hasClass('collapsed')) {
+							scrollToHash(currentSlide);
+						}
 				    });
 				}
 
@@ -1153,7 +1172,8 @@
 						console.log('hash: ' + hash);
 						window.location.hash = hash;
 
-						// Wait for screen to re-draw before scrolling
+						// Wait for screen to re-draw before scrolling.  This is where I scroll for
+						// expanded state.
 						setTimeout(function() {
 							var scrollYPos = 0;
 							for (var i=0; i<scrollObject.slides.length; i++) {
