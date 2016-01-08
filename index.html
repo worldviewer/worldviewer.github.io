@@ -738,8 +738,10 @@
 						<img class="activator card-images" src="public/img-mobile/get-big-things-done-1.jpg" itemprop="image">
 					</div>
 
+					<meta itemprop="url" content="https://worldviewer.github.io#ineluctable">
+
 					<div class="content card-content">
-						<p class="content card-text" itemprop="description"><b>ineluctable:</b> <i>(adjective)</i> incapable of being evaded; inescapable.</p>
+						<p class="content card-text" itemprop="headline"><b>ineluctable:</b> <i>(adjective)</i> incapable of being evaded; inescapable.</p>
 					</div>
 				</div>
 
@@ -748,8 +750,10 @@
 						<img class="card-images" src="public/img-mobile/get-big-things-done-2.jpg" itemprop="image">
 					</div>
 
+					<meta itemprop="url" content="https://worldviewer.github.io#risk">
+
 					<div class="activator content card-content">
-						<span class="content card-title grey-text text-darken-4" itemprop="description">Innovation Can't Happen Without Failure</span>
+						<span class="content card-title grey-text text-darken-4" itemprop="headline">Innovation Can't Happen Without Failure</span>
 						<p class="content card-text">
 						<i class="material-icons right">more_vert</i>
 						<span class="red-num">1</span> All of the quotes in these first slides come from an article written by science fiction author, Neal Stephenson.  <a href="http://www.worldpolicy.org/journal/fall2011/innovation-starvation" target="_blank">That article</a> was written for the World Policy Institute.<br><br>Please note that the list of the graphic's list of scientific controversies is not intended to be comprehensive.  I've decided to limit the number of examples to avoid overwhelming people.</p>
@@ -1757,6 +1761,13 @@
 				// 		<img itemprop="image" src="image-url"></img>
 				// 		<p itemprop="description">Shiny trinkets are shiny.</p>
 				// </body>				
+
+				// Note that these annotations are only valid in the current itemscope. The +1 button has to 
+				// be placed inside this scope as well, since it looks for the first itemscope that occur 
+				// above the button in the DOM hierarchy.
+
+				// The positive side of that is that you can define multiple itemscopes per page, thus easily 
+				// integrate multiple +1 buttons with different share snippets on it.
 
 				$('a.gplus').on('click', function(e) {
 					e.stopPropagation();
