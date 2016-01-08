@@ -221,7 +221,3 @@ delays used to remove the classes, or the wrong slides will be shown!
 .mobile .collapsed .current-card {
 	background-color: rgba(255,0,0, .3);
 }
-
-*[itemprop] {
-	display: none;
-}

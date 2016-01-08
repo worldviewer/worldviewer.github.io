@@ -24,7 +24,7 @@
 	<link rel="stylesheet" type="text/css" href="public/css/materialize.css">
 	<link rel="stylesheet" type="text/css" href="public/css/animate.css">
 
-	<!-- For Material Icons -->
+	<!-- For Material Icons, slightly annoying when this occasionally does not fetch -->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<script src="public/js/jquery-2.1.4.min.js" type="text/javascript"></script>
@@ -111,13 +111,22 @@
 	<!-- For Google's Rich Snippets -->
 	<meta itemprop="name" content="Is it Possible to Increase the Rate of Innovation?">
 	<meta itemprop="description" content="There are potential answers to the biggest questions in science which are precluded by our incremental approach. Let me show you why we have a problem.">
-	<meta itemprop="image" content="/public/img-mobile/get-big-things-done-1-google.jpg">
-
+	<meta itemprop="mainEntityOfPage.@id" content="http://worldviewer.github.io">
 	
+	<!-- headlines should not exceed 110 characters -->
+	<meta itemprop="headline" content="Is it Possible to Increase the Rate of Innovation?">
+
+	<meta itemprop="image.url" content="https://worldviewer.github.io/public/img-mobile/get-big-things-done-1-google.jpg">
+	<meta itemprop="image.height" content="120">
+	<meta itemprop="image.width" content="180">
+	<meta itemprop="publisher.name" content="none">
+	<meta itemprop="datePublished" content="2016-01-05">
+	<meta itemprop="author.name" content="Chris Reeve">
 
 	<!-- The suggestion to improvise on schema type comes from
-	http://www.localvisibilitysystem.com/2014/06/30/how-to-pick-or-improvise-the-right-schema-org-markup-for-your-local-business/ -->
-	<link itemprop=”additionalType” href=“http://www.productontology.org/id/Infographic” />
+	http://www.localvisibilitysystem.com/2014/06/30/how-to-pick-or-improvise-the-right-schema-org-markup-for-your-local-business/ 
+	Does not work for BlogPosting type ... -->
+	<!-- <link itemprop=”additionalType” href=“http://www.productontology.org/id/Infographic” /> -->
 
 	<!-- The beauty of it is since it’s Schema.org you can use it on nearly any HTML tag 
 	on content that is already on the page.
