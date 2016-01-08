@@ -78,7 +78,7 @@ http://phonegap-tips.com/articles/essential-phonegap-css-webkit-tap-highlight-co
 .mobile #mobile .menu-icon {
 	z-index: 101;
     position: absolute;
-    top: 0;
+    top: -1px;
     right: 10px;
     padding: 20px 20px;
     color: white;
