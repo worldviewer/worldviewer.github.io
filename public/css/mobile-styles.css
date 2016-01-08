@@ -86,6 +86,16 @@ http://phonegap-tips.com/articles/essential-phonegap-css-webkit-tap-highlight-co
 	-webkit-tap-highlight-color: transparent; /* Some Androids */
 }
 
+.mobile #mobile .top-header svg {
+	z-index: 101;
+    position: absolute;
+    top: -3px;
+    right: 70px;
+    padding: 20px 20px;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent; /* Some Androids */
+}
+
 .mobile #mobile.fix-hash .menu-icon {
 	padding-right: 10px;
 	transition: padding 0.4s;
@@ -142,7 +152,7 @@ http://phonegap-tips.com/articles/essential-phonegap-css-webkit-tap-highlight-co
 	margin: 0 0 20px 0;
 
 	font-size: 1.5rem;
-	width: 90%;
+	width: 75%;
 }
 
 .mobile .mobile-title-box p {
@@ -220,8 +230,4 @@ delays used to remove the classes, or the wrong slides will be shown!
 /* This colors the table of contents card red */
 .mobile .collapsed .current-card {
 	background-color: rgba(255,0,0, .3);
-}
-
-*[itemprop] {
-	display: none;
 }
