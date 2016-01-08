@@ -125,12 +125,11 @@
 	While all the other types of metadata go in the <head> section of the code, this code will 
 	potentially live in various places throughout the website. -->
 
-
  	<!-- Schema metadata for Google rich snippets.  I'm using it hear to show the crawler how 
 	to access the individual slides.  Instructions here: 
 	https://developers.google.com/structured-data/breadcrumbs?rd=1 -->
 	<script type="application/ld+json">
-		{
+		var schema = {
 			"@context": "http://schema.org",
 			"@type": "BlogPosting",
 			"mainEntityOfPage":{
@@ -670,10 +669,8 @@
 						</svg>
 					</div>
 
-
-
-					<a href="https://plus.google.com/share?url="+"http://worldviewer.github.io" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes');return false;" class="gplus logo">
-						<svg alt="Google+" title="Google+" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					<a href="https://plus.google.com/share?url="+"http://worldviewer.github.io" class="gplus logo">
+						<svg alt="Share on Google+" title="Google+" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 							 width="14px" height="12.576px" viewBox="3.437 7.679 14 12.576" enable-background="new 3.437 7.679 14 12.576"
 							 xml:space="preserve">
 						<g>
@@ -736,23 +733,23 @@
 				<div id="intro"></div>
 				<div id="stephenson"></div>
 
-				<div class="card" id="ineluctable">
+				<div class="card" id="ineluctable" itemscope itemtype="http://schema.org/BlogPosting">
 					<div class="content card-image">
-						<img class="activator card-images" src="public/img-mobile/get-big-things-done-1.jpg">
+						<img class="activator card-images" src="public/img-mobile/get-big-things-done-1.jpg" itemprop="image">
 					</div>
 
 					<div class="content card-content">
-						<p class="content card-text"><b>ineluctable:</b> <i>(adjective)</i> incapable of being evaded; inescapable.</p>
+						<p class="content card-text" itemprop="description"><b>ineluctable:</b> <i>(adjective)</i> incapable of being evaded; inescapable.</p>
 					</div>
 				</div>
 
-				<div class="card" id="risk">
+				<div class="card" id="risk" itemscope itemtype="http://schema.org/BlogPosting">
 					<div class="content card-image">
-						<img class="card-images" src="public/img-mobile/get-big-things-done-2.jpg">
+						<img class="card-images" src="public/img-mobile/get-big-things-done-2.jpg" itemprop="image">
 					</div>
 
 					<div class="activator content card-content">
-						<span class="content card-title grey-text text-darken-4">Innovation Can't Happen Without Failure</span>
+						<span class="content card-title grey-text text-darken-4" itemprop="description">Innovation Can't Happen Without Failure</span>
 						<p class="content card-text">
 						<i class="material-icons right">more_vert</i>
 						<span class="red-num">1</span> All of the quotes in these first slides come from an article written by science fiction author, Neal Stephenson.  <a href="http://www.worldpolicy.org/journal/fall2011/innovation-starvation" target="_blank">That article</a> was written for the World Policy Institute.<br><br>Please note that the list of the graphic's list of scientific controversies is not intended to be comprehensive.  I've decided to limit the number of examples to avoid overwhelming people.</p>
@@ -1718,9 +1715,9 @@
 						$currentLogo = $(logos[currentLogo]);
 						$lastLogo = $(logos[lastLogo]);
 
-						console.log('currentLogo: ' + currentLogo);
+						// console.log('currentLogo: ' + currentLogo);
 						// console.log($currentLogo);
-						console.log('lastLogo: ' + lastLogo);
+						// console.log('lastLogo: ' + lastLogo);
 						// console.log($lastLogo);
 
 						// First, animate out the former logo
@@ -1732,8 +1729,6 @@
 							if( !$lastLogo.is(":animated") ) {
 								clearInterval(wait1);
 
-								console.log('made it here');
-
 								// Reset the animation and hide the element
 								$lastLogo.removeClass('animated zoomOut active');
 
@@ -1743,8 +1738,6 @@
 								var wait2 = setInterval(function() {
 									if( !$currentLogo.is(":animated") ) {
 										clearInterval(wait2);
-
-										console.log('made it here too');
 
 										$currentLogo.removeClass('animated zoomIn');
 									}
@@ -1757,6 +1750,21 @@
 					}, 7000);
 
 				})();
+
+				// HTML must be marked up as follows in order for G+ to provide options for images
+				// <body itemscope itemtype="http://schema.org/Product">
+				// 		<h1 itemprop="name">Shiny Trinket</h1>
+				// 		<img itemprop="image" src="image-url"></img>
+				// 		<p itemprop="description">Shiny trinkets are shiny.</p>
+				// </body>				
+
+				$('a.gplus').on('click', function(e) {
+					e.stopPropagation();
+					console.log("https://plus.google.com/share?url=" + "http://worldviewer.github.io" + currentSlide);
+					window.open("https://plus.google.com/share?url=" + "http://worldviewer.github.io" + currentSlide, '', 
+						'menubar=no,toolbar=no,resizable=yes,scrollbars=yes');
+					return false;
+				});
 
 				// bind scroll to anchor links
 				// check history situation with this code
