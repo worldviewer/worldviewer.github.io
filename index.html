@@ -53,6 +53,10 @@
 	version of the site (?) -->
 	<meta property="og:image" content="https://worldviewer.github.io/public/img-mobile/get-big-things-done-1-facebook.jpg"/>
 
+	<!-- This apparently necessary fix comes from ...
+	http://stackoverflow.com/questions/15346444/provided-ogimage-is-not-big-enough-in-facebook-linter -->
+	<link rel="image_src" type="image/jpeg" href="img_path" />
+
 	<!-- From http://www.h3xed.com/web-and-internet/how-to-use-og-image-meta-tag-facebook-reddit
 	Facebook recommends 1200 x 630 pixels for the og:image dimensions (info), which
 	is an approximate aspect ratio of 1.91:1. This gives your shared post a full-size image
