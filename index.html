@@ -121,9 +121,6 @@
 	<meta itemprop="author" content="Chris Reeve">
 	<meta itemprop="publisher" content="Chris Reeve">
 
-	<!-- 60 pixels high max, 600 pixels wide max -->
-	<!-- <meta itemprop="publisher.logo" content="public/img-mobile/chris-logo.png"> -->
-
 	<!-- The suggestion to improvise on schema type comes from
 	http://www.localvisibilitysystem.com/2014/06/30/how-to-pick-or-improvise-the-right-schema-org-markup-for-your-local-business/ 
 	Does not work for BlogPosting type ... -->
@@ -319,7 +316,8 @@
 </head>
 
 <body>
-	<img src="public/img-mobile/chris-logo.png" itemprop="publisher.logo" />
+	<!-- Rich Snippet publisher logo, 60 pixels high max, 600 pixels wide max -->
+	<img src="public/img-mobile/chris-logo.png" itemprop="publisher.logo" itemtype="http://schema.org/ImageObject" />
 
 	<!-- The Facebook SDK for JavaScript provides a rich set of client-side functionality that:
 
@@ -425,6 +423,7 @@
 	</div>
 
 	<div class="preloader-vertical-center">
+
 		<!-- Place active class on this to activate the preloader -->
 		<div class="preloader-wrapper big">
 			<div class="spinner-layer spinner-blue-only">
@@ -741,7 +740,7 @@
 					<div class="content card-image">
 
 						<!-- This is the Google Rich Snippet Image, preferred size of 180 x 120 -->
-						<img itemprop="image" class="card-images" src="public/img-mobile/get-big-things-done-7.jpg">
+						<img itemprop="image" itemtype="http://schema.org/ImageObject" class="card-images" src="public/img-mobile/get-big-things-done-7.jpg">
 					</div>
 
 					<div class="activator content card-content">
