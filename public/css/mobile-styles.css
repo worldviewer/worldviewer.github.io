@@ -86,10 +86,19 @@ http://phonegap-tips.com/articles/essential-phonegap-css-webkit-tap-highlight-co
 	-webkit-tap-highlight-color: transparent; /* Some Androids */
 }
 
-.mobile #mobile .top-header .logo {
+/*.mobile #mobile .top-header .logo {
 	z-index: 101;
     position: absolute;
     top: 1px;
+    right: 70px;
+    padding: 20px 20px;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent; /* Some Androids */
+}*/
+
+.mobile #mobile .card .logo {
+	z-index: 101;
+    position: float;
     right: 70px;
     padding: 20px 20px;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -233,13 +242,24 @@ delays used to remove the classes, or the wrong slides will be shown!
 }
 
 /* Start all of the social share icons off as hidden */
-.mobile .top-header .logo {
+/*.mobile .top-header .logo {
 	-webkit-animation-duration: 2s;
 	visibility: hidden;
 	z-index: 100;
 }
 
 .mobile .top-header .logo.active {
+	z-index: 101;
+	visibility: visible;
+}*/
+
+.mobile .card .logo {
+	-webkit-animation-duration: 2s;
+	visibility: hidden;
+	z-index: 100;
+}
+
+.mobile .card .logo.active {
 	z-index: 101;
 	visibility: visible;
 }
