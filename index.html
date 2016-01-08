@@ -676,7 +676,7 @@
 				<div id="intro"></div>
 				<div id="stephenson"></div>
 
-				<div class="card" id="ineluctable" data-meta-description="<b>ineluctable:</b> <i>(adjective)</i> incapable of being evaded; inescapable.</p>">
+				<div class="card" id="ineluctable">
 					<div class="content card-image">
 						<img class="activator card-images" src="public/img-mobile/get-big-things-done-1.jpg">
 					</div>
@@ -1293,7 +1293,7 @@
 
 				// This function posts to the page-hash display during scroll a reminder
 				// to click to copy
-				var scrollMessage = debounce(function() {
+				var scrollMessage = debounce(function(message) {
 					// First, slide old page-hash out for half-second, debounced on the
 					// leading edge (with 3rd debounce parameter, 'true')
 
@@ -1308,7 +1308,7 @@
 								pageHash.removeClass('animated bounceOutLeft');
 
 								// Slide the new message in
-								pageHash.html('Click to copy this URL').addClass('animated bounceInLeft');
+								pageHash.html(message).addClass('animated bounceInLeft');
 								var wait2 = setInterval(function() {
 									if( !$(".page-hash").is(":animated") ) {
 										clearInterval(wait2);
@@ -1358,7 +1358,7 @@
 				wrap.on("scroll", function(e) {
 					// console.log("scrollTop: " + this.scrollTop);
 
-					scrollMessage();
+					scrollMessage('Click to copy this URL');
 
 					if (scrollBetween(this, 0, 109)) {
 						wrap.removeClass("fix-hash");
@@ -1506,24 +1506,81 @@
 				    });
 				}
 
+				function copyTextToClipboard(text) {
+					var textArea = document.createElement("textarea");
+
+					//
+					// *** This styling is an extra step which is likely not required. ***
+					//
+					// Why is it here? To ensure:
+					// 1. the element is able to have focus and selection.
+					// 2. if element was to flash render it has minimal visual impact.
+					// 3. less flakyness with selection and copying which **might** occur if
+					//    the textarea element is not visible.
+					//
+					// The likelihood is the element won't even render, not even a flash,
+					// so some of these are just precautions. However in IE the element
+					// is visible whilst the popup box asking the user for permission for
+					// the web page to copy to the clipboard.
+					//
+
+					// Place in top-left corner of screen regardless of scroll position.
+					textArea.style.position = 'fixed';
+					textArea.style.top = 0;
+					textArea.style.left = 0;
+
+					// Ensure it has a small width and height. Setting to 1px / 1em
+					// doesn't work as this gives a negative w/h on some browsers.
+					textArea.style.width = '2em';
+					textArea.style.height = '2em';
+
+					// We don't need padding, reducing the size if it does flash render.
+					textArea.style.padding = 0;
+
+					// Clean up any borders.
+					textArea.style.border = 'none';
+					textArea.style.outline = 'none';
+					textArea.style.boxShadow = 'none';
+
+					// Avoid flash of white box if rendered for any reason.
+					textArea.style.background = 'transparent';
+
+					textArea.value = text;
+
+					document.body.appendChild(textArea);
+
+					textArea.select();
+
+					try {
+						var successful = document.execCommand('copy');
+						var msg = successful ? 'successful' : 'unsuccessful';
+						scrollMessage('Copy was ' + msg);
+					} catch (err) {
+						scrollMessage('Copy unsupported');
+					}
+
+					document.body.removeChild(textArea);
+				}
+
+				// var copyBobBtn = document.querySelector('.js-copy-bob-btn'),
+				// 	copyJaneBtn = document.querySelector('.js-copy-jane-btn');
+
+				// copyBobBtn.addEventListener('click', function(event) {
+				// 	copyTextToClipboard('Bob');
+				// });
+
+				// copyJaneBtn.addEventListener('click', function(event) {
+				// 	copyTextToClipboard('Jane');
+				// });
+
 				// Copy should set og:title, og:url, og:description, og:image
 				$('.top-header, .page-hash').on('click', function() {
-					var metaTitle = document.querySelector('meta[property$="title"]');
-					var metaURL = document.querySelector('meta[property$="url"]');
-					var metaDescription = document.querySelector('meta[property$="description"]');
-					var metaImage = document.querySelector('meta[property$="image"]');
+					// var metaTitle = document.querySelector('meta[property$="title"]');
+					// var metaURL = document.querySelector('meta[property$="url"]');
+					// var metaDescription = document.querySelector('meta[property$="description"]');
+					// var metaImage = document.querySelector('meta[property$="image"]');
 
-					console.log(metaTitle);
-					console.log(metaURL);
-					console.log(metaDescription);
-					console.log(metaImage);
-
-					// metaURL.content += currentSlide;
-
-					// var $slide = $('#mobile ' + currentSlide);
-					// metaDescription.content = $slide.data('meta-description');
-
-					// metaImage.content = $slide.find('img').attr('src');
+					copyTextToClipboard("https://worldviewer.github.io" + currentSlide);
 				});
 
 				// $('.content .card-images:not(:first)').slideToggle();
