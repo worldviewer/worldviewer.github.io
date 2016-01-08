@@ -108,19 +108,6 @@
 
 	<!-- GOOGLE -->
 
-	<!-- For Google's Rich Snippets -->
-	<meta itemprop="name" content="Is it Possible to Increase the Rate of Innovation?">
-	<meta itemprop="description" content="There are potential answers to the biggest questions in science which are precluded by our incremental approach. Let me show you why we have a problem.">
-	<meta itemprop="mainEntityOfPage" content="http://worldviewer.github.io">
-	
-	<!-- headlines should not exceed 110 characters -->
-	<meta itemprop="headline" content="Is it Possible to Increase the Rate of Innovation?">
-
-	<meta itemprop="datePublished" content="2016-01-05">
-	<meta itemprop="dateModified" content="2016-01-05">
-	<meta itemprop="author" content="Chris Reeve">
-	<meta itemprop="publisher" content="Chris Reeve">
-
 	<!-- The suggestion to improvise on schema type comes from
 	http://www.localvisibilitysystem.com/2014/06/30/how-to-pick-or-improvise-the-right-schema-org-markup-for-your-local-business/ 
 	Does not work for BlogPosting type ... -->
@@ -146,6 +133,43 @@
 	to access the individual slides.  Instructions here: 
 	https://developers.google.com/structured-data/breadcrumbs?rd=1 -->
 	<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "BlogPosting",
+			"mainEntityOfPage":{
+				"@type":"WebPage",
+				"@id":"https://worldviewer.github.io"
+			},
+
+			// headlines should not exceed 110 characters
+			"headline": "Is it Possible to Increase the Rate of Innovation?",
+			"image": {
+				"@type": "ImageObject",
+				"url": "public/img-mobile/get-big-things-done-7.jpg",
+				"height": 640,
+				"width": 458
+			},
+			"datePublished": "2016-01-05",
+			"dateModified": "2016-01-05",
+			"author": {
+				"@type": "Person",
+				"name": "Chris Reeve"
+			},
+			"publisher": {
+				"@type": "Person",
+				"name": "Chris Reeve",
+				"logo": {
+					"@type": "ImageObject",
+
+					// Rich Snippet publisher logo, 60 pixels high max, 600 pixels wide max
+					"url": "public/img-mobile/chris-logo.png",
+					"width": 60,
+					"height": 60
+				}
+			},
+			"description": "There are potential answers to the biggest questions in science which are precluded by our incremental approach. Let me show you why we have a problem."
+		}
+
 		{
 			"@context": "http://schema.org",
 			"@type": "BreadcrumbList",
@@ -316,8 +340,6 @@
 </head>
 
 <body>
-	<!-- Rich Snippet publisher logo, 60 pixels high max, 600 pixels wide max -->
-	<img src="public/img-mobile/chris-logo.png" itemprop="publisher.logo" itemtype="http://schema.org/ImageObject" />
 
 	<!-- The Facebook SDK for JavaScript provides a rich set of client-side functionality that:
 
