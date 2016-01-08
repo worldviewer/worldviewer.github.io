@@ -108,7 +108,23 @@
 
 	<!-- GOOGLE -->
 
-	<!-- Schema metadata for Google rich snippets.  I'm using it hear to show the crawler how 
+	<!-- The beauty of it is since it’s Schema.org you can use it on nearly any HTML tag 
+	on content that is already on the page.
+
+	- Itemscope=”[pageType]” – where [pageType] is Article, Blog, Book, Event, LocalBusiness, 
+	  Organization, Person, Product or Review.
+	- itemprop=”name” – This acts as the title attribute of the rich snippet and should be 
+	  limited to 140 characters.
+	- itemprop=”description” – This is the description of the rich snippet and should be 
+	  limited to 185 characters.
+	- itemprop=”image” This is the image of the rich snippet with an optimal size is 180 x 120. 
+	  Google+ will shrink this image, but if it is too small it will not be displayed.
+
+	While all the other types of metadata go in the <head> section of the code, this code will 
+	potentially live in various places throughout the website. -->
+
+
+ 	<!-- Schema metadata for Google rich snippets.  I'm using it hear to show the crawler how 
 	to access the individual slides.  Instructions here: 
 	https://developers.google.com/structured-data/breadcrumbs?rd=1 -->
 	<script type="application/ld+json">
@@ -281,7 +297,14 @@
 	</script>
 </head>
 
-<body>
+<body itemscope itemtype="http://schema.org/Article">
+
+	<!-- For Google's Rich Snippets -->
+	<p itemprop="description">There are potential answers to the biggest questions in science which are precluded by our incremental approach. Let me show you why we have a problem.</p>
+
+	<img itemprop="image" src="https://worldviewer.github.io/public/img-mobile/get-big-things-done-1-google.jpg" />
+
+	<p itemprop="name">Is it Possible to Increase the Rate of Innovation?</p>
 
 	<!-- The Facebook SDK for JavaScript provides a rich set of client-side functionality that:
 
